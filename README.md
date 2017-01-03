@@ -3,7 +3,7 @@ agence_de_voyage
 
 ###### Télécharger le repositories : *agence_de_voyage*
 
-    git clone https://
+    git clone https://github.com/salonsalsa/agence_de_voyage.git
 
 ###### Configuration Apache dans le fichier httpd.conf
     Exemple : /wamp/bin/apache/apache2.4.23/conf/httpd.conf
