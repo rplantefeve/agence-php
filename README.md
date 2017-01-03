@@ -32,4 +32,12 @@ agence_de_voyage
 ###### Une fois effectué aller sur votre navigateur et tester avec :
     http://localhost:8080
 
+###### Databases and the Doctrine ORM
+
+    http://symfony.com/doc/2.8/doctrine.html
+
+###### Crud symfony
+    http://symfony.com/doc/current/bundles/SensioGeneratorBundle/commands/generate_doctrine_crud.html
+
+
 > Team_Rocket
