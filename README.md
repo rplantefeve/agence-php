@@ -1,11 +1,11 @@
 agence_de_voyage
 ================
 
-###### Télécharger le repositories : *agence_de_voyage*
+### Télécharger le repositories : *agence_de_voyage*
 
     git clone https://github.com/salonsalsa/agence_de_voyage.git
 
-###### Configuration Apache dans le fichier httpd.conf
+### Configuration Apache dans le fichier httpd.conf
     Exemple : /wamp/bin/apache/apache2.4.23/conf/httpd.conf
 
     Listen 8080
@@ -29,14 +29,14 @@ agence_de_voyage
     </VirtualHost>
 
 
-###### Une fois effectué aller sur votre navigateur et tester avec :
+### Une fois effectué aller sur votre navigateur et tester avec :
     http://localhost:8080
 
-###### Databases and the Doctrine ORM
+### Databases and the Doctrine ORM
 
     http://symfony.com/doc/2.8/doctrine.html
 
-###### Crud symfony
+### Crud symfony
     http://symfony.com/doc/current/bundles/SensioGeneratorBundle/commands/generate_doctrine_crud.html
 
 
