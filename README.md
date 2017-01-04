@@ -10,7 +10,7 @@ agence_de_voyage
 
     Listen 8080
 
-    <VirtualHost \*:8080>
+    <VirtualHost *:8080>
       DocumentRoot "/srv/http/agence_de_voyage/web"
       DirectoryIndex index.php
       <Directory "/srv/http/agence_de_voyage/web">
