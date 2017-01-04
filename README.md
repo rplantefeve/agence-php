@@ -28,7 +28,7 @@ agence_de_voyage
         CustomLog /var/log/httpd/project_access.log combined
     </VirtualHost>
 
-### Configuration des parameters.
+### Configuration de : parameters.yml
 Il faut créer un fichier : parameters.yml et le placer dans app/config
 
 Il faut y placer ces lignes :
