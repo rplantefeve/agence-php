@@ -49,6 +49,10 @@ Il faut y placer ces lignes :
         secret: f25d29cad78e6b2aca067f4ce8ef50caea90837c
 
 
+### Il faut par la suite faire un composer
+    # Soit par netbeans ou autre IDE Compatible ou :
+    composer update -v
+
 ### Une fois effectué aller sur votre navigateur et tester avec :
     http://localhost:8080
 
