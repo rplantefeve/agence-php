@@ -28,6 +28,26 @@ agence_de_voyage
         CustomLog /var/log/httpd/project_access.log combined
     </VirtualHost>
 
+### Configuration des parameters.
+Il faut créer un fichier : parameters.yml et le placer dans app/config
+
+Il faut y placer ces lignes :
+
+>Adapter les différents paramètres suivant votre machine
+
+    # This file is auto-generated during the composer install
+    parameters:
+        database_host: 127.0.0.1
+        database_port: 3306
+        database_name: agence
+        database_user: root
+        database_password: root
+        mailer_transport: smtp
+        mailer_host: 127.0.0.1
+        mailer_user: null
+        mailer_password: null
+        secret: f25d29cad78e6b2aca067f4ce8ef50caea90837c
+
 
 ### Une fois effectué aller sur votre navigateur et tester avec :
     http://localhost:8080
