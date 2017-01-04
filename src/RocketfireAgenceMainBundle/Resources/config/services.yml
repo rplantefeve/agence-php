@@ -1,0 +1,4 @@
+services:
+#    rocketfire_agence_main.example:
+#        class: RocketfireAgenceMainBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
