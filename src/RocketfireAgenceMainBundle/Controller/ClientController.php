@@ -23,7 +23,7 @@ class ClientController extends Controller {
         /*
          * 1) Construire le formulaire
          */
-        $clientParticulier = new ClientParticulier();
+        $clientParticulier = new client();
         $form   = $this->createForm(ClientType::class, $clientParticulier);
 
         /*
