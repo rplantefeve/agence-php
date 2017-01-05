@@ -1,11 +1,18 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
+    encoders:
+        RocketfireAgenceMainBundle\Entity\Login: 
+            algorithm: bcrypt
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
+        agence_provider:
+            entity:
+                class: RocketfireAgenceMainBundle:Login
+                property: login
+        #in_memory:
+        #    memory: ~
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -14,7 +21,10 @@ security:
             security: false
 
         main:
-            anonymous: ~
+            pattern: ^/
+            http_basic: ~
+            provider: agence_provider
+            #anonymous: ~
             # activate different ways to authenticate
 
             # http_basic: ~
