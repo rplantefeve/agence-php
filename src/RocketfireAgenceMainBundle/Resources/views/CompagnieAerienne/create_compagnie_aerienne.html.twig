@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RocketfireAgenceMainBundle:CompagnieAerienne:createCompagnieAerienne{% endblock %}
+
+{% block body %}
+<h1>Welcome to the CompagnieAerienne:createCompagnieAerienne page</h1>
+{{ form_start(form) }}
+ {{ form_row(form.nom) }}
+ 
+ <button type="submit">Sauvegarder la compagnie aérienne</button>
+ {{ form_end(form) }}
+
+
+{% endblock %}
