@@ -1,5 +1,6 @@
 {
-    "name": "sam/agence_de_voyage",
+    "name": "rocketfire/agence_de_voyage",
+    "description" : "Le projet d'agence de voyage par RocketFire",
     "license": "proprietary",
     "type": "project",
     "autoload": {
