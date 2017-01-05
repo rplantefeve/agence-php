@@ -1,1 +1,49 @@
-<body>Vol Get</body>
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vols list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datedepart</th>
+                <th>Datearrivee</th>
+                <th>Heuredepart</th>
+                <th>Heurearrivee</th>
+                <th>AeroportDepart</th>
+                <th>AeroportArrivee</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vol in vols %}
+            <tr>
+                <td><a href="{{ path('vol_show', { 'id': vol.id }) }}">{{ vol.id }}</a></td>
+                <td>{% if vol.dateDepart %}{{ vol.dateDepart|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if vol.dateArrivee %}{{ vol.dateArrivee|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if vol.heureDepart %}{{ vol.heureDepart|date('H:i:s') }}{% endif %}</td>
+                <td>{% if vol.heureArrivee %}{{ vol.heureArrivee|date('H:i:s') }}{% endif %}</td>
+                <td>{% if vol.idAeroportDepart %}{{ vol.idAeroportDepart }}{% endif %}</td>
+                <td>{% if vol.idAeroportArrivee %}{{ vol.idAeroportArrivee }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('vol_show', { 'id': vol.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('vol_edit', { 'id': vol.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vol_new') }}">Create a new vol</a>
+        </li>
+    </ul>
+{% endblock %}

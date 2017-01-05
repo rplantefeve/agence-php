@@ -133,4 +133,8 @@ class Aeroport
     {
         return $this->villes;
     }
+
+    public function __toString() {
+        return $this->nom;
+    }
 }

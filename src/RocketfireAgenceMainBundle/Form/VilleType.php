@@ -9,16 +9,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class VilleType extends AbstractType
 {
     /**
-     * {@inheritdoc}
-     */
+    * {@inheritdoc}
+    */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')        ;
+        $builder->add('nom');
     }
-    
+
     /**
-     * {@inheritdoc}
-     */
+    * {@inheritdoc}
+    */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -27,8 +27,8 @@ class VilleType extends AbstractType
     }
 
     /**
-     * {@inheritdoc}
-     */
+    * {@inheritdoc}
+    */
     public function getBlockPrefix()
     {
         return 'rocketfireagencemainbundle_ville';

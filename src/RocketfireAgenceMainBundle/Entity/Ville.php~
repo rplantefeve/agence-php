@@ -92,4 +92,8 @@ class Ville
     {
         return $this->idVille;
     }
+
+    public function __toString() {
+        return $this->nom;
+    }
 }

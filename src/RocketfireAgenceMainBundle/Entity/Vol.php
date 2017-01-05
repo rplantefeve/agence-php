@@ -324,4 +324,8 @@ class Vol
     {
         return $this->aeroportArrivee;
     }
+
+    public function __toString() {
+        return $this->id;
+    }
 }
