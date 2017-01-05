@@ -16,4 +16,8 @@ parameters:
     mailer_password:   ~
 
     # A secret key that's used to generate certain security-related tokens
+<<<<<<< HEAD
     secret:            19C44620FE446A4D3911EDF4A10A3A1E1A165C3838B200F3F8636954B2C6D5D7 
+=======
+    secret:            19C44620FE446A4D3911EDF4A10A3A1E1A165C3838B200F3F8636954B2C6D5D7
+>>>>>>> teamBote
