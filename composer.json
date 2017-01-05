@@ -5,7 +5,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "agence_de_voyage\\": "src/"
+            "": "src/"
         },
         "classmap": [
             "app/AppKernel.php",
