@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Login controller.
  *
- * @Route("login")
+ * @Route("Login")
  */
 class LoginController extends Controller {
 
