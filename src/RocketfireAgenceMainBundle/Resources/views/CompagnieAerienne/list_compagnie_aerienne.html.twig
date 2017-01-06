@@ -9,12 +9,24 @@
         <tr>
             <th>Identifiant</th>
             <th>Nom</th>
+            <th>Editer</th>
+            <th>Supprimer</th>
         </tr>
         {% for compagnie in compagnieAeriennes %}
             {# boucle de construction de la liste des compagnies #}
             <tr>
                 <td>{{ compagnie.id }} </td>
                 <td>{{ compagnie.nom }}</td>
+                <td>
+                    <form action='{{ path('CompagnieAerienne_edit' , { 'id' : compagnie.id }) }}'>
+               <button type="submit">Editer</button>
+               </form>
+                </td>
+                <td>
+               <form action='{{ path('CompagnieAerienne_delete' , { 'id' : compagnie.id }) }}'>
+               <button type="submit">Supprimer</button>
+               </form>
+                </td>
             </tr>
         {% endfor %}
     </table>

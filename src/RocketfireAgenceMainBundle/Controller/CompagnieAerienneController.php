@@ -59,9 +59,41 @@ class CompagnieAerienneController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienne/edit/{id}")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienne/edit/{id}", host="agence.local", name="CompagnieAerienne_edit")
+     * @param Request $request
+     * @param integer $id
+     * @return type
+     * @throws type
      */
-    public function editCompagnieAerienneAction($id) {
+    public function editCompagnieAerienneAction(Request $request, $id) {
+        
+        $em = $this->getDoctrine()->getManager();
+        $compagnieAerienne = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')->find($id);
+        
+        if (!$compagnieAerienne) {
+            throw $this->createNotFoundException(
+                    'Pas de compagnie pour id ' . $id
+            );
+        }
+        /*
+         * 1) Construire le formulaire
+         */
+        $form = $this->createForm(CompagnieAerienneType::class, $compagnieAerienne);
+        /*
+         * 2) Gérer la soumission du formulaire
+         */
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /*
+             * 3) Sauvegarder la compagnie aerienne
+             */
+            $em->flush();
+            // store a message for the very next request
+            $this->addFlash('notice', 'Mise à jour réussie.');
+            // redirection
+            return $this->redirectToRoute('CompagnieAerienne_list');
+        }
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:edit_compagnie_aerienne.html.twig',
                         array(
                       'form' => $form->createView()
@@ -69,13 +101,31 @@ class CompagnieAerienneController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienne/delete/{id}")
+     * @Method({"GET","POST"})
+     * @param integer $id
+     * @Route("/CompagnieAerienne/delete/{id}", host="agence.local", name="CompagnieAerienne_delete")
+     * @return type
+     * @throws type
      */
     public function deleteCompagnieAerienneAction($id) {
+       
+        $em = $this->getDoctrine()->getManager();
+        $compagnieAerienne = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')->find($id);
+        if (!$compagnieAerienne) {
+            throw $this->createNotFoundException(
+                    'Pas de compagnie pour identifiant ' . $id
+            );
+        } 
+        $em->remove($compagnieAerienne);
+        $em->flush();
+        
+        // store a message for the very next request
+        $this->addFlash('notice', 'Suppression réussie.');
+        
+      
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:delete_compagnie_aerienne.html.twig',
-                        array(
-                        // ...
-        ));
+                       ['compagnieAerienne' => $compagnieAerienne]);
+       
     }
 
     /**
