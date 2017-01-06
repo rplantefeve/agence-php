@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Ville controller.
  *
- * @Route("ville")
+ * @Route("Ville")
  */
 class VilleController extends Controller
 {
     /**
      * Lists all ville entities.
      *
-     * @Route("/", name="ville_index")
+     * @Route("/list", name="ville_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class VilleController extends Controller
     /**
      * Creates a new ville entity.
      *
-     * @Route("/new", name="ville_new")
+     * @Route("/add", name="ville_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +60,7 @@ class VilleController extends Controller
     /**
      * Finds and displays a ville entity.
      *
-     * @Route("/{id}", name="ville_show")
+     * @Route("/show/{id}", name="ville_show")
      * @Method("GET")
      */
     public function showAction(Ville $ville)
@@ -76,7 +76,7 @@ class VilleController extends Controller
     /**
      * Displays a form to edit an existing ville entity.
      *
-     * @Route("/{id}/edit", name="ville_edit")
+     * @Route("/edit/{id}", name="ville_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Ville $ville)
@@ -101,7 +101,7 @@ class VilleController extends Controller
     /**
      * Deletes a ville entity.
      *
-     * @Route("/{id}", name="ville_delete")
+     * @Route("/delete/{id}", name="ville_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Ville $ville)

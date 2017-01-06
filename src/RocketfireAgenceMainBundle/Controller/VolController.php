@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Vol controller.
  *
- * @Route("vol")
+ * @Route("Vol")
  */
 class VolController extends Controller
 {
     /**
      * Lists all vol entities.
      *
-     * @Route("/", name="vol_index")
+     * @Route("/list", name="vol_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class VolController extends Controller
     /**
      * Creates a new vol entity.
      *
-     * @Route("/new", name="vol_new")
+     * @Route("/add", name="vol_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +60,7 @@ class VolController extends Controller
     /**
      * Finds and displays a vol entity.
      *
-     * @Route("/{id}", name="vol_show")
+     * @Route("/show/{id}", name="vol_show")
      * @Method("GET")
      */
     public function showAction(Vol $vol)
@@ -76,7 +76,7 @@ class VolController extends Controller
     /**
      * Displays a form to edit an existing vol entity.
      *
-     * @Route("/{id}/edit", name="vol_edit")
+     * @Route("/edit/{id}", name="vol_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Vol $vol)
@@ -101,7 +101,7 @@ class VolController extends Controller
     /**
      * Deletes a vol entity.
      *
-     * @Route("/{id}", name="vol_delete")
+     * @Route("/delete/{id}", name="vol_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Vol $vol)
