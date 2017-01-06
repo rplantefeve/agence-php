@@ -6,6 +6,7 @@ use RocketfireAgenceMainBundle\Entity\Login;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use RocketfireAgenceMainBundle\Form\Type\LoginType;
 
@@ -87,6 +88,7 @@ class LoginController extends Controller {
      *
      * @Route("/edit/{id}", name="login_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editLoginAction(Request $request, Login $login) {
         $deleteForm = $this->createDeleteForm($login);
@@ -119,6 +121,7 @@ class LoginController extends Controller {
      *
      * @Route("/delete/{id}", name="login_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteLoginAction(Request $request, Login $login) {
         $form = $this->createDeleteForm($login);

@@ -125,7 +125,7 @@ class Login implements UserInterface, \Serializable {
      *
      * @return bool
      */
-    public function getAdmin() {
+    public function isAdmin() {
         return $this->admin;
     }
 
@@ -147,7 +147,7 @@ class Login implements UserInterface, \Serializable {
      *
      * @return boolean
      */
-    public function getIsActive() {
+    public function isActive() {
         return $this->isActive;
     }
 
@@ -165,8 +165,13 @@ class Login implements UserInterface, \Serializable {
     }
 
     public function getRoles() {
-        return array(
-            'ROLE_USER');
+        if ($this->isAdmin()) {
+            return [
+                'ROLE_ADMIN'];
+        } else {
+            return array(
+                'ROLE_USER');
+        }
     }
 
     public function eraseCredentials() {
