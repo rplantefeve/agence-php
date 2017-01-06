@@ -1,6 +1,6 @@
 <?php
 
-namespace RocketfireAgenceMainBundle\Form;
+namespace RocketfireAgenceMainBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

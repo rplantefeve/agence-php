@@ -68,7 +68,4 @@ class Ville
         return $this->nom;
     }
 
-    public function _toString(){
-        return $this->nom;
-    }
 }
