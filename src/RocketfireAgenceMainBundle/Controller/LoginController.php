@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use RocketfireAgenceMainBundle\Form\Type\LoginType;
 
 /**
  * Login controller.
@@ -40,8 +41,7 @@ class LoginController extends Controller {
      */
     public function addLoginAction(Request $request) {
         $login = new Login();
-        $form  = $this->createForm('RocketfireAgenceMainBundle\Form\LoginType',
-                $login);
+        $form  = $this->createForm(LoginType::class, $login);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -69,7 +69,7 @@ class LoginController extends Controller {
     /**
      * Finds and displays a login entity.
      *
-     * @Route("/{id}", name="login_show")
+     * @Route("/show/{id}", name="login_show")
      * @Method("GET")
      */
     public function showLoginAction(Login $login) {
@@ -90,15 +90,14 @@ class LoginController extends Controller {
      */
     public function editLoginAction(Request $request, Login $login) {
         $deleteForm = $this->createDeleteForm($login);
-        $editForm   = $this->createForm('RocketfireAgenceMainBundle\Form\LoginEditType',
-                $login);
+        $editForm   = $this->createForm(LoginType::class, $login);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $encoder  = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($login, $login->getMotDePasse());
             $login->setMotDePasse($password);
-            
+
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('notice', 'Félicitations, modification réussie.');
@@ -118,7 +117,7 @@ class LoginController extends Controller {
     /**
      * Deletes a login entity.
      *
-     * @Route("/{id}", name="login_delete")
+     * @Route("/delete/{id}", name="login_delete")
      * @Method("DELETE")
      */
     public function deleteLoginAction(Request $request, Login $login) {
