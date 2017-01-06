@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use RocketfireAgenceMainBundle\Form\CompagnieAerienneVolType;
+use RocketfireAgenceMainBundle\Form\Type\CompagnieAerienneVolType;
 use RocketfireAgenceMainBundle\Entity\CompagnieAerienneVol;
 use Symfony\Component\HttpFoundation\Request;
 
