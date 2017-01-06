@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="label.login">
+                <source>label.login</source>
+                <target>Nom d'utilisateur</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.passwordConfirmation">
+                <source>label.passwordConfirmation</source>
+                <target>Confirmation</target>
+            </trans-unit>
+            <trans-unit id="label.administrator">
+                <source>label.administrator</source>
+                <target>Administrateur</target>
+            </trans-unit>
+            <trans-unit id="label.active">
+                <source>label.active</source>
+                <target>Compte actif</target>
+            </trans-unit>
+            <trans-unit id="button.create">
+                <source>button.create</source>
+                <target>Créer</target>
+            </trans-unit>
+            <trans-unit id="link.returnList">
+                <source>link.returnList</source>
+                <target>Retour à la liste</target>
+            </trans-unit>
+            <trans-unit id="title.loginCreate">
+                <source>title.loginCreate</source>
+                <target>Création d'un login</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
