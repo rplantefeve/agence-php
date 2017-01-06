@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Escale controller.
  *
- * @Route("escale")
+ * @Route("Escale")
  */
 class EscaleController extends Controller
 {
     /**
      * Lists all escale entities.
      *
-     * @Route("/", name="escale_index")
+     * @Route("/list", name="escale_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class EscaleController extends Controller
     /**
      * Creates a new escale entity.
      *
-     * @Route("/new", name="escale_new")
+     * @Route("/add", name="escale_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +60,7 @@ class EscaleController extends Controller
     /**
      * Finds and displays a escale entity.
      *
-     * @Route("/{id}", name="escale_show")
+     * @Route("/show/{id}", name="escale_show")
      * @Method("GET")
      */
     public function showAction(Escale $escale)
@@ -76,7 +76,7 @@ class EscaleController extends Controller
     /**
      * Displays a form to edit an existing escale entity.
      *
-     * @Route("/{id}/edit", name="escale_edit")
+     * @Route("/edit/{id}", name="escale_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Escale $escale)
@@ -101,7 +101,7 @@ class EscaleController extends Controller
     /**
      * Deletes a escale entity.
      *
-     * @Route("/{id}", name="escale_delete")
+     * @Route("/delete/{id}", name="escale_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Escale $escale)

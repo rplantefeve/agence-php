@@ -10,14 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Aeroport controller.
  *
- * @Route("aeroport")
+ * @Route("Aeroport")
  */
 class AeroportController extends Controller
 {
     /**
      * Lists all aeroport entities.
      *
-     * @Route("/", name="aeroport_index")
+     * @Route("/list", name="aeroport_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class AeroportController extends Controller
     /**
      * Creates a new aeroport entity.
      *
-     * @Route("/new", name="aeroport_new")
+     * @Route("/add", name="aeroport_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +60,7 @@ class AeroportController extends Controller
     /**
      * Finds and displays a aeroport entity.
      *
-     * @Route("/{id}", name="aeroport_show")
+     * @Route("/show/{id}", name="aeroport_show")
      * @Method("GET")
      */
     public function showAction(Aeroport $aeroport)
@@ -76,7 +76,7 @@ class AeroportController extends Controller
     /**
      * Displays a form to edit an existing aeroport entity.
      *
-     * @Route("/{id}/edit", name="aeroport_edit")
+     * @Route("/edit/{id}", name="aeroport_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Aeroport $aeroport)
@@ -101,7 +101,7 @@ class AeroportController extends Controller
     /**
      * Deletes a aeroport entity.
      *
-     * @Route("/{id}", name="aeroport_delete")
+     * @Route("/delete/{id}", name="aeroport_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Aeroport $aeroport)
