@@ -1,6 +1,6 @@
 <?php
 
-namespace RocketfireAgenceMainBundle\Form;
+namespace RocketfireAgenceMainBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,10 +16,12 @@ class LoginType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('login')
                 ->add('motDePasse', PasswordType::class)
-                ->add('admin', CheckboxType::class, [
+                ->add('admin', CheckboxType::class,
+                        [
                     'label'    => 'Administrateur',
                     'required' => false])
-                ->add('isActive', CheckboxType::class, [
+                ->add('isActive', CheckboxType::class,
+                        [
                     'label'    => 'Actif',
                     'required' => false]);
     }
