@@ -11,19 +11,19 @@
             </tr>
             <tr>
                 <th>Datedepart</th>
-                <td>{% if escale.dateDepart %}{{ escale.dateDepart|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if escale.dateDepartEscale %}{{ escale.dateDepartEscale|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Datearrivee</th>
-                <td>{% if escale.dateArrivee %}{{ escale.dateArrivee|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if escale.dateArriveeEscale %}{{ escale.dateArriveeEscale|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Heuredepart</th>
-                <td>{% if escale.heureDepart %}{{ escale.heureDepart|date('H:i:s') }}{% endif %}</td>
+                <td>{% if escale.heureDepartEscale %}{{ escale.heureDepartEscale|date('H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Heurearrivee</th>
-                <td>{% if escale.heureArrivee %}{{ escale.heureArrivee|date('H:i:s') }}{% endif %}</td>
+                <td>{% if escale.heureArriveeEscale %}{{ escale.heureArriveeEscale|date('H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>

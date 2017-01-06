@@ -169,5 +169,52 @@ class ClientParticulier extends Client
     {
         return $this->idLog;
     }
-}
 
+    /**
+     * Set numFax
+     *
+     * @param integer $numFax
+     *
+     * @return ClientParticulier
+     */
+    public function setNumFax($numFax)
+    {
+        $this->numFax = $numFax;
+
+        return $this;
+    }
+
+    /**
+     * Get numFax
+     *
+     * @return integer
+     */
+    public function getNumFax()
+    {
+        return $this->numFax;
+    }
+
+    /**
+     * Set siret
+     *
+     * @param integer $siret
+     *
+     * @return ClientParticulier
+     */
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * Get siret
+     *
+     * @return integer
+     */
+    public function getSiret()
+    {
+        return $this->siret;
+    }
+}

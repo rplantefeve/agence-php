@@ -11,19 +11,19 @@
             </tr>
             <tr>
                 <th>Datedepart</th>
-                <td>{% if vol.dateDepart %}{{ vol.dateDepart|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if vol.dateDepartVol %}{{ vol.dateDepartVol|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Datearrivee</th>
-                <td>{% if vol.dateArrivee %}{{ vol.dateArrivee|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if vol.dateArriveeVol %}{{ vol.dateArriveeVol|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Heuredepart</th>
-                <td>{% if vol.heureDepart %}{{ vol.heureDepart|date('H:i:s') }}{% endif %}</td>
+                <td>{% if vol.heureDepartVol %}{{ vol.heureDepartVol|date('H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Heurearrivee</th>
-                <td>{% if vol.heureArrivee %}{{ vol.heureArrivee|date('H:i:s') }}{% endif %}</td>
+                <td>{% if vol.heureArriveeVol %}{{ vol.heureArriveeVol|date('H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Aéroport de départ</th>

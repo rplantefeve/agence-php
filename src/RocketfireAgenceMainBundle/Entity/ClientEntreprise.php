@@ -200,5 +200,28 @@ class ClientEntreprise extends Client
     {
         return $this->idLog;
     }
-}
 
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return ClientEntreprise
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+}

@@ -205,5 +205,76 @@ abstract class Client
     {
         return $this->idLog;
     }
-}
 
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Client
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set numFax
+     *
+     * @param integer $numFax
+     *
+     * @return Client
+     */
+    public function setNumFax($numFax)
+    {
+        $this->numFax = $numFax;
+
+        return $this;
+    }
+
+    /**
+     * Get numFax
+     *
+     * @return integer
+     */
+    public function getNumFax()
+    {
+        return $this->numFax;
+    }
+
+    /**
+     * Set siret
+     *
+     * @param integer $siret
+     *
+     * @return Client
+     */
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * Get siret
+     *
+     * @return integer
+     */
+    public function getSiret()
+    {
+        return $this->siret;
+    }
+}
