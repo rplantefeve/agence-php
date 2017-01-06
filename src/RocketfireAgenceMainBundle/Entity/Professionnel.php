@@ -3,84 +3,31 @@
 namespace RocketfireAgenceMainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use RocketfireAgenceMainBundle\Entity\Client;
 
 /**
- * Client
- * @ORM\Table(name="client")
+ * ClientAssociation
+ *
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
- * @ORM\InheritanceType("SINGLE_TABLE")
  */
-abstract class Client
+abstract class Professionnel extends Client
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="idClient", type="bigint", length=15)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $idClient;
-
-    /**
-     * @Assert\NotBlank()
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=30)
-     */
-    protected $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=30, nullable=true)
-     */
-    protected $prenom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="numTel", type="string", length=14, unique=true)
-     */
-    protected $numTel;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="numFax", type="integer", unique=true, nullable=true)
      */
     protected $numFax;
 
-    /**
+     /**
      * @var int
-     *
-     * @ORM\Column(name="siret", type="bigint", unique=true, nullable=true)
      */
-    protected $siret;
+     protected $siret;
 
     /**
-     * @var string
+     * Get idClient
      *
-     * @ORM\Column(name="eMail", type="string", length=40, unique=true)
+     * @return int
      */
-    protected $eMail;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idAdd", type="integer", nullable=true)
-     */
-    protected $idAdd;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idLog", type="bigint", unique=true, nullable=true)
-     */
-    protected $idLog;
-
-
-     public function getIdClient()
+    public function getIdClient()
     {
         return $this->idClient;
     }
@@ -109,7 +56,6 @@ abstract class Client
     {
         return $this->nom;
     }
-
     /**
      * Set numTel
      *
@@ -135,6 +81,30 @@ abstract class Client
     }
 
     /**
+     * Set numFax
+     *
+     * @param integer $numFax
+     *
+     * @return client
+     */
+    public function setNumFax($numFax)
+    {
+        $this->numFax = $numFax;
+
+        return $this;
+    }
+
+    /**
+     * Get numFax
+     *
+     * @return int
+     */
+    public function getNumFax()
+    {
+        return $this->numFax;
+    }
+
+    /**
      * Set eMail
      *
      * @param string $eMail
@@ -156,6 +126,30 @@ abstract class Client
     public function getEMail()
     {
         return $this->eMail;
+    }
+
+    /**
+     * Set siret
+     *
+     * @param integer $siret
+     *
+     * @return client
+     */
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * Get siret
+     *
+     * @return int
+     */
+    public function getSiret()
+    {
+        return $this->siret;
     }
 
     /**

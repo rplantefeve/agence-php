@@ -176,6 +176,4 @@ class ClientController extends Controller {
                     'form' => $form->createView())
         );
     }
-    
-    
 }
