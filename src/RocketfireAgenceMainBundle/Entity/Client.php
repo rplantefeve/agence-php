@@ -7,9 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Client
- *
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
  */
 abstract class Client
 {
@@ -36,12 +36,27 @@ abstract class Client
      * @ORM\Column(name="prenom", type="string", length=30, nullable=true)
      */
     protected $prenom;
+  
     /**
      * @var string
      *
      * @ORM\Column(name="numTel", type="string", length=14, unique=true)
      */
     protected $numTel;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="numFax", type="integer", unique=true, nullable=true)
+     */
+    protected $numFax;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="siret", type="bigint", unique=true, nullable=true)
+     */
+    protected $siret;
 
     /**
      * @var string
@@ -56,60 +71,18 @@ abstract class Client
      * @ORM\Column(name="idAdd", type="integer", nullable=true)
      */
     protected $idAdd;
-    
-     
 
     /**
      * @var int
      *
-     * @ORM\Column(name="idLog", type="bigint", unique=true)
+     * @ORM\Column(name="idLog", type="bigint", unique=true, nullable=true)
      */
     protected $idLog;
-    
-     /**
-     * @var int
-     *
-     * @ORM\Column(name="siret", type="bigint", nullable=true, unique=true)
-     */
-    private $siret;
-    
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="numFax", type="integer", nullable=true, unique=true)
-     */
-    private $numFax;
+
 
      public function getIdClient()
     {
         return $this->idClient;
-    }
-    
-    
-
-   
-    
-    
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     *
-     * @return client
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
     }
 
     /**
@@ -136,6 +109,7 @@ abstract class Client
     {
         return $this->nom;
     }
+
     /**
      * Set numTel
      *
@@ -161,30 +135,6 @@ abstract class Client
     }
 
     /**
-     * Set numFax
-     *
-     * @param integer $numFax
-     *
-     * @return client
-     */
-    public function setNumFax($numFax)
-    {
-        $this->numFax = $numFax;
-
-        return $this;
-    }
-
-    /**
-     * Get numFax
-     *
-     * @return int
-     */
-    public function getNumFax()
-    {
-        return $this->numFax;
-    }
-
-    /**
      * Set eMail
      *
      * @param string $eMail
@@ -206,30 +156,6 @@ abstract class Client
     public function getEMail()
     {
         return $this->eMail;
-    }
-
-    /**
-     * Set siret
-     *
-     * @param integer $siret
-     *
-     * @return client
-     */
-    public function setSiret($siret)
-    {
-        $this->siret = $siret;
-
-        return $this;
-    }
-
-    /**
-     * Get siret
-     *
-     * @return int
-     */
-    public function getSiret()
-    {
-        return $this->siret;
     }
 
     /**
