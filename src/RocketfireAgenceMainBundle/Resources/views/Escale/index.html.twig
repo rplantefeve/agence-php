@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Escales list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datedepart</th>
+                <th>Datearrivee</th>
+                <th>Heuredepart</th>
+                <th>Heurearrivee</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for escale in escales %}
+            <tr>
+                <td><a href="{{ path('escale_show', { 'id': escale.id }) }}">{{ escale.id }}</a></td>
+                <td>{% if escale.dateDepart %}{{ escale.dateDepart|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if escale.dateArrivee %}{{ escale.dateArrivee|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if escale.heureDepart %}{{ escale.heureDepart|date('H:i:s') }}{% endif %}</td>
+                <td>{% if escale.heureArrivee %}{{ escale.heureArrivee|date('H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('escale_show', { 'id': escale.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('escale_edit', { 'id': escale.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('escale_new') }}">Create a new escale</a>
+        </li>
+    </ul>
+{% endblock %}
