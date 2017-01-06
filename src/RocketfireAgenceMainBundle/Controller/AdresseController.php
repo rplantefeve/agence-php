@@ -73,7 +73,7 @@ class AdresseController extends Controller
              */
             $em->flush();
             // store a message for the very next request
-            $this->addFlash('notice', 'Félicitations, insertion réussie.');
+            $this->addFlash('notice', 'Nouvelle adresse ajoutée.');
             // redirection pour le fun
             return $this->redirectToRoute('adresse_list');
 >>>>>>> Entité Adresse complète
@@ -194,7 +194,7 @@ class AdresseController extends Controller
             $this->getDoctrine()->getManager()->flush();
             
             // store a message for the very next request
-            $this->addFlash('notice', 'Mise à jour efectuée.');
+            $this->addFlash('notice', 'Mise à jour effectuée.');
 
 
             return $this->redirectToRoute('adresse_edit', array('idAdd' => $adresse->getidAdd()));
