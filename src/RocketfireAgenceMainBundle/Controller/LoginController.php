@@ -41,17 +41,21 @@ class LoginController extends Controller {
      * @Method({"GET", "POST"})
      */
     public function addLoginAction(Request $request) {
+        // 1) Créer le formulaire
         $login = new Login();
         $form  = $this->createForm(LoginType::class, $login);
+
+        // 2) Gérer la requête
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
+            // 3) Encoder le mot de passe avant enregistrement
             $encoder  = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($login, $login->getMotDePasse());
             $login->setMotDePasse($password);
 
+            // 4) Sauvegarde du Login
+            $em = $this->getDoctrine()->getManager();
             $em->persist($login);
             $em->flush($login);
 
