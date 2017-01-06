@@ -4,23 +4,22 @@ namespace RocketfireAgenceMainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use RocketfireAgenceMainBundle\Form\VilleType;
-use RocketfireAgenceMainBundle\Entity\Ville;
+use RocketfireAgenceMainBundle\Form\AdresseType;
+use RocketfireAgenceMainBundle\Entity\Adresse;
 use Symfony\Component\HttpFoundation\Request;
 
-class VilleController extends Controller
-{
+class AdresseController extends Controller {
     /**
-     * @Route("/Ville/add")
+     * @Method({"GET","POST"})
+     * @Route("/Adresse/add", host="agence.local", name="cinema_add")
      */
-    public function createVilleAction(Request $request) {
+    public function createAdresseAction(Request $request) {
         /*
          * 1) Construire le formulaire
          */
-        $ville = new Ville();
-        $form = $this->createForm(VilleType::class, $ville);
+        $adresse = new Adresse();
+        $form = $this->createForm(AdresseType::class, $adresse);
         /*
          * 2) Gérer la soumission du formulaire
          */
@@ -36,7 +35,7 @@ class VilleController extends Controller
              */
             $em = $this->getDoctrine()->getManager();
             // tells Doctrine you want to (eventually) save the Product (no queries yet)
-            $em->persist($ville);
+            $em->persist($adresse);
             /*
              * When the flush() method is called, Doctrine looks through all of the
              * objects
@@ -50,7 +49,7 @@ class VilleController extends Controller
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('home');
         }
         /*
           return $this->render( 'FormationCinemaCrudMainBundle:Default:cinema.add.html.twig',
@@ -61,9 +60,5 @@ class VilleController extends Controller
 
         return $this->render('RocketfireAgenceMainBundle:Adresse:create_adresse.html.twig', array('form' => $form->createView()));
     }
-    
-    
-    
-    
-    
+
 }

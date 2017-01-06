@@ -10,6 +10,7 @@ use RocketfireAgenceMainBundle\Entity\Adresse;
 use Symfony\Component\HttpFoundation\Request;
 
 class AdresseController extends Controller {
+
     /**
      * @Method({"GET","POST"})
      * @Route("/Adresse/add", host="agence.local", name="cinema_add")
@@ -49,16 +50,68 @@ class AdresseController extends Controller {
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('default');
         }
-        /*
-          return $this->render( 'FormationCinemaCrudMainBundle:Default:cinema.add.html.twig',
-          array( 'form' => $form->createView()) );
-          } */
-
-
 
         return $this->render('RocketfireAgenceMainBundle:Adresse:create_adresse.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/Adresse/show/{idAdd}")
+     * 
+     * @Method({"GET","POST"})
+     * @Route("/Adresse/show/{idAdd}", host="agence.local", name="cinema_show")
+     * 
+     * @param integer $idAdd
+     */
+    public function showAdresseAction($idAdd) {
+        
+        
+        
+        
+        return $this->render('RocketfireAgenceMainBundle:Adresse:show_adresse.html.twig', array(
+                        // ...
+        ));
+    }
+    
+        public function showAction(Ville $ville)
+    {
+        $deleteForm = $this->createDeleteForm($ville);
+
+        return $this->render('ville/show.html.twig', array(
+            'ville' => $ville,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+
+    // -----------------------
+
+    /**
+     * @Route("/Adresse/list")
+     */
+    public function listAdresseAction() {
+        return $this->render('RocketfireAgenceMainBundle:Adresse:list_adresse.html.twig', array(
+                        // ...
+        ));
+    }
+
+    /**
+     * @Route("/Adresse/edit/{idAdd}")
+     */
+    public function editAdresseAction($idAdd) {
+        return $this->render('RocketfireAgenceMainBundle:Adresse:edit_adresse.html.twig', array(
+                        // ...
+        ));
+    }
+
+    /**
+     * @Route("/Adresse/delete/{idAdd}")
+     */
+    public function deleteAdresseAction($idAdd) {
+        return $this->render('RocketfireAgenceMainBundle:Adresse:delete_adresse.html.twig', array(
+                        // ...
+        ));
     }
 
 }
