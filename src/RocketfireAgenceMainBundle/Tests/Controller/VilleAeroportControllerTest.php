@@ -4,7 +4,7 @@ namespace RocketfireAgenceMainBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AdresseControllerTest extends WebTestCase
+class VilleAeroportControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class AdresseControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/Adresse/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /Adresse/");
+        $crawler = $client->request('GET', '/villeaeroport/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /villeaeroport/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'rocketfireagencemainbundle_adresse[field_name]'  => 'Test',
+            'rocketfireagencemainbundle_villeaeroport[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class AdresseControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'rocketfireagencemainbundle_adresse[field_name]'  => 'Foo',
+            'rocketfireagencemainbundle_villeaeroport[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 

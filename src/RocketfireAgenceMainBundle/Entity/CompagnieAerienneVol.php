@@ -34,7 +34,7 @@ class CompagnieAerienneVol
      *
      * @var int
      * @ORM\ManyToOne(targetEntity="Vol")
-     * @ORM\JoinColumn(name="idVol", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idVol", referencedColumnName="idVol")
      */
      private $idVol;
 

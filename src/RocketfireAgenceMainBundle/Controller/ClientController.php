@@ -8,12 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use RocketfireAgenceMainBundle\Entity\Client;
 use RocketfireAgenceMainBundle\Entity\ClientParticulier;
 use RocketfireAgenceMainBundle\Entity\ClientAssociation;
-use RocketfireAgenceMainBundle\Form\ClientAssociationType;
-use RocketfireAgenceMainBundle\Form\ClientType;
-use RocketfireAgenceMainBundle\Form\ClientParticulierType;
+use RocketfireAgenceMainBundle\Form\Type\ClientAssociationType;
+use RocketfireAgenceMainBundle\Form\Type\ClientType;
+use RocketfireAgenceMainBundle\Form\Type\ClientParticulierType;
 use Symfony\Component\HttpFoundation\Request;
 use RocketfireAgenceMainBundle\Entity\ClientEntreprise;
-use RocketfireAgenceMainBundle\Form\ClientEntrepriseType;
+use RocketfireAgenceMainBundle\Form\Type\ClientEntrepriseType;
 
 class ClientController extends Controller {
 

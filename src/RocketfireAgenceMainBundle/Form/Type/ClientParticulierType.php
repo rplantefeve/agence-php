@@ -4,9 +4,12 @@ namespace RocketfireAgenceMainBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use RocketfireAgenceMainBundle\Form\ClientType;
+use RocketfireAgenceMainBundle\Form\Type\ClientType;
 
-class ClientAssociationType extends ClientType
+
+
+
+class ClientParticulierType extends ClientType
 {
     /**
      * {@inheritdoc}
@@ -14,6 +17,7 @@ class ClientAssociationType extends ClientType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        $builder->add('numFax')->add('siret');
+        $builder->add('prenom');
     }
 }
+

@@ -4,9 +4,9 @@ namespace RocketfireAgenceMainBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use RocketfireAgenceMainBundle\Form\ClientType;
+use RocketfireAgenceMainBundle\Form\Type\ClientType;
 
-class ClientEntrepriseType extends ClientType
+class ClientAssociationType extends ClientType
 {
     /**
      * {@inheritdoc}

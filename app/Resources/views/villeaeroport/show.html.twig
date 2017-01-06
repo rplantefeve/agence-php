@@ -1,27 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Aeroport</h1>
+    <h1>Villeaeroport</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ aeroport.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ aeroport.nom }}</td>
+                <td>{{ villeAeroport.id }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('aeroport_index') }}">Back to the list</a>
+            <a href="{{ path('villeaeroport_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('aeroport_edit', { 'id': aeroport.id }) }}">Edit</a>
+            <a href="{{ path('villeaeroport_edit', { 'id': villeAeroport.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
