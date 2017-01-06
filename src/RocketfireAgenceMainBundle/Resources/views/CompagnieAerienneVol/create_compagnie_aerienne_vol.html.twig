@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RocketfireAgenceMainBundle:CompagnieAerienneVol:createCompagnieAerienneVol{% endblock %}
+
+{% block body %}
+    {#<h1>Welcome to the CompagnieAerienneVol:createCompagnieAerienneVol page</h1>#}
+
+    <h1>Ajouter un nouveau vol de compagnie aérienne</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.numero) }}
+    {{ form_row(form.ouvert) }}
+    {{ form_row(form.idCompagnie) }}
+    {{ form_row(form.idVol) }}
+    <button type="submit">Sauvegarder le vol</button>
+    {{ form_end(form) }}
+
+    <form action='{{ path('default') }}'>
+      <button type="submit">Retour</button>
+    </form>
+{% endblock %}

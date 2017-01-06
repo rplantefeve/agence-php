@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RocketfireAgenceMainBundle:CompagnieAerienne:listCompagnieAerienne{% endblock %}
+
+{% block body %}
+<h1>Welcome to the CompagnieAerienne:listCompagnieAerienne page</h1>
+
+<table>
+        <tr>
+            <th>Identifiant</th>
+            <th>Nom</th>
+        </tr>
+        {% for compagnie in compagnieAerienne %}
+            {# boucle de construction de la liste des compagnies #}
+            <tr>
+                <td>{{ compagnie.id }} </td>
+                <td>{{ compagnie.nom }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+{% endblock %}

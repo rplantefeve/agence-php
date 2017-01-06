@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vol</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vol.id }}</td>
+            </tr>
+            <tr>
+                <th>Datedepart</th>
+                <td>{% if vol.dateDepart %}{{ vol.dateDepart|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datearrivee</th>
+                <td>{% if vol.dateArrivee %}{{ vol.dateArrivee|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heuredepart</th>
+                <td>{% if vol.heureDepart %}{{ vol.heureDepart|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heurearrivee</th>
+                <td>{% if vol.heureArrivee %}{{ vol.heureArrivee|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Aéroport de départ</th>
+                <td>{% if vol.idAeroportDepart %}{{ vol.idAeroportDepart }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Aeroport d'arrivée</th>
+                <td>{% if vol.idAeroportArrivee %}{{ vol.idAeroportArrivee }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vol_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('vol_edit', { 'id': vol.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
