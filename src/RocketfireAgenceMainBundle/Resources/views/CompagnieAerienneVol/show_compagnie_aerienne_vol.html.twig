@@ -4,4 +4,20 @@
 
 {% block body %}
 <h1>Welcome to the CompagnieAerienneVol:showCompagnieAerienneVol page</h1>
+
+    <h1>Détails d'un vol de compagnie aérienne</h1>
+    <h2>Id du vol : {{ compagnieAerienneVol.id }}</h2>
+    <h2>Id de la Compagnie : {{ compagnieAerienneVol.idCompagnie }}</h2>
+    <h2>id du Vol pour la Compagnie : {{ compagnieAerienneVol.idCompagnie }}<h2>
+    <h3>Vol n°{{ compagnieAerienneVol.numero }}</h3>
+    
+    <form action='{{ path('compagnieAerienneVol_edit' , { 'compagnieAerienneVolId' : compagnieAerienneVol.id }) }}'>
+        <button type="submit">Modifier la compagnie aérienne</button>
+    </form>
+        <form action='{{ path('compagnieAerienneVol_delete' , { 'compagnieAerienneVolId' : compagnieAerienneVol.id }) }}'>
+        <button type="submit">Supprimer la compagnie aérienne</button>
+    </form>
+    <form action='{{ path('compagnieAerienneVol_list') }}'>
+        <button type="submit">Liste des compagnies aériennes</button>
+    </form>
 {% endblock %}

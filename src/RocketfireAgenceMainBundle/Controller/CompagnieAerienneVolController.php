@@ -78,12 +78,24 @@ class CompagnieAerienneVolController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienneVol/show/{id}")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienneVol/show/{id}", host="agence.local", name="CompagnieAerienneVol_show")
+     * @param integer $compagnieAerienneVolId
      */
-    public function showCompagnieAerienneVolAction($id) {
-        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:show_compagnie_aerienne_vol.html.twig', array(
-                        // ...
-        ));
+    public function showCompagnieAerienneVolAction($compagnieAerienneVolId) {
+        // on récupère le repository
+        // PHP class whose only job is to help you fetch entities of a certain class
+        $compagnieAerienneVol = $this->getDoctrine()
+                ->getRepository('RocketfireAgenceMainBundle:CompagnieAerienneVol')
+                ->find($compagnieAerienneVolId);
+        if (!$compagnieAerienneVol) {
+            throw $this->createNotFoundException(
+                    'No compagnieAerienne found for id ' . $compagnieAerienneVolId
+            );
+        }
+        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:show_compagnie_aerienne_vol.html.twig',
+                        ['compagnieAerienneVol' => $compagnieAerienneVol]
+        );
     }
 
     /**
