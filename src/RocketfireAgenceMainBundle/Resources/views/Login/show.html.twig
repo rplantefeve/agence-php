@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Utilisateur</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ login.id }}</td>
+            </tr>
+            <tr>
+                <th>Login</th>
+                <td>{{ login.login }}</td>
+            </tr>
+            <tr>
+                <th>Mot de passe</th>
+                <td>{{ login.motDePasse }}</td>
+            </tr>
+            <tr>
+                <th>Administrateur</th>
+                <td>{% if login.admin %}Oui{% else %}Non{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Compte activé</th>
+                <td>{% if login.isActive %}Oui{% else %}Non{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('login_list') }}">Retour à la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('login_edit', { 'id': login.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
