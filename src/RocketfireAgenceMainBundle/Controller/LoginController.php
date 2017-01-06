@@ -41,7 +41,12 @@ class LoginController extends Controller {
      */
     public function addLoginAction(Request $request) {
         $login = new Login();
+<<<<<<< HEAD
         $form  = $this->createForm(LoginType::class, $login);
+=======
+        $form  = $this->createForm('RocketfireAgenceMainBundle\Form\Type\LoginType',
+                $login);
+>>>>>>> feature/Vol
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,7 +95,12 @@ class LoginController extends Controller {
      */
     public function editLoginAction(Request $request, Login $login) {
         $deleteForm = $this->createDeleteForm($login);
+<<<<<<< HEAD
         $editForm   = $this->createForm(LoginType::class, $login);
+=======
+        $editForm   = $this->createForm('RocketfireAgenceMainBundle\Form\Type\LoginEditType',
+                $login);
+>>>>>>> feature/Vol
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

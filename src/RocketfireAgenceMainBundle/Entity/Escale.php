@@ -15,17 +15,17 @@ class Escale
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Column(name="idEscale", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $idEscale;
 
     /**
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Aeroport")
-     * @ORM\JoinColumn(name="idAeroport", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idAeroport", referencedColumnName="idAero")
      */
      private $idAeroport;
 
@@ -33,7 +33,7 @@ class Escale
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Vol")
-     * @ORM\JoinColumn(name="idVol", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idVol", referencedColumnName="idVol")
      */
      private $idVol;
 
@@ -66,7 +66,7 @@ class Escale
     private $heureArriveeEscale;
 
 
-    
+
 
     /**
      * Get id
@@ -220,5 +220,15 @@ class Escale
     public function getIdVol()
     {
         return $this->idVol;
+    }
+
+    /**
+     * Get idEscale
+     *
+     * @return integer
+     */
+    public function getIdEscale()
+    {
+        return $this->idEscale;
     }
 }

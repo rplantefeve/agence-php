@@ -40,7 +40,7 @@ class VolController extends Controller
     public function newAction(Request $request)
     {
         $vol = new Vol();
-        $form = $this->createForm('RocketfireAgenceMainBundle\Form\VolType', $vol);
+        $form = $this->createForm('RocketfireAgenceMainBundle\Form\Type\VolType', $vol);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +48,7 @@ class VolController extends Controller
             $em->persist($vol);
             $em->flush($vol);
 
-            return $this->redirectToRoute('vol_show', array('id' => $vol->getId()));
+            return $this->redirectToRoute('vol_show', array('id' => $vol->getIdVol()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Vol:new.html.twig', array(
@@ -82,13 +82,13 @@ class VolController extends Controller
     public function editAction(Request $request, Vol $vol)
     {
         $deleteForm = $this->createDeleteForm($vol);
-        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\VolType', $vol);
+        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\VolType', $vol);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('vol_edit', array('id' => $vol->getId()));
+            return $this->redirectToRoute('vol_edit', array('id' => $vol->getIdVol()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Vol:edit.html.twig', array(
@@ -128,7 +128,7 @@ class VolController extends Controller
     private function createDeleteForm(Vol $vol)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('vol_delete', array('id' => $vol->getId())))
+            ->setAction($this->generateUrl('vol_delete', array('id' => $vol->getIdVol())))
             ->setMethod('DELETE')
             ->getForm()
         ;

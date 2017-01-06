@@ -16,17 +16,17 @@ class Vol
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Column(name="idVol", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $idVol;
 
     /**
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Aeroport")
-     * @ORM\JoinColumn(name="idAeroportDepart", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idAeroportDepart", referencedColumnName="idAero")
      */
      private $idAeroportDepart;
 
@@ -34,7 +34,7 @@ class Vol
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Aeroport")
-     * @ORM\JoinColumn(name="idAeroportArrivee", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idAeroportArrivee", referencedColumnName="idAero")
      */
      private $idAeroportArrivee;
 
@@ -226,5 +226,15 @@ class Vol
     public function getIdAeroportArrivee()
     {
         return $this->idAeroportArrivee;
+    }
+
+    /**
+     * Get idVol
+     *
+     * @return integer
+     */
+    public function getIdVol()
+    {
+        return $this->idVol;
     }
 }
