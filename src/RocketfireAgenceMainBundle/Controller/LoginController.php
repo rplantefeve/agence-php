@@ -5,55 +5,64 @@ namespace RocketfireAgenceMainBundle\Controller;
 use RocketfireAgenceMainBundle\Entity\Login;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Login controller.
  *
  * @Route("login")
  */
-class LoginController extends Controller
-{
+class LoginController extends Controller {
+
     /**
      * Lists all login entities.
      *
-     * @Route("/", name="login_index")
+     * @Route("/list", name="login_list")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function listLoginAction() {
         $em = $this->getDoctrine()->getManager();
 
         $logins = $em->getRepository('RocketfireAgenceMainBundle:Login')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Login:index.html.twig', array(
-            'logins' => $logins,
+        return $this->render('RocketfireAgenceMainBundle:Login:index.html.twig',
+                        array(
+                    'logins' => $logins,
         ));
     }
 
     /**
      * Creates a new login entity.
      *
-     * @Route("/new", name="login_new")
+     * @Route("/add", name="login_add")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function addLoginAction(Request $request) {
         $login = new Login();
-        $form = $this->createForm('RocketfireAgenceMainBundle\Form\LoginType', $login);
+        $form  = $this->createForm('RocketfireAgenceMainBundle\Form\LoginType',
+                $login);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $encoder  = $this->get('security.password_encoder');
+            $password = $encoder->encodePassword($login, $login->getMotDePasse());
+            $login->setMotDePasse($password);
+
             $em->persist($login);
             $em->flush($login);
 
-            return $this->redirectToRoute('login_show', array('id' => $login->getId()));
+            return $this->redirectToRoute('login_show',
+                            array(
+                        'id' => $login->getId()));
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Login:new.html.twig', array(
-            'login' => $login,
-            'form' => $form->createView(),
+        return $this->render('RocketfireAgenceMainBundle:Login:new.html.twig',
+                        array(
+                    'login' => $login,
+                    'form'  => $form->createView(),
         ));
     }
 
@@ -63,38 +72,46 @@ class LoginController extends Controller
      * @Route("/{id}", name="login_show")
      * @Method("GET")
      */
-    public function showAction(Login $login)
-    {
+    public function showLoginAction(Login $login) {
         $deleteForm = $this->createDeleteForm($login);
 
-        return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig', array(
-            'login' => $login,
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig',
+                        array(
+                    'login'       => $login,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Displays a form to edit an existing login entity.
      *
-     * @Route("/{id}/edit", name="login_edit")
+     * @Route("/edit/{id}", name="login_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Login $login)
-    {
+    public function editLoginAction(Request $request, Login $login) {
         $deleteForm = $this->createDeleteForm($login);
-        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\LoginType', $login);
+        $editForm   = $this->createForm('RocketfireAgenceMainBundle\Form\LoginEditType',
+                $login);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $encoder  = $this->get('security.password_encoder');
+            $password = $encoder->encodePassword($login, $login->getMotDePasse());
+            $login->setMotDePasse($password);
+            
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('login_edit', array('id' => $login->getId()));
+            $this->addFlash('notice', 'Félicitations, modification réussie.');
+            return $this->redirectToRoute('login_edit',
+                            array(
+                        'id' => $login->getId()));
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Login:edit.html.twig', array(
-            'login' => $login,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('RocketfireAgenceMainBundle:Login:edit.html.twig',
+                        array(
+                    'login'       => $login,
+                    'edit_form'   => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -104,8 +121,7 @@ class LoginController extends Controller
      * @Route("/{id}", name="login_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Login $login)
-    {
+    public function deleteLoginAction(Request $request, Login $login) {
         $form = $this->createDeleteForm($login);
         $form->handleRequest($request);
 
@@ -115,7 +131,7 @@ class LoginController extends Controller
             $em->flush($login);
         }
 
-        return $this->redirectToRoute('login_index');
+        return $this->redirectToRoute('login_list');
     }
 
     /**
@@ -125,12 +141,14 @@ class LoginController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Login $login)
-    {
+    private function createDeleteForm(Login $login) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('login_delete', array('id' => $login->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('login_delete',
+                                        array(
+                                    'id' => $login->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }
