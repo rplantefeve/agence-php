@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th>Login</th>
-                <th>Mot de passe</th>
                 <th>Administrateur</th>
                 <th>Actions</th>
             </tr>
@@ -16,7 +15,6 @@
             {% for login in logins %}
                 <tr>
                     <td>{{ login.login }}</td>
-                    <td>{{ login.motDePasse }}</td>
                     <td>{% if login.admin %}Oui{% else %}Non{% endif %}</td>
                     <td>
                         <ul>
