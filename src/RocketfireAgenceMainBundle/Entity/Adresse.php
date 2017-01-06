@@ -170,4 +170,3 @@ class Adresse
         return $this->pays;
     }
 }
-

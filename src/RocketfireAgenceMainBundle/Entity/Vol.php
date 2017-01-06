@@ -43,28 +43,28 @@ class Vol
      *
      * @ORM\Column(name="dateDepart", type="date")
      */
-    private $dateDepart;
+    private $dateDepartVol;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateArrivee", type="date")
      */
-    private $dateArrivee;
+    private $dateArriveeVol;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="heureDepart", type="time")
      */
-    private $heureDepart;
+    private $heureDepartVol;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="heureArrivee", type="time")
      */
-    private $heureArrivee;
+    private $heureArriveeVol;
 
 
     /**
@@ -77,186 +77,117 @@ class Vol
         return $this->id;
     }
 
+
+
+
+    public function __toString() {
+        return $this->id;
+    }
+
     /**
-     * Set dateDepart
+     * Set dateDepartVol
      *
-     * @param \DateTime $dateDepart
+     * @param \DateTime $dateDepartVol
      *
      * @return Vol
      */
-    public function setDateDepart($dateDepart)
+    public function setDateDepartVol($dateDepartVol)
     {
-        $this->dateDepart = $dateDepart;
+        $this->dateDepartVol = $dateDepartVol;
 
         return $this;
     }
 
     /**
-     * Get dateDepart
+     * Get dateDepartVol
      *
      * @return \DateTime
      */
-    public function getDateDepart()
+    public function getDateDepartVol()
     {
-        return $this->dateDepart;
+        return $this->dateDepartVol;
     }
 
     /**
-     * Set dateArrivee
+     * Set dateArriveeVol
      *
-     * @param \DateTime $dateArrivee
+     * @param \DateTime $dateArriveeVol
      *
      * @return Vol
      */
-    public function setDateArrivee($dateArrivee)
+    public function setDateArriveeVol($dateArriveeVol)
     {
-        $this->dateArrivee = $dateArrivee;
+        $this->dateArriveeVol = $dateArriveeVol;
 
         return $this;
     }
 
     /**
-     * Get dateArrivee
+     * Get dateArriveeVol
      *
      * @return \DateTime
      */
-    public function getDateArrivee()
+    public function getDateArriveeVol()
     {
-        return $this->dateArrivee;
+        return $this->dateArriveeVol;
     }
 
     /**
-     * Set heureDepart
+     * Set heureDepartVol
      *
-     * @param \DateTime $heureDepart
+     * @param \DateTime $heureDepartVol
      *
      * @return Vol
      */
-    public function setHeureDepart($heureDepart)
+    public function setHeureDepartVol($heureDepartVol)
     {
-        $this->heureDepart = $heureDepart;
+        $this->heureDepartVol = $heureDepartVol;
 
         return $this;
     }
 
     /**
-     * Get heureDepart
+     * Get heureDepartVol
      *
      * @return \DateTime
      */
-    public function getHeureDepart()
+    public function getHeureDepartVol()
     {
-        return $this->heureDepart;
+        return $this->heureDepartVol;
     }
 
     /**
-     * Set heureArrivee
+     * Set heureArriveeVol
      *
-     * @param \DateTime $heureArrivee
+     * @param \DateTime $heureArriveeVol
      *
      * @return Vol
      */
-    public function setHeureArrivee($heureArrivee)
+    public function setHeureArriveeVol($heureArriveeVol)
     {
-        $this->heureArrivee = $heureArrivee;
+        $this->heureArriveeVol = $heureArriveeVol;
 
         return $this;
     }
 
     /**
-     * Get heureArrivee
+     * Get heureArriveeVol
      *
      * @return \DateTime
      */
-    public function getHeureArrivee()
+    public function getHeureArriveeVol()
     {
-        return $this->heureArrivee;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idAeroportDepart = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idAeroportArrivee = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add idAeroportDepart
-     *
-     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart
-     *
-     * @return Vol
-     */
-    public function addIdAeroportDepart(\RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart)
-    {
-        $this->idAeroportDepart[] = $idAeroportDepart;
-
-        return $this;
-    }
-
-    /**
-     * Remove idAeroportDepart
-     *
-     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart
-     */
-    public function removeIdAeroportDepart(\RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart)
-    {
-        $this->idAeroportDepart->removeElement($idAeroportDepart);
-    }
-
-    /**
-     * Get idAeroportDepart
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdAeroportDepart()
-    {
-        return $this->idAeroportDepart;
-    }
-
-    /**
-     * Add idAeroportArrivee
-     *
-     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee
-     *
-     * @return Vol
-     */
-    public function addIdAeroportArrivee(\RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee)
-    {
-        $this->idAeroportArrivee[] = $idAeroportArrivee;
-
-        return $this;
-    }
-
-    /**
-     * Remove idAeroportArrivee
-     *
-     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee
-     */
-    public function removeIdAeroportArrivee(\RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee)
-    {
-        $this->idAeroportArrivee->removeElement($idAeroportArrivee);
-    }
-
-    /**
-     * Get idAeroportArrivee
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdAeroportArrivee()
-    {
-        return $this->idAeroportArrivee;
+        return $this->heureArriveeVol;
     }
 
     /**
      * Set idAeroportDepart
      *
-     * @param integer $idAeroportDepart
+     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart
      *
      * @return Vol
      */
-    public function setIdAeroportDepart($idAeroportDepart)
+    public function setIdAeroportDepart(\RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart = null)
     {
         $this->idAeroportDepart = $idAeroportDepart;
 
@@ -264,13 +195,23 @@ class Vol
     }
 
     /**
+     * Get idAeroportDepart
+     *
+     * @return \RocketfireAgenceMainBundle\Entity\Aeroport
+     */
+    public function getIdAeroportDepart()
+    {
+        return $this->idAeroportDepart;
+    }
+
+    /**
      * Set idAeroportArrivee
      *
-     * @param integer $idAeroportArrivee
+     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee
      *
      * @return Vol
      */
-    public function setIdAeroportArrivee($idAeroportArrivee)
+    public function setIdAeroportArrivee(\RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee = null)
     {
         $this->idAeroportArrivee = $idAeroportArrivee;
 
@@ -278,54 +219,12 @@ class Vol
     }
 
     /**
-     * Set aeroportDepart
-     *
-     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $aeroportDepart
-     *
-     * @return Vol
-     */
-    public function setAeroportDepart(\RocketfireAgenceMainBundle\Entity\Aeroport $aeroportDepart = null)
-    {
-        $this->aeroportDepart = $aeroportDepart;
-
-        return $this;
-    }
-
-    /**
-     * Get aeroportDepart
+     * Get idAeroportArrivee
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */
-    public function getAeroportDepart()
+    public function getIdAeroportArrivee()
     {
-        return $this->aeroportDepart;
-    }
-
-    /**
-     * Set aeroportArrivee
-     *
-     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $aeroportArrivee
-     *
-     * @return Vol
-     */
-    public function setAeroportArrivee(\RocketfireAgenceMainBundle\Entity\Aeroport $aeroportArrivee = null)
-    {
-        $this->aeroportArrivee = $aeroportArrivee;
-
-        return $this;
-    }
-
-    /**
-     * Get aeroportArrivee
-     *
-     * @return \RocketfireAgenceMainBundle\Entity\Aeroport
-     */
-    public function getAeroportArrivee()
-    {
-        return $this->aeroportArrivee;
-    }
-
-    public function __toString() {
-        return $this->id;
+        return $this->idAeroportArrivee;
     }
 }
