@@ -100,23 +100,21 @@ class CompagnieAerienneController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienne/list")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienne/list", host="agence.local", name="CompagnieAerienne_list")
      */
     public function listCompagnieAerienneAction() {
         // on récupère le repository 
         // PHP class whose only job is to help you fetch entities of a certain class
-        $compagnieAerienne = $this->getDoctrine()
+        $compagnieAeriennes = $this->getDoctrine()
                 ->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')
                 ->findAll();
-        if (!$compagnieAerienne) {
+        if (!$compagnieAeriennes) {
             throw $this->createNotFoundException(
                     'Pas de compagnie !'
-            );
-        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:list_compagnie_aerienne.html.twig',
-                       ['compagnieAerienne' => $compagnieAerienne]);
-                      
-       
+            );                   
     }
-
+return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:list_compagnie_aerienne.html.twig',
+                       ['compagnieAeriennes' => $compagnieAeriennes]);
 }
 }
