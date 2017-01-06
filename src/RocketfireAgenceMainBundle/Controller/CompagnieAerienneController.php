@@ -50,7 +50,7 @@ class CompagnieAerienneController extends Controller {
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('CompagnieAerienne_list');
         }
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:create_compagnie_aerienne.html.twig',
                         array(
