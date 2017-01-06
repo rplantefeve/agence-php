@@ -5,11 +5,9 @@ namespace RocketfireAgenceMainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use RocketfireAgenceMainBundle\Entity\Client;
 use RocketfireAgenceMainBundle\Entity\ClientParticulier;
 use RocketfireAgenceMainBundle\Entity\ClientAssociation;
 use RocketfireAgenceMainBundle\Form\ClientAssociationType;
-use RocketfireAgenceMainBundle\Form\ClientType;
 use RocketfireAgenceMainBundle\Form\ClientParticulierType;
 use Symfony\Component\HttpFoundation\Request;
 use RocketfireAgenceMainBundle\Entity\ClientEntreprise;
@@ -22,20 +20,18 @@ class ClientController extends Controller {
      * @param Request $request
      * @return type
      * @Method({"GET","POST"})
-     * @Route("/client/home", name="client_home")
+     * @Route("/inscrire/client", name="inscrire_client")
      */
     public function clientHome(Request $request){
          return $this->render(
-                        'RocketfireAgenceMainBundle:Default:client.home.html.twig');
+                        'RocketfireAgenceMainBundle:Client:client.create.html.twig');
     }
-    
-    
-    
+
     /**
      * @param Request $request
      * @return type
      * @Method({"GET","POST"})
-     * @Route("/create/client/particulier", name="create_client_particulier")
+     * @Route("/Client/Particulier/add", name="client_particulier_add")
      */
     public function createClientParticulierAction(Request $request) {
         /*
@@ -72,20 +68,20 @@ class ClientController extends Controller {
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('inscrire_client');
         }
         return $this->render(
-                        'RocketfireAgenceMainBundle:Default:client.create.particulier.html.twig',
+                        'RocketfireAgenceMainBundle:Client:client.create.particulier.html.twig',
                         array(
                     'form' => $form->createView())
         );
     }
-    
+
      /**
      * @param Request $request
      * @return type
      * @Method({"GET","POST"})
-     * @Route("/create/client/association", name="create_client_association")
+     * @Route("/Client/Association/add", name="client_association_add")
      */
     public function createClientAssociationAction(Request $request) {
         /*
@@ -122,22 +118,20 @@ class ClientController extends Controller {
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('inscrire_client');
         }
         return $this->render(
-                        'RocketfireAgenceMainBundle:Default:client.create.association.html.twig',
+                        'RocketfireAgenceMainBundle:Client:client.create.association.html.twig',
                         array(
                     'form' => $form->createView())
         );
     }
-    
-    
-    
+
     /**
      * @param Request $request
      * @return type
      * @Method({"GET","POST"})
-     * @Route("/create/client/entreprise", name="create_client_entreprise")
+     * @Route("/Client/Entreprise/add", name="client_entreprise_add")
      */
     public function createClientEntrepriseAction(Request $request) {
         /*
@@ -174,10 +168,10 @@ class ClientController extends Controller {
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('inscrire_client');
         }
         return $this->render(
-                        'RocketfireAgenceMainBundle:Default:client.create.entreprise.html.twig',
+                        'RocketfireAgenceMainBundle:Client:client.create.entreprise.html.twig',
                         array(
                     'form' => $form->createView())
         );

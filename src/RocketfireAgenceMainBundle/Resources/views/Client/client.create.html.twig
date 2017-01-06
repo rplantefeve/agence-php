@@ -1,0 +1,27 @@
+<body>
+    <h1>Inscription</h1>
+    <table>
+        <tr>
+            <td>
+                <form action='{{ path('client_particulier_add') }}'>
+                    <button >Particulier</button>
+                </form>
+            </td>
+            <td>
+                <form action='{{ path('client_association_add') }}'>
+                    <button >Association</button>
+                </form>
+            </td>
+            <td>
+                <form action='{{ path('client_entreprise_add') }}'>
+                    <button >Entreprise</button>
+                </form>
+            </td>
+            <td>
+                <form action='{{ path('default') }}'>
+                    <button >Compagnie</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
