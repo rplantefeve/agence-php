@@ -156,6 +156,17 @@ class Login implements UserInterface, \Serializable {
         return $this->isActive;
     }
 
+    /**
+     * Teste si l'utilisateur loggué est le même que le Login
+     * 
+     * @param \RocketfireAgenceMainBundle\Entity\Login $user
+     * @return type
+     */
+    public function isSelf(Login $user = null){
+        return $user && $user->getLogin() == $this->login;
+    }
+    
+    
     public function getUsername() {
         return $this->login;
     }
