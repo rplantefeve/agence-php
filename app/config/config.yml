@@ -34,9 +34,10 @@ framework:
 
 # Twig Configuration
 twig:
+    globals:
+        autoescape: ~
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    autoescape: true
 
 # Doctrine Configuration
 doctrine:
