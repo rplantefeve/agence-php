@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Login</th>
+                <th>Mot de passe</th>
+                <th>Administrateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for login in logins %}
+            <tr>
+                <td>{{ login.login }}</td>
+                <td>{{ login.motDePasse }}</td>
+                <td>{% if login.admin %}Oui{% else %}Non{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('login_show', { 'id': login.id }) }}">Détails</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('login_edit', { 'id': login.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('login_add') }}">Créer un nouvel utilisateur</a>
+        </li>
+    </ul>
+{% endblock %}

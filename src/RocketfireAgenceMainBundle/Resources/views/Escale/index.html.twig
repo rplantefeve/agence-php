@@ -18,10 +18,10 @@
         {% for escale in escales %}
             <tr>
                 <td><a href="{{ path('escale_show', { 'id': escale.id }) }}">{{ escale.id }}</a></td>
-                <td>{% if escale.dateDepart %}{{ escale.dateDepart|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if escale.dateArrivee %}{{ escale.dateArrivee|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if escale.heureDepart %}{{ escale.heureDepart|date('H:i:s') }}{% endif %}</td>
-                <td>{% if escale.heureArrivee %}{{ escale.heureArrivee|date('H:i:s') }}{% endif %}</td>
+                <td>{% if escale.dateDepartEscale %}{{ escale.dateDepartEscale|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if escale.dateArriveeEscale %}{{ escale.dateArriveeEscale|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if escale.heureDepartEscale %}{{ escale.heureDepartEscale|date('H:i:s') }}{% endif %}</td>
+                <td>{% if escale.heureArriveeEscale %}{{ escale.heureArriveeEscale|date('H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>

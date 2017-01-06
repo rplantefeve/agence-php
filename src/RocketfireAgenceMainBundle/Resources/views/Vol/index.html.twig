@@ -20,10 +20,10 @@
         {% for vol in vols %}
             <tr>
                 <td><a href="{{ path('vol_show', { 'id': vol.id }) }}">{{ vol.id }}</a></td>
-                <td>{% if vol.dateDepart %}{{ vol.dateDepart|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if vol.dateArrivee %}{{ vol.dateArrivee|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if vol.heureDepart %}{{ vol.heureDepart|date('H:i:s') }}{% endif %}</td>
-                <td>{% if vol.heureArrivee %}{{ vol.heureArrivee|date('H:i:s') }}{% endif %}</td>
+                <td>{% if vol.dateDepartVol %}{{ vol.dateDepartVol|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if vol.dateArriveeVol %}{{ vol.dateArriveeVol|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if vol.heureDepartVol %}{{ vol.heureDepartVol|date('H:i:s') }}{% endif %}</td>
+                <td>{% if vol.heureArriveeVol %}{{ vol.heureArriveeVol|date('H:i:s') }}{% endif %}</td>
                 <td>{% if vol.idAeroportDepart %}{{ vol.idAeroportDepart }}{% endif %}</td>
                 <td>{% if vol.idAeroportArrivee %}{{ vol.idAeroportArrivee }}{% endif %}</td>
                 <td>

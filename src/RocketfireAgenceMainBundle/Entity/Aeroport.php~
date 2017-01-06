@@ -135,6 +135,6 @@ class Aeroport
     }
 
     public function __toString() {
-        return $this->villes;
+        return $this->nom;
     }
 }
