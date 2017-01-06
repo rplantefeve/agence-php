@@ -13,9 +13,9 @@ class EscaleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateDepart')->add('dateArrivee')->add('heureDepart')->add('heureArrivee')->add('idAeroport')->add('idVol')        ;
+        $builder->add('dateDepartEscale')->add('dateArriveeEscale')->add('heureDepartEscale')->add('heureArriveeEscale')->add('idAeroport')->add('idVol')        ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
