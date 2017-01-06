@@ -52,9 +52,8 @@ class CompagnieAerienneController extends Controller {
             // redirection pour le fun
             return $this->redirectToRoute('CompagnieAerienne_list');
         }
-        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:create_compagnie_aerienne.html.twig',
-                        array(
-                        'form' => $form->createView()
+        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:create_compagnie_aerienne.html.twig', array(
+                    'form' => $form->createView()
         ));
     }
 
@@ -67,10 +66,10 @@ class CompagnieAerienneController extends Controller {
      * @throws type
      */
     public function editCompagnieAerienneAction(Request $request, $id) {
-        
+
         $em = $this->getDoctrine()->getManager();
         $compagnieAerienne = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')->find($id);
-        
+
         if (!$compagnieAerienne) {
             throw $this->createNotFoundException(
                     'Pas de compagnie pour id ' . $id
@@ -94,9 +93,8 @@ class CompagnieAerienneController extends Controller {
             // redirection
             return $this->redirectToRoute('CompagnieAerienne_list');
         }
-        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:edit_compagnie_aerienne.html.twig',
-                        array(
-                      'form' => $form->createView()
+        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:edit_compagnie_aerienne.html.twig', array(
+                    'form' => $form->createView()
         ));
     }
 
@@ -108,24 +106,23 @@ class CompagnieAerienneController extends Controller {
      * @throws type
      */
     public function deleteCompagnieAerienneAction($id) {
-       
+
         $em = $this->getDoctrine()->getManager();
         $compagnieAerienne = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')->find($id);
         if (!$compagnieAerienne) {
             throw $this->createNotFoundException(
                     'Pas de compagnie pour identifiant ' . $id
             );
-        } 
+        }
         $em->remove($compagnieAerienne);
         $em->flush();
-        
+
         // store a message for the very next request
         $this->addFlash('notice', 'Suppression réussie.');
-        
-      
-        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:delete_compagnie_aerienne.html.twig',
-                       ['compagnieAerienne' => $compagnieAerienne]);
-       
+
+
+        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:delete_compagnie_aerienne.html.twig', [
+                    'compagnieAerienne' => $compagnieAerienne]);
     }
 
     /**
@@ -145,8 +142,8 @@ class CompagnieAerienneController extends Controller {
             );
         }
 
-        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:show_compagnie_aerienne.html.twig',
-                        ['compagnieAerienne' => $compagnieAerienne]);
+        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:show_compagnie_aerienne.html.twig', [
+                    'compagnieAerienne' => $compagnieAerienne]);
     }
 
     /**
@@ -162,9 +159,10 @@ class CompagnieAerienneController extends Controller {
         if (!$compagnieAeriennes) {
             throw $this->createNotFoundException(
                     'Pas de compagnie !'
-            );                   
+            );
+        }
+        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:list_compagnie_aerienne.html.twig', [
+                    'compagnieAeriennes' => $compagnieAeriennes]);
     }
-return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:list_compagnie_aerienne.html.twig',
-                       ['compagnieAeriennes' => $compagnieAeriennes]);
-}
+
 }

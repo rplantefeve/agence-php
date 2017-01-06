@@ -3,14 +3,14 @@
 {% block title %}RocketfireAgenceMainBundle:CompagnieAerienneVol:showCompagnieAerienneVol{% endblock %}
 
 {% block body %}
-<h1>Welcome to the CompagnieAerienneVol:showCompagnieAerienneVol page</h1>
+    <h1>Welcome to the CompagnieAerienneVol:showCompagnieAerienneVol page</h1>
 
     <h1>Détails d'un vol de compagnie aérienne</h1>
     <h2>Id du vol : {{ compagnieAerienneVol.id }}</h2>
     <h2>Id de la Compagnie : {{ compagnieAerienneVol.idCompagnie }}</h2>
     <h2>id du Vol pour la Compagnie : {{ compagnieAerienneVol.idVol }}<h2>
     <h3>Vol n°{{ compagnieAerienneVol.numero }}</h3>
-    
+
     <form action='{{ path('CompagnieAerienneVol_edit' , { 'id' : compagnieAerienneVol.id }) }}'>
         <button type="submit">Modifier la compagnie aérienne</button>
     </form>

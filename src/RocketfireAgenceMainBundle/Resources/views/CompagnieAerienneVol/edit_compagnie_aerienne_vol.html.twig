@@ -3,7 +3,7 @@
 {% block title %}RocketfireAgenceMainBundle:CompagnieAerienneVol:editCompagnieAerienneVol{% endblock %}
 
 {% block body %}
-<h1>Welcome to the CompagnieAerienneVol:editCompagnieAerienneVol page</h1>
+    <h1>Welcome to the CompagnieAerienneVol:editCompagnieAerienneVol page</h1>
 
     <h1>Modifier un vol de compagnie aérienne</h1>
     {{ form_start(form) }}
@@ -15,6 +15,6 @@
     {{ form_end(form) }}
 
     <form action='{{ path('CompagnieAerienneVol_list') }}'>
-      <button type="submit">Retour à la liste</button>
+        <button type="submit">Retour à la liste</button>
     </form>
 {% endblock %}
