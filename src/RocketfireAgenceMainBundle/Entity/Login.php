@@ -136,7 +136,7 @@ class Login implements UserInterface, \Serializable {
      *
      * @return Login
      */
-    public function setIsActive($isActive) {
+    public function setActive($isActive) {
         $this->isActive = $isActive;
 
         return $this;
