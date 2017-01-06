@@ -1,0 +1,13 @@
+<body>
+    <h1>Inscription</h1>    
+    {{ form_start(form) }}
+    {{ form_row(form.nom) }}
+   {{ form_row(form.prenom) }}
+    {{ form_row(form.numTel) }}   
+    {{ form_row(form.eMail) }}    
+    <br /><button type="submit">Valider</button>
+    {{ form_end(form) }}
+    <form action='{{ path('default') }}'>
+        <button >Retour</button>
+    </form>
+</body>
