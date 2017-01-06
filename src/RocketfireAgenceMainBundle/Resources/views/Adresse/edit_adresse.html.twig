@@ -10,6 +10,12 @@
         <input type="submit" value="Mettre à jour" />
     {{ form_end(edit_form) }}
 
+    {% for flashMessage in app.session.flashBag.get('notice') %}
+        <p>
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
+    
     <ul>
         <li>
             <a href="{{ path('adresse_list') }}">Retour à la liste</a>
