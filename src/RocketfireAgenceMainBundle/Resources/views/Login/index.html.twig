@@ -34,10 +34,11 @@
             {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('login_add') }}">Créer un nouvel utilisateur</a>
-        </li>
-    </ul>
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li>
+                <a href="{{ path('login_add') }}">Créer un nouvel utilisateur</a>
+            </li>
+        </ul>
+    {% endif %}
 {% endblock %}

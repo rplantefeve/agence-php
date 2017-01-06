@@ -41,17 +41,21 @@ class LoginController extends Controller {
      * @Method({"GET", "POST"})
      */
     public function addLoginAction(Request $request) {
+        // 1) Créer le formulaire
         $login = new Login();
         $form  = $this->createForm(LoginType::class, $login);
+
+        // 2) Gérer la requête
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
+            // 3) Encoder le mot de passe avant enregistrement
             $encoder  = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($login, $login->getMotDePasse());
             $login->setMotDePasse($password);
 
+            // 4) Sauvegarde du Login
+            $em = $this->getDoctrine()->getManager();
             $em->persist($login);
             $em->flush($login);
 
@@ -74,12 +78,9 @@ class LoginController extends Controller {
      * @Method("GET")
      */
     public function showLoginAction(Login $login) {
-        $deleteForm = $this->createDeleteForm($login);
-
         return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig',
                         array(
-                    'login'       => $login,
-                    'delete_form' => $deleteForm->createView(),
+                    'login'       => $login
         ));
     }
 
@@ -121,7 +122,7 @@ class LoginController extends Controller {
      *
      * @Route("/delete/{id}", name="login_delete")
      * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_ADMIN') && !login.isSelf(user)")
      */
     public function deleteLoginAction(Request $request, Login $login) {
         $form = $this->createDeleteForm($login);
