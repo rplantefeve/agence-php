@@ -7,26 +7,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 use RocketfireAgenceMainBundle\Entity\Client;
 
 /**
- * ClientParticulier
+ * ClientAssociation
  *
- * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
  */
 class ClientAssociation extends Client
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="numFax", type="integer", nullable=true, unique=true)
      */
-    private $numFax;
-    
+    protected $numFax;
+
      /**
      * @var int
-     *
-     * @ORM\Column(name="siret", type="integer", nullable=true, unique=true)
      */
-    private $siret;
+     protected $siret;
 
     /**
      * Get idClient

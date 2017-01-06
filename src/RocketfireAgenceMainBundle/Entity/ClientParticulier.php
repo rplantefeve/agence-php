@@ -9,15 +9,12 @@ use RocketfireAgenceMainBundle\Entity\Client;
 /**
  * ClientParticulier
  *
- * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
  */
 class ClientParticulier extends Client
 {
     /**
      * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=30, nullable=true)
      */
     protected $prenom;
 
