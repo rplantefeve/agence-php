@@ -52,7 +52,8 @@ class CompagnieAerienneVolController extends Controller {
             // redirection pour le fun
 //            return $this->redirectToRoute('hello_world', [
 //                        'name' => 'compagnieAerienneVol']);
-            return $this->redirectToRoute('default');
+//            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('CompagnieAerienneVol_list');
         }
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:create_compagnie_aerienne_vol.html.twig', array(
                         'form' => $form->createView()
@@ -80,17 +81,17 @@ class CompagnieAerienneVolController extends Controller {
     /**
      * @Method({"GET","POST"})
      * @Route("/CompagnieAerienneVol/show/{id}", host="agence.local", name="CompagnieAerienneVol_show")
-     * @param integer $compagnieAerienneVolId
+     * @param integer $id
      */
-    public function showCompagnieAerienneVolAction($compagnieAerienneVolId) {
+    public function showCompagnieAerienneVolAction($id) {
         // on récupère le repository
         // PHP class whose only job is to help you fetch entities of a certain class
         $compagnieAerienneVol = $this->getDoctrine()
                 ->getRepository('RocketfireAgenceMainBundle:CompagnieAerienneVol')
-                ->find($compagnieAerienneVolId);
+                ->find($id);
         if (!$compagnieAerienneVol) {
             throw $this->createNotFoundException(
-                    'No compagnieAerienne found for id ' . $compagnieAerienneVolId
+                    'No compagnieAerienneVol found for id ' . $id
             );
         }
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:show_compagnie_aerienne_vol.html.twig',
@@ -99,12 +100,24 @@ class CompagnieAerienneVolController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienneVol/list")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienneVol/list", host="agence.local", name="CompagnieAerienneVol_list")
      */
     public function listCompagnieAerienneVolAction() {
-        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:list_compagnie_aerienne_vol.html.twig', array(
-                        // ...
-        ));
+        // on récupère le repository
+        // PHP class whose only job is to help you fetch entities of a certain class
+        $compagnieAerienneVols = $this->getDoctrine()
+                ->getRepository('RocketfireAgenceMainBundle:CompagnieAerienneVol')
+                ->findAll();
+        if (!$compagnieAerienneVols) {
+            throw $this->createNotFoundException(
+                    'No compagnieAerienneVol found !'
+            );
+        }
+
+        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:list_compagnie_aerienne_vol.html.twig', 
+                        ['compagnieAerienneVols' => $compagnieAerienneVols]
+        );
     }
 
 }
