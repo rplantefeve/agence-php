@@ -3,6 +3,9 @@ rocketfire_agence_main:
     type:     annotation
     prefix:   /
 
+logout:
+    path: /Login/logout
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

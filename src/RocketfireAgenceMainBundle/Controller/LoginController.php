@@ -18,6 +18,25 @@ use RocketfireAgenceMainBundle\Form\Type\LoginType;
 class LoginController extends Controller {
 
     /**
+     * @Route("/login", name="login")
+     */
+    public function loginAction(Request $request) {
+        $authenticationUtils = $this->get('security.authentication_utils');
+        // get the login error if there is one
+        $error               = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername        = $authenticationUtils->getLastUsername();
+        return $this->render(
+                        'RocketfireAgenceMainBundle:Login:login.html.twig',
+                        array(
+                    // last username entered by the user
+                    'last_username' => $lastUsername,
+                    'error'         => $error,
+                        )
+        );
+    }
+
+    /**
      * Lists all login entities.
      *
      * @Route("/list", name="login_list")
@@ -80,7 +99,7 @@ class LoginController extends Controller {
     public function showLoginAction(Login $login) {
         return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig',
                         array(
-                    'login'       => $login
+                    'login' => $login
         ));
     }
 

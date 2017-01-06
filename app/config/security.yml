@@ -22,7 +22,6 @@ security:
 
         main:
             pattern: ^/
-            http_basic: ~
             provider: agence_provider
             anonymous: ~
             # activate different ways to authenticate
@@ -30,7 +29,13 @@ security:
             # http_basic: ~
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: ~
+            form_login:
+                login_path: /Login/login
+                check_path: /Login/login
+                
+            logout:
+                path: /Login/logout
+                target: /
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
         - { path: ^/Login/edit, roles: ROLE_ADMIN }
