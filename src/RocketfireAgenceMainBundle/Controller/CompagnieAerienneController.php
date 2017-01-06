@@ -79,23 +79,44 @@ class CompagnieAerienneController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienne/show/{id}")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienne/show/{id}", host="agence.local", name="CompagnieAerienne_show")
+     * @param integer $id
      */
     public function showCompagnieAerienneAction($id) {
+        // on récupère le repository
+        // PHP class whose only job is to help you fetch entities of a certain class
+        $compagnieAerienne = $this->getDoctrine()
+                ->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')
+                ->find($id);
+        if (!$compagnieAerienne) {
+            throw $this->createNotFoundException(
+                    'Pas de compagnie pour id ' . $id
+            );
+        }
+
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:show_compagnie_aerienne.html.twig',
-                        array(
-                        // ...
-        ));
+                        ['compagnieAerienne' => $compagnieAerienne]);
     }
 
     /**
      * @Route("/CompagnieAerienne/list")
      */
     public function listCompagnieAerienneAction() {
+        // on récupère le repository 
+        // PHP class whose only job is to help you fetch entities of a certain class
+        $compagnieAerienne = $this->getDoctrine()
+                ->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')
+                ->findAll();
+        if (!$compagnieAerienne) {
+            throw $this->createNotFoundException(
+                    'Pas de compagnie !'
+            );
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:list_compagnie_aerienne.html.twig',
-                        array(
-                        // ...
-        ));
+                       ['compagnieAerienne' => $compagnieAerienne]);
+                      
+       
     }
 
+}
 }
