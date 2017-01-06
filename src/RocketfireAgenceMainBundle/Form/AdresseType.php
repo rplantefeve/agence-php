@@ -15,7 +15,7 @@ class AdresseType extends AbstractType
     {
         $builder->add('adresse')->add('codePostal')->add('ville')->add('pays')        ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
