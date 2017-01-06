@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RocketfireAgenceMainBundle:Adresse:editAdresse{% endblock %}
+
+{% block body %}
+    <h1>Editer l'adresse</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Mettre à jour" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('adresse_list') }}">Retour à la liste</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
