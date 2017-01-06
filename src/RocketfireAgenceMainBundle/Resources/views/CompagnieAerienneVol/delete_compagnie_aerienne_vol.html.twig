@@ -3,5 +3,18 @@
 {% block title %}RocketfireAgenceMainBundle:CompagnieAerienneVol:deleteCompagnieAerienneVol{% endblock %}
 
 {% block body %}
-<h1>Welcome to the CompagnieAerienneVol:deleteCompagnieAerienneVol page</h1>
+    <h1>Welcome to the CompagnieAerienneVol:deleteCompagnieAerienneVol page</h1>
+
+    {% for flashMessage in app.session.flashBag.get('notice') %}
+        <p>
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
+    <form action='{{ path('CompagnieAerienneVol_add') }}'>
+        <button type="submit">Ajouter un vol de compagnie aérienne</button>
+    </form>
+    
+    <form action='{{ path('CompagnieAerienneVol_list') }}'>
+      <button type="submit">Retour à la liste</button>
+    </form>
 {% endblock %}

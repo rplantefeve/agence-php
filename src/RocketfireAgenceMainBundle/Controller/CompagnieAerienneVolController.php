@@ -61,20 +61,73 @@ class CompagnieAerienneVolController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienneVol/edit/{id}")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienneVol/edit/{id}", host="agence.local", name="CompagnieAerienneVol_edit")
+     * @param Request $request
+     * @param integer $id
+     * @return type
+     * @throws type
      */
-    public function editCompagnieAerienneVolAction($id) {
+    public function editCompagnieAerienneVolAction(Request $request, $id) {
+        /*
+         * 0) Vérifier l'existence du cinéma
+         */
+        $em     = $this->getDoctrine()->getManager();
+        $compagnieAerienneVol = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienneVol')->find($id);
+        if (!$compagnieAerienneVol) {
+            throw $this->createNotFoundException(
+                    'No compagnieAerienneVol found for id ' . $id
+            );
+        }
+        /*
+         * 1) Construire le formulaire
+         */
+        $form = $this->createForm(CompagnieAerienneVolType::class, $compagnieAerienneVol);
+
+        /*
+         * 2) Gérer la soumission du formulaire
+         */
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /*
+             * 3) Sauvegarder le cinéma
+             */
+            $em->flush();
+            // store a message for the very next request
+            $this->addFlash('notice', 'Mise à jour réussie.');
+            // redirection
+            return $this->redirectToRoute('CompagnieAerienneVol_list');
+        }
+        
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:edit_compagnie_aerienne_vol.html.twig', array(
-                        // ...
+                        'form' => $form->createView()
         ));
     }
 
     /**
-     * @Route("/CompagnieAerienneVol/delete/{id}")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienneVol/delete/{id}", host="agence.local", name="CompagnieAerienneVol_delete")
+     * @param integer $id
+     * @return type
+     * @throws type
      */
     public function deleteCompagnieAerienneVolAction($id) {
+        $em     = $this->getDoctrine()->getManager();
+        $compagnieAerienneVol = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienneVol')->find($id);
+        if (!$compagnieAerienneVol) {
+            throw $this->createNotFoundException(
+                    'No compagnieAerienneVol found for id ' . $compagnieAerienneVolId
+            );
+//            // redirection
+//            return $this->redirectToRoute('CompagnieAerienneVol_list');
+        }
+        $em->remove($compagnieAerienneVol);
+        $em->flush();
+        // store a message for the very next request
+        $this->addFlash('notice', 'Suppression réussie.');
+        
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:delete_compagnie_aerienne_vol.html.twig', array(
-                        // ...
+                        ['compagnieAerienneVol' => $compagnieAerienneVol]
         ));
     }
 

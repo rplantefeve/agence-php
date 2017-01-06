@@ -17,8 +17,8 @@
         {% for compagnieAerienneVol in compagnieAerienneVols %}
             {# boucle de construction de la liste des compagnieAerienneVols #}
             <tr>
-{#                <td><a href='{{ path('CompagnieAerienneVol_show', { 'compagnieAerienneVolId' : compagnieAerienneVol.id }) }}'>{{ compagnieAerienneVol.id }}</a></td>#}
-                <td>{{ compagnieAerienneVol.id }}</td>
+                <td><a href='{{ path('CompagnieAerienneVol_show', { 'id' : compagnieAerienneVol.id }) }}'>{{ compagnieAerienneVol.id }}</a></td>
+{#                <td>{{ compagnieAerienneVol.id }}</td>#}
                 <td>{{ compagnieAerienneVol.numero }}</td>
                 <td>{{ compagnieAerienneVol.ouvert }}</td>
                 <td>{{ compagnieAerienneVol.idCompagnie }}</td>
