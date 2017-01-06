@@ -10,7 +10,35 @@ class AdresseControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/create/add');
+        $crawler = $client->request('GET', '/Adresse/add');
+    }
+
+    public function testShowadresse()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/Adresse/show/{idAdd}');
+    }
+
+    public function testListadresse()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/Adresse/list');
+    }
+
+    public function testEditadresse()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/Adresse/edit/{idAdd}');
+    }
+
+    public function testDeleteadresse()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/Adresse/delete/{idAdd}');
     }
 
 }

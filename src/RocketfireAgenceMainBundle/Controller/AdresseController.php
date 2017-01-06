@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use RocketfireAgenceMainBundle\Form\AdresseType;
+use RocketfireAgenceMainBundle\Form\Type\AdresseType;
 use RocketfireAgenceMainBundle\Entity\Adresse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,7 +13,7 @@ class AdresseController extends Controller {
 
     /**
      * @Method({"GET","POST"})
-     * @Route("/Adresse/add", host="agence.local", name="cinema_add")
+     * @Route("/Adresse/add", host="agence.local", name="adresse_add")
      */
     public function createAdresseAction(Request $request) {
         /*
@@ -50,68 +50,108 @@ class AdresseController extends Controller {
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('adresse_list');
         }
 
         return $this->render('RocketfireAgenceMainBundle:Adresse:create_adresse.html.twig', array('form' => $form->createView()));
     }
 
     /**
+     * Finds and displays a adresse entity.
+     * 
      * @Route("/Adresse/show/{idAdd}")
      * 
      * @Method({"GET","POST"})
-     * @Route("/Adresse/show/{idAdd}", host="agence.local", name="cinema_show")
+     * @Route("/Adresse/show/{idAdd}", host="agence.local", name="adresse_show")
      * 
-     * @param integer $idAdd
      */
-    public function showAdresseAction($idAdd) {
-        
-        
-        
-        
+    public function showAdresseAction(Adresse $adresse) {
+
+        $deleteForm = $this->createDeleteForm($adresse);
+
         return $this->render('RocketfireAgenceMainBundle:Adresse:show_adresse.html.twig', array(
-                        // ...
+                    'adresse' => $adresse,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-        public function showAction(Ville $ville)
-    {
-        $deleteForm = $this->createDeleteForm($ville);
 
-        return $this->render('ville/show.html.twig', array(
-            'ville' => $ville,
+    /**
+     * Lists all adresses
+     * 
+     * @Route("/Adresse/list", host="agence.local", name="adresse_list" )
+     * @Method("GET")
+     */
+    public function listAdresseAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $adresses = $em->getRepository('RocketfireAgenceMainBundle:Adresse')->findAll();
+
+        return $this->render('RocketfireAgenceMainBundle:Adresse:list_adresse.html.twig', array(
+            'adresses' => $adresses,
+        ));
+    }
+      
+    /**
+     * Displays a form to edit an existing adresse entity.
+     * 
+     * @Method({"GET","POST"})
+     * @Route("/Adresse/edit/{idAdd}", host="agence.local", name="adresse_edit")
+     */
+    public function editAdresseAction(Request $request, Adresse $adresse) {
+        $deleteForm = $this->createDeleteForm($adresse);
+        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\AdresseType', $adresse);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            
+            // store a message for the very next request
+            $this->addFlash('notice', 'Mise à jour efectuée.');
+
+
+            return $this->redirectToRoute('adresse_edit', array('idAdd' => $adresse->getidAdd()));
+        }
+        
+        return $this->render('RocketfireAgenceMainBundle:Adresse:edit_adresse.html.twig', array(
+            'adresse' => $adresse,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+        
     }
-
-
-    // -----------------------
-
+            
     /**
-     * @Route("/Adresse/list")
+     * Supprimer une adresse
+     * 
+     * @Route("/Adresse/delete/{idAdd}", host="agence.local", name="adresse_delete")
+     * @Method("DELETE")
+     * 
      */
-    public function listAdresseAction() {
-        return $this->render('RocketfireAgenceMainBundle:Adresse:list_adresse.html.twig', array(
-                        // ...
-        ));
+    public function deleteAdresseAction(Request $request, Adresse $adresse) {
+    
+        $form = $this->createDeleteForm($adresse);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($adresse);
+            $em->flush($adresse);
+        }
+        
+        // store a message for the very next request
+        $this->addFlash('notice', 'Suppression effectuée.');
+
+        return $this->redirectToRoute('adresse_list');
     }
-
-    /**
-     * @Route("/Adresse/edit/{idAdd}")
-     */
-    public function editAdresseAction($idAdd) {
-        return $this->render('RocketfireAgenceMainBundle:Adresse:edit_adresse.html.twig', array(
-                        // ...
-        ));
-    }
-
-    /**
-     * @Route("/Adresse/delete/{idAdd}")
-     */
-    public function deleteAdresseAction($idAdd) {
-        return $this->render('RocketfireAgenceMainBundle:Adresse:delete_adresse.html.twig', array(
-                        // ...
-        ));
+        
+    
+    private function createDeleteForm(Adresse $adresse) {
+        return $this->createFormBuilder()
+                        ->setAction($this->generateUrl('adresse_delete', array('idAdd' => $adresse->getidAdd())))
+                        ->setMethod('DELETE')
+                        ->getForm()
+        ;
     }
 
 }
