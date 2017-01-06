@@ -19,7 +19,7 @@ class ClientParticulier extends Client
      *
      * @ORM\Column(name="prenom", type="string", length=30, nullable=true)
      */
-    private $prenom;
+    protected $prenom;
 
     /**
      * Get idClient

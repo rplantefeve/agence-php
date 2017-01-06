@@ -20,6 +20,13 @@ class ClientAssociation extends Client
      * @ORM\Column(name="numFax", type="integer", nullable=true, unique=true)
      */
     private $numFax;
+    
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="siret", type="integer", nullable=true, unique=true)
+     */
+    private $siret;
 
     /**
      * Get idClient

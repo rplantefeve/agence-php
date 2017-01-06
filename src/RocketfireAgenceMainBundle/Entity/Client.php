@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
  */
-class Client
+abstract class Client
 {
     /**
      * @var int
