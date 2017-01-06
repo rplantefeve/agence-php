@@ -36,7 +36,7 @@ abstract class Client
      * @ORM\Column(name="prenom", type="string", length=30, nullable=true)
      */
     protected $prenom;
-
+  
     /**
      * @var string
      *
@@ -78,6 +78,7 @@ abstract class Client
      * @ORM\Column(name="idLog", type="bigint", unique=true, nullable=true)
      */
     protected $idLog;
+
 
      public function getIdClient()
     {
