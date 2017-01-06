@@ -3,9 +3,9 @@
 {% block title %}RocketfireAgenceMainBundle:CompagnieAerienne:deleteCompagnieAerienne{% endblock %}
 
 {% block body %}
-<h1>Welcome to the CompagnieAerienne:deleteCompagnieAerienne page</h1>
-suppression de la compagnie {{ compagnieAerienne.id }}
-<form action='{{ path('CompagnieAerienne_list') }}'>
+    <h1>Welcome to the CompagnieAerienne:deleteCompagnieAerienne page</h1>
+    suppression de la compagnie {{ compagnieAerienne.id }}
+    <form action='{{ path('CompagnieAerienne_list') }}'>
         <button type="submit">Ok</button>
     </form>
 {% endblock %}
