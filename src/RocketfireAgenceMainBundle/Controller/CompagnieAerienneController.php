@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use RocketfireAgenceMainBundle\Form\CompagnieAerienneType;
+use RocketfireAgenceMainBundle\Form\Type\CompagnieAerienneType;
 use RocketfireAgenceMainBundle\Entity\CompagnieAerienne;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -50,7 +50,7 @@ class CompagnieAerienneController extends Controller {
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('CompagnieAerienne_list');
         }
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:create_compagnie_aerienne.html.twig',
                         array(
@@ -59,9 +59,41 @@ class CompagnieAerienneController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienne/edit/{id}")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienne/edit/{id}", host="agence.local", name="CompagnieAerienne_edit")
+     * @param Request $request
+     * @param integer $id
+     * @return type
+     * @throws type
      */
-    public function editCompagnieAerienneAction($id) {
+    public function editCompagnieAerienneAction(Request $request, $id) {
+        
+        $em = $this->getDoctrine()->getManager();
+        $compagnieAerienne = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')->find($id);
+        
+        if (!$compagnieAerienne) {
+            throw $this->createNotFoundException(
+                    'Pas de compagnie pour id ' . $id
+            );
+        }
+        /*
+         * 1) Construire le formulaire
+         */
+        $form = $this->createForm(CompagnieAerienneType::class, $compagnieAerienne);
+        /*
+         * 2) Gérer la soumission du formulaire
+         */
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /*
+             * 3) Sauvegarder la compagnie aerienne
+             */
+            $em->flush();
+            // store a message for the very next request
+            $this->addFlash('notice', 'Mise à jour réussie.');
+            // redirection
+            return $this->redirectToRoute('CompagnieAerienne_list');
+        }
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:edit_compagnie_aerienne.html.twig',
                         array(
                       'form' => $form->createView()
@@ -69,13 +101,31 @@ class CompagnieAerienneController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienne/delete/{id}")
+     * @Method({"GET","POST"})
+     * @param integer $id
+     * @Route("/CompagnieAerienne/delete/{id}", host="agence.local", name="CompagnieAerienne_delete")
+     * @return type
+     * @throws type
      */
     public function deleteCompagnieAerienneAction($id) {
+       
+        $em = $this->getDoctrine()->getManager();
+        $compagnieAerienne = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')->find($id);
+        if (!$compagnieAerienne) {
+            throw $this->createNotFoundException(
+                    'Pas de compagnie pour identifiant ' . $id
+            );
+        } 
+        $em->remove($compagnieAerienne);
+        $em->flush();
+        
+        // store a message for the very next request
+        $this->addFlash('notice', 'Suppression réussie.');
+        
+      
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:delete_compagnie_aerienne.html.twig',
-                        array(
-                        // ...
-        ));
+                       ['compagnieAerienne' => $compagnieAerienne]);
+       
     }
 
     /**
@@ -100,23 +150,21 @@ class CompagnieAerienneController extends Controller {
     }
 
     /**
-     * @Route("/CompagnieAerienne/list")
+     * @Method({"GET","POST"})
+     * @Route("/CompagnieAerienne/list", host="agence.local", name="CompagnieAerienne_list")
      */
     public function listCompagnieAerienneAction() {
         // on récupère le repository 
         // PHP class whose only job is to help you fetch entities of a certain class
-        $compagnieAerienne = $this->getDoctrine()
+        $compagnieAeriennes = $this->getDoctrine()
                 ->getRepository('RocketfireAgenceMainBundle:CompagnieAerienne')
                 ->findAll();
-        if (!$compagnieAerienne) {
+        if (!$compagnieAeriennes) {
             throw $this->createNotFoundException(
                     'Pas de compagnie !'
-            );
-        return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:list_compagnie_aerienne.html.twig',
-                       ['compagnieAerienne' => $compagnieAerienne]);
-                      
-       
+            );                   
     }
-
+return $this->render('RocketfireAgenceMainBundle:CompagnieAerienne:list_compagnie_aerienne.html.twig',
+                       ['compagnieAeriennes' => $compagnieAeriennes]);
 }
 }
