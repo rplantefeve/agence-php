@@ -50,7 +50,7 @@ class VilleController extends Controller
             // store a message for the very next request
             $this->addFlash('notice', 'Félicitations, insertion réussie.');
             // redirection pour le fun
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('default');
         }
         /*
           return $this->render( 'FormationCinemaCrudMainBundle:Default:cinema.add.html.twig',
