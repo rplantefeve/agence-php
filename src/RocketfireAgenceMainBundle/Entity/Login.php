@@ -3,6 +3,8 @@
 namespace RocketfireAgenceMainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -10,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="login")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\LoginRepository")
+ * @UniqueEntity(fields="login", message="Compte déjà existant")
  */
 class Login implements UserInterface, \Serializable {
 
@@ -26,6 +29,8 @@ class Login implements UserInterface, \Serializable {
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=50, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $login;
 
