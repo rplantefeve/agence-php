@@ -7,14 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use RocketfireAgenceMainBundle\Entity\ClientParticulier;
 use RocketfireAgenceMainBundle\Entity\ClientAssociation;
-<<<<<<< HEAD
 use RocketfireAgenceMainBundle\Form\ClientAssociationType;
 use RocketfireAgenceMainBundle\Form\ClientParticulierType;
-=======
-use RocketfireAgenceMainBundle\Form\Type\ClientAssociationType;
-use RocketfireAgenceMainBundle\Form\Type\ClientType;
-use RocketfireAgenceMainBundle\Form\Type\ClientParticulierType;
->>>>>>> feature/Vol
 use Symfony\Component\HttpFoundation\Request;
 use RocketfireAgenceMainBundle\Entity\ClientEntreprise;
 use RocketfireAgenceMainBundle\Form\Type\ClientEntrepriseType;
