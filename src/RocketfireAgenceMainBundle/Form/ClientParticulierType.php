@@ -16,4 +16,3 @@ class ClientParticulierType extends ClientType
         $builder->add('prenom');
     }
 }
-

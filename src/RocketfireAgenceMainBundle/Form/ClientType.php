@@ -33,6 +33,4 @@ class ClientType extends AbstractType
     {
         return 'rocketfireagencemainbundle_client';
     }
-
-
 }
