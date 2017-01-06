@@ -78,12 +78,9 @@ class LoginController extends Controller {
      * @Method("GET")
      */
     public function showLoginAction(Login $login) {
-        $deleteForm = $this->createDeleteForm($login);
-
         return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig',
                         array(
-                    'login'       => $login,
-                    'delete_form' => $deleteForm->createView(),
+                    'login'       => $login
         ));
     }
 
@@ -125,7 +122,7 @@ class LoginController extends Controller {
      *
      * @Route("/delete/{id}", name="login_delete")
      * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_ADMIN') && !login.isSelf(user)")
      */
     public function deleteLoginAction(Request $request, Login $login) {
         $form = $this->createDeleteForm($login);
