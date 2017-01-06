@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Escale</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ escale.id }}</td>
+            </tr>
+            <tr>
+                <th>Datedepart</th>
+                <td>{% if escale.dateDepart %}{{ escale.dateDepart|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datearrivee</th>
+                <td>{% if escale.dateArrivee %}{{ escale.dateArrivee|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heuredepart</th>
+                <td>{% if escale.heureDepart %}{{ escale.heureDepart|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heurearrivee</th>
+                <td>{% if escale.heureArrivee %}{{ escale.heureArrivee|date('H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('escale_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('escale_edit', { 'id': escale.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
