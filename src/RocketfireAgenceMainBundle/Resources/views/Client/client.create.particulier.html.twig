@@ -1,0 +1,29 @@
+<body>
+    <fieldset>
+        <legend><h1>Particulier</h1></legend>
+        {{ form_start(form) }}
+        <table>
+            <tr>
+                <td>Nom </td>
+                <td>{{ form_row(form.nom, {'label': ' '}) }}</td>
+            </tr>
+            <tr>
+                <td>Prénom </td>
+                <td>{{ form_row(form.prenom, {'label': ' '}) }}</td>
+            </tr>
+            <tr>
+                <td>N° Tel </td>
+                <td>{{ form_row(form.numTel, {'label': ' '}) }}</td>
+            </tr>
+            <tr>
+                <td>Email </td>
+                <td>{{ form_row(form.eMail, {'label': ' '}) }}</td>
+            </tr>
+        </table>
+        <br /><button type="submit">Valider</button>
+        {{ form_end(form) }}
+        <form action='{{ path('inscrire_client') }}'>
+            <button>Retour</button>
+        </form>
+    </fieldset>
+</body>
