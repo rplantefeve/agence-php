@@ -35,7 +35,7 @@ framework:
 # Twig Configuration
 twig:
     globals:
-        autoescape: ~
+        autoescape: name
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
