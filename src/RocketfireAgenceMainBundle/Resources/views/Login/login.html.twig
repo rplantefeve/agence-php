@@ -10,8 +10,8 @@
     <form action="{{ path('login') }}" method="post">
         <label for="username">{% trans %}label.login{% endtrans %}</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}" />
-        <label for="password">Mot de passe :</label>
+        <label for="password">{% trans %}label.password{% endtrans %}</label>
         <input type="password" id="password" name="_password" />
-        <button type="submit">S'authentifier</button>
+        <button type="submit">{% trans %}title.login{% endtrans %}</button>
     </form>
 {% endblock %}
