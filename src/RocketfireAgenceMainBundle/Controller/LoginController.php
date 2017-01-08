@@ -22,18 +22,23 @@ class LoginController extends Controller {
      */
     public function loginAction(Request $request) {
         $authenticationUtils = $this->get('security.authentication_utils');
-        // get the login error if there is one
-        $error               = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername        = $authenticationUtils->getLastUsername();
-        return $this->render(
-                        'RocketfireAgenceMainBundle:Login:login.html.twig',
-                        array(
-                    // last username entered by the user
-                    'last_username' => $lastUsername,
-                    'error'         => $error,
-                        )
-        );
+        // si l'utilisateur est déjà connecté, on redirige vers la homepage
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('homepage');
+        } else {
+            // get the login error if there is one
+            $error        = $authenticationUtils->getLastAuthenticationError();
+            // last username entered by the user
+            $lastUsername = $authenticationUtils->getLastUsername();
+            return $this->render(
+                            'RocketfireAgenceMainBundle:Login:login.html.twig',
+                            array(
+                        // last username entered by the user
+                        'last_username' => $lastUsername,
+                        'error'         => $error,
+                            )
+            );
+        }
     }
 
     /**
