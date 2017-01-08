@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-01-08T18:06:33Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2017-01-08T17:54:41Z" source-language="en" target-language="en_EN" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
-      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+      <note>RocketfireAgenceMainBundle messages in English language.</note>
     </header>
     <body>
       <trans-unit id="df90443eda5fa6e0ec474957d9b99bd6cc42ae85" resname="button.create">
         <source>button.create</source>
-        <target>Créer</target>
+        <target>Create</target>
       </trans-unit>
       <trans-unit id="ac0ccf3e05fe826e31be2dfe40c7f8e13deeb137" resname="label.active">
         <source>label.active</source>
-        <target>Compte actif</target>
+        <target>Activated</target>
       </trans-unit>
       <trans-unit id="673689818540bf1fcf127486ec7c743237e62fd9" resname="label.administrator">
         <source>label.administrator</source>
-        <target>Administrateur</target>
+        <target>Administrator</target>
       </trans-unit>
       <trans-unit id="8dfe7aaa1b9672b3c6257667adfb852daecbbf5a" resname="label.login">
         <source>label.login</source>
-        <target>Nom d'utilisateur</target>
+        <target>Login</target>
       </trans-unit>
       <trans-unit id="cfa8968dae7b2e10025cf371de43768dea0fa1ef" resname="label.password">
         <source>label.password</source>
-        <target>Mot de passe</target>
+        <target>Password</target>
       </trans-unit>
       <trans-unit id="c63743c24fd777dda18aed698573ce154bc631c6" resname="label.passwordConfirmation">
         <source>label.passwordConfirmation</source>
@@ -32,11 +32,11 @@
       </trans-unit>
       <trans-unit id="7ac4a9814f4a05349b851d7b6e1ad9e96322c9f9" resname="link.returnList">
         <source>link.returnList</source>
-        <target>Retour à la liste</target>
+        <target>Return to list</target>
       </trans-unit>
       <trans-unit id="76dc0a9f9fad7319176823b3cecb1c1c095becd6" resname="title.loginCreate">
         <source>title.loginCreate</source>
-        <target>Création d'un login</target>
+        <target>Create a login</target>
       </trans-unit>
     </body>
   </file>
