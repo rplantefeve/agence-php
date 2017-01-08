@@ -1,8 +1,9 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Utilisateur</h1>
-
+    <header>
+        <h1>{% trans %}title.utilisateur{% endtrans %}</h1>
+    </header>
     <table>
         <tbody>
             <tr>
@@ -10,31 +11,27 @@
                 <td>{{ login.id }}</td>
             </tr>
             <tr>
-                <th>Login</th>
+                <th>{% trans %}label.login{% endtrans %}</th>
                 <td>{{ login.login }}</td>
             </tr>
             <tr>
-                <th>Mot de passe</th>
-                <td>{{ login.motDePasse }}</td>
+                <th>{% trans %}label.administrator{% endtrans %}</th>
+                <td>{% if login.admin %}{% trans %}label.yes{% endtrans %}{% else %}{% trans %}label.no{% endtrans %}{% endif %}</td>
             </tr>
             <tr>
-                <th>Administrateur</th>
-                <td>{% if login.admin %}Oui{% else %}Non{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Compte activé</th>
-                <td>{% if login.isActive %}Oui{% else %}Non{% endif %}</td>
+                <th>{% trans %}label.active{% endtrans %}</th>
+                <td>{% if login.isActive %}{% trans %}label.yes{% endtrans %}{% else %}{% trans %}label.no{% endtrans %}{% endif %}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('login_list') }}">Retour à la liste</a>
+            <a href="{{ path('login_list') }}">{% trans %}link.returnList{% endtrans %}</a>
         </li>
         {% if is_granted('ROLE_ADMIN') %}
             <li>
-                <a href="{{ path('login_edit', { 'id': login.id }) }}">Modifier</a>
+                <a href="{{ path('login_edit', { 'id': login.id }) }}">{% trans %}button.edit{% endtrans %}</a>
             </li>
         {% endif %}
     </ul>
