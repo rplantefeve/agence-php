@@ -55,6 +55,13 @@ class Login implements UserInterface, \Serializable {
      */
     private $isActive;
 
+    /**
+     * @var Client 
+     * 
+     * @ORM\OneToOne(targetEntity="RocketfireAgenceMainBundle\Entity\Client", mappedBy="login")
+     */
+    private $client;
+
     public function __construct() {
         $this->isActive = true;
     }
@@ -128,7 +135,7 @@ class Login implements UserInterface, \Serializable {
     /**
      * Get admin
      *
-     * @return bool
+     * @return boolean
      */
     public function isAdmin() {
         return $this->admin;
@@ -157,16 +164,38 @@ class Login implements UserInterface, \Serializable {
     }
 
     /**
+     * Set client
+     *
+     * @param \RocketfireAgenceMainBundle\Entity\Client $client
+     *
+     * @return Login
+     */
+    public function setClient(\RocketfireAgenceMainBundle\Entity\Client $client =
+    null) {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \RocketfireAgenceMainBundle\Entity\Client
+     */
+    public function getClient() {
+        return $this->client;
+    }
+
+    /**
      * Teste si l'utilisateur loggué est le même que le Login
      * 
      * @param \RocketfireAgenceMainBundle\Entity\Login $user
-     * @return type
+     * @return boolean
      */
-    public function isSelf(Login $user = null){
+    public function isSelf(Login $user = null) {
         return $user && $user->getLogin() == $this->login;
     }
-    
-    
+
     public function getUsername() {
         return $this->login;
     }
