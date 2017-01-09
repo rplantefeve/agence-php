@@ -28,7 +28,10 @@ class ClientController extends Controller {
     }
 
     /**
-     * @Route("/Client/test", name="client_adresse")
+     * @param Request $request
+     * @return type
+     * @Method({"GET","POST"})
+     * @Route("/Client/Particulier/add", name="client_particulier_add")
      */
     public function linkClientAdresseAction(Request $request) {
         $clientParticulier = new ClientParticulier();
@@ -58,59 +61,6 @@ class ClientController extends Controller {
         return $this->render(
                         'RocketfireAgenceMainBundle:Client:client.create.particulier.html.twig', array(
                     'form' => $formClientAdresse->createView())
-        );
-    }
-
-    /**
-     * @param Request $request
-     * @return type
-     * @Method({"GET","POST"})
-     * @Route("/Client/Particulier/add", name="client_particulier_add")
-     */
-    public function createClientParticulierAction(Request $request) {
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($adresse);
-            $em->flush($adresse);
-
-            return $this->redirectToRoute('Adresse_show', array('id' => $adresse->getIdAdd()));
-        }
-
-        return $this->render('RocketfireAgenceMainBundle:Adresse:new.html.twig', array(
-                    'adresse' => $adresse,
-                    'form' => $form->createView(),
-        ));
-        /*
-         * 1) Construire le formulaire
-         */
-        $clientParticulier = new ClientParticulier();
-        $adresse = new Adresse();
-        $formClient = $this->createForm(ClientParticulierType::class, $clientParticulier);
-        $formAdresse = $this->createForm('RocketfireAgenceMainBundle\Form\Type\AdresseType', $adresse);
-
-        /*
-         * 2) Gérer la soumission du formulaire
-         */
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /*
-             * 3) Sauvegarder le client
-             */
-            $em = $this->getDoctrine()->getManager();
-            // tells Doctrine you want to (eventually) save the Product (no queries yet)
-            $em->persist($clientParticulier);
-            $em->flush();
-            // store a message for the very next request
-            $this->addFlash('notice', 'Félicitations, insertion réussie.');
-            // redirection pour le fun
-            return $this->redirectToRoute('inscrire_client');
-        }
-        return $this->render(
-                        'RocketfireAgenceMainBundle:Client:client.create.particulier.html.twig', array(
-                    'form' => $form->createView())
         );
     }
 
