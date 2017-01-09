@@ -71,6 +71,13 @@ class Vol
         return $this->idVol;
     }
 
+    public function __construct(){
+        $this->dateDepartVol = new \DateTime();
+        $this->dateArriveeVol = new \DateTime();
+        $this->heureDepartVol = new \DateTime();
+        $this->heureArriveeVol = new \DateTime();
+    }
+
     /**
      * Set dateDepartVol
      *

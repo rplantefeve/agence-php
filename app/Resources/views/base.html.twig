@@ -6,6 +6,7 @@
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('/assets/css/form.css')}}" type="text/css">
 
 </head>
 <body>
@@ -20,7 +21,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Agence de voyage</a>
+                <a class="navbar-brand" href="/">
+                    {% if is_granted('ROLE_ADMIN') %}
+                    Admin -
+                    {% endif %}
+                    Agence de voyage
+                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
