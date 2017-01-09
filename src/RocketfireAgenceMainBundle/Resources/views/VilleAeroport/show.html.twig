@@ -3,26 +3,40 @@
 {% block body %}
     <h1>Villeaeroport</h1>
 
-    <table>
+    <table class="table table-hover table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ villeAeroport.id }}</td>
             </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ villeAeroport.idVille }}</td>
+            </tr>
+            <tr>
+                <th>Aeroport</th>
+                <td>{{ villeAeroport.idAeroport }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('villeaeroport_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('villeaeroport_edit', { 'id': villeAeroport.id }) }}">Edit</a>
-        </li>
-        <li>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <a href="{{ path('villeaeroport_index') }}">
+                <button type="button" class="btn btn-default">
+                    Retour
+                </button>
+            </a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="{{ path('villeaeroport_edit', { 'id': villeAeroport.id }) }}">
+                <button type="button" class="btn btn-warning">Editer</button>
+            </a>
+        </div>
+        <div class="btn-group" role="group">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
 {% endblock %}

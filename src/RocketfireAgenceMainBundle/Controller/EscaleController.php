@@ -48,7 +48,7 @@ class EscaleController extends Controller
             $em->persist($escale);
             $em->flush($escale);
 
-            return $this->redirectToRoute('escale_show', array('id' => $escale->getIdClient()));
+            return $this->redirectToRoute('escale_show', array('id' => $escale->getIdEscale()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Escale:new.html.twig', array(
@@ -88,7 +88,7 @@ class EscaleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('escale_edit', array('id' => $escale->getIdClient()));
+            return $this->redirectToRoute('escale_edit', array('id' => $escale->getIdEscale()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Escale:edit.html.twig', array(
@@ -128,7 +128,7 @@ class EscaleController extends Controller
     private function createDeleteForm(Escale $escale)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('escale_delete', array('id' => $escale->getIdClient())))
+            ->setAction($this->generateUrl('escale_delete', array('id' => $escale->getIdEscale())))
             ->setMethod('DELETE')
             ->getForm()
         ;

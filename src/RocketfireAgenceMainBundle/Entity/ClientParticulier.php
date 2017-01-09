@@ -38,4 +38,8 @@ class ClientParticulier extends Client
     {
         $this->prenom = $prenom;
     }
+    
+    public function __toString(){
+        return $this->prenom;
+    }
 }

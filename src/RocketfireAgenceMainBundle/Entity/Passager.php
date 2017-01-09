@@ -135,4 +135,8 @@ class Passager
     {
         return $this->idAdd;
     }
+
+    public function __toString(){
+        return $this->nom;
+    }
 }

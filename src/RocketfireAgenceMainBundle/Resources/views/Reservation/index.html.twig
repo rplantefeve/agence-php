@@ -14,6 +14,9 @@
                 <th>Datereservation</th>
                 <th>Numero</th>
                 <th>Etat</th>
+                <th>Vol</th>
+                <th>Client</th>
+                <th>Passager</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -24,6 +27,9 @@
                 <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ reservation.numero }}</td>
                 <td>{{ reservation.etat }}</td>
+                <td>{{ reservation.idVol }}</td>
+                <td>{{ reservation.idAdd }}</td>
+                <td>{{ reservation.idPassager }}</td>
                 <td>
                     <a href="{{ path('reservation_show', { 'id': reservation.idResa }) }}">
                         <button type="button" class="btn btn-default" aria-label="Left Align">

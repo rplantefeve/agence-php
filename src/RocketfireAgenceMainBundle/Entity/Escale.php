@@ -65,19 +65,6 @@ class Escale
      */
     private $heureArriveeEscale;
 
-
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
     /**
      * Set dateDepartEscale
      *

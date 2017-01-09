@@ -5,12 +5,12 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Create" class="btn btn-warning btn-lg col-sm-4 navbar-right" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('reservation_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a href="{{ path('reservation_index') }}">
+        <button type="button" class="btn btn-info btn-lg col-sm-4">
+            Retour
+        </button>
+    </a>
 {% endblock %}

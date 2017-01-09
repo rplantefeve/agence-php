@@ -52,6 +52,10 @@ class Reservation
      */
     private $dateReservation;
 
+    public function __construct(){
+        $this->dateReservation = new \DateTime();
+    }
+
     /**
      * @var int
      *

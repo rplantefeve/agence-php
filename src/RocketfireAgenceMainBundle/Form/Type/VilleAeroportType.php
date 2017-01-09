@@ -9,16 +9,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class VilleAeroportType extends AbstractType
 {
     /**
-     * {@inheritdoc}
-     */
+    * {@inheritdoc}
+    */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('idVille')->add('idAeroport')        ;
+        $builder->add('idVille', 'entity', array(
+                    'class' => 'RocketfireAgenceMainBundle:Ville',
+                    'label' => 'Ville'
+                ))
+                ->add('idAeroport', 'entity', array(
+                    'class' => 'RocketfireAgenceMainBundle:Aeroport',
+                    'label' => 'Aeroport'
+                ));
     }
-    
+
     /**
-     * {@inheritdoc}
-     */
+    * {@inheritdoc}
+    */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -27,8 +34,8 @@ class VilleAeroportType extends AbstractType
     }
 
     /**
-     * {@inheritdoc}
-     */
+    * {@inheritdoc}
+    */
     public function getBlockPrefix()
     {
         return 'rocketfireagencemainbundle_villeaeroport';
