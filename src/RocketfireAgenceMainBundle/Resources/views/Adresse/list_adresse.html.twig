@@ -1,0 +1,54 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RocketfireAgenceMainBundle:Adresse:listAdresse{% endblock %}
+
+{% block body %}
+    <h1>Liste d'adresse</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for adresse in adresses %}
+            <tr>
+                <td><a href="{{ path('adresse_show', { 'idAdd': adresse.idAdd }) }}">{{ adresse.idAdd }}</a></td>
+                <td>{{ adresse.adresse }}</td>
+                <td>{{ adresse.codePostal }}</td>
+                <td>{{ adresse.ville }}</td>
+                <td>{{ adresse.pays }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('adresse_show', { 'idAdd': adresse.idAdd }) }}">Affiche</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('adresse_edit', { 'idAdd': adresse.idAdd }) }}">Edite</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    {% for flashMessage in app.session.flashBag.get('notice') %}
+        <p>
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
+
+        
+    <ul>
+        <li>
+            <a href="{{ path('adresse_add') }}">Ajouter une adresse</a>
+        </li>
+    </ul>
+{% endblock %}
