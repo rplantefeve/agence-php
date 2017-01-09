@@ -5,6 +5,7 @@ namespace RocketfireAgenceMainBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class ClientType extends AbstractType
 {
@@ -13,7 +14,7 @@ class ClientType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('numTel')->add('eMail');
+        $builder->add('nom')->add('numTel')->add('eMail', EmailType::class);
     }
 
     /**
