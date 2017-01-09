@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RocketfireAgenceMainBundle:Adresse:createAdresse{% endblock %}
+
+{% block body %}
+    <h1>Ajout d'une adresse</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.adresse) }}
+    {{ form_row(form.codePostal) }}
+    {{ form_row(form.ville) }}
+    {{ form_row(form.pays) }}
+    <button type="submit">Sauvegarder l'adresse</button>
+    {{ form_end(form) }}
+
+    <form action='{{ path('adresse_list') }}'>
+        <button type="submit">Retour à la liste</button>
+    </form>
+{% endblock %}
+
