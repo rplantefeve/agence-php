@@ -62,4 +62,14 @@ class CompagnieAerienne
     {
         return $this->nom;
     }
+    
+    /**
+     * ToString nom
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->nom;
+    }
 }
