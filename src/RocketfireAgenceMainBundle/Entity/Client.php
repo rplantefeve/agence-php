@@ -68,10 +68,10 @@ abstract class Client
     /**
      * @var int
      *
-     * @ORM\OneToOne(targetEntity="Adresse")
+     * @ORM\OneToOne(targetEntity="Adresse", inversedBy="client")
      * @ORM\JoinColumn(name="idAdd", referencedColumnName="idAdd")
      */
-    protected $idAdd;
+    protected $adresse;
 
     /**
      * @var Login
@@ -158,30 +158,6 @@ abstract class Client
     public function getEMail()
     {
         return $this->eMail;
-    }
-
-    /**
-     * Set idAdd
-     *
-     * @param integer $idAdd
-     *
-     * @return client
-     */
-    public function setIdAdd($idAdd)
-    {
-        $this->idAdd = $idAdd;
-
-        return $this;
-    }
-
-    /**
-     * Get idAdd
-     *
-     * @return int
-     */
-    public function getIdAdd()
-    {
-        return $this->idAdd;
     }
 
     /**
@@ -278,5 +254,29 @@ abstract class Client
     public function getLogin()
     {
         return $this->login;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \RocketfireAgenceMainBundle\Entity\Adresse $adresse
+     *
+     * @return Client
+     */
+    public function setAdresse(\RocketfireAgenceMainBundle\Entity\Adresse $adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \RocketfireAgenceMainBundle\Entity\Adresse
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
     }
 }

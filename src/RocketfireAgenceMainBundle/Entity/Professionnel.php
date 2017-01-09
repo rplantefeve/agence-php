@@ -161,7 +161,7 @@ abstract class Professionnel extends Client
      */
     public function setIdAdd($idAdd)
     {
-        $this->idAdd = $idAdd;
+        $this->adresse = $idAdd;
 
         return $this;
     }
@@ -173,7 +173,7 @@ abstract class Professionnel extends Client
      */
     public function getIdAdd()
     {
-        return $this->idAdd;
+        return $this->adresse;
     }
 
     /**

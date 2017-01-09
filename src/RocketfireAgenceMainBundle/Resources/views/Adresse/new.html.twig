@@ -1,16 +1,18 @@
-{% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Adresse creation</h1>
+<tr>
+    <td>Rue </td>
+    <td>{{ form_row(form.adresse.adresse, {'label': ' '}) }}</td>
+</tr>
+<tr>
+    <td>Code postal </td>
+    <td>{{ form_row(form.adresse.codePostal, {'label': ' '}) }}</td>
+</tr>
+<tr>
+    <td>Ville </td>
+    <td>{{ form_row(form.adresse.ville, {'label': ' '}) }}</td>
+</tr>
+<tr>
+    <td>Pays </td>
+    <td>{{ form_row(form.adresse.pays, {'label': ' '}) }}</td>
+</tr>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('Adresse_index') }}">Back to the list</a>
-        </li>
-    </ul>
-{% endblock %}
