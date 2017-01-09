@@ -19,7 +19,7 @@
         <tbody>
         {% for vol in vols %}
             <tr>
-                <td><a href="{{ path('vol_show', { 'id': vol.id }) }}">{{ vol.id }}</a></td>
+                <td><a href="{{ path('vol_show', { 'id': vol.idVol }) }}">{{ vol.idVol }}</a></td>
                 <td>{% if vol.dateDepartVol %}{{ vol.dateDepartVol|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if vol.dateArriveeVol %}{{ vol.dateArriveeVol|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if vol.heureDepartVol %}{{ vol.heureDepartVol|date('H:i:s') }}{% endif %}</td>
@@ -29,10 +29,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('vol_show', { 'id': vol.id }) }}">show</a>
+                            <a href="{{ path('vol_show', { 'id': vol.idVol }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('vol_edit', { 'id': vol.id }) }}">edit</a>
+                            <a href="{{ path('vol_edit', { 'id': vol.idVol }) }}">edit</a>
                         </li>
                     </ul>
                 </td>

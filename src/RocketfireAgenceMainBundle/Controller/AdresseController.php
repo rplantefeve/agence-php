@@ -27,7 +27,7 @@ class AdresseController extends Controller
 
         $adresses = $em->getRepository('RocketfireAgenceMainBundle:Adresse')->findAll();
 
-        return $this->render('adresse/index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Adresse:index.html.twig', array(
             'adresses' => $adresses,
         ));
     }
@@ -52,7 +52,7 @@ class AdresseController extends Controller
             return $this->redirectToRoute('Adresse_show', array('id' => $adresse->getIdAdd()));
         }
 
-        return $this->render('adresse/new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Adresse:new.html.twig', array(
             'adresse' => $adresse,
             'form' => $form->createView(),
         ));
@@ -68,7 +68,7 @@ class AdresseController extends Controller
     {
         $deleteForm = $this->createDeleteForm($adresse);
 
-        return $this->render('adresse/show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Adresse:show.html.twig', array(
             'adresse' => $adresse,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -92,7 +92,7 @@ class AdresseController extends Controller
             return $this->redirectToRoute('Adresse_edit', array('id' => $adresse->getIdAdd()));
         }
 
-        return $this->render('adresse/edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Adresse:edit.html.twig', array(
             'adresse' => $adresse,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

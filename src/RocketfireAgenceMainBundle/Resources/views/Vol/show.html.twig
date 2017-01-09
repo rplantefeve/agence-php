@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ vol.id }}</td>
+                <td>{{ vol.idVol }}</td>
             </tr>
             <tr>
                 <th>Datedepart</th>
@@ -41,7 +41,7 @@
             <a href="{{ path('vol_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('vol_edit', { 'id': vol.id }) }}">Edit</a>
+            <a href="{{ path('vol_edit', { 'id': vol.idVol }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

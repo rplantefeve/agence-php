@@ -18,7 +18,7 @@ class VilleController extends Controller
     /**
      * Lists all ville entities.
      *
-     * @Route("/", name="ville_index")
+     * @Route("/list", name="ville_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -27,7 +27,7 @@ class VilleController extends Controller
 
         $villes = $em->getRepository('RocketfireAgenceMainBundle:Ville')->findAll();
 
-        return $this->render('ville/index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Ville:index.html.twig', array(
             'villes' => $villes,
         ));
     }
@@ -35,7 +35,7 @@ class VilleController extends Controller
     /**
      * Creates a new ville entity.
      *
-     * @Route("/new", name="ville_new")
+     * @Route("/add", name="ville_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -52,7 +52,7 @@ class VilleController extends Controller
             return $this->redirectToRoute('ville_show', array('id' => $ville->getId()));
         }
 
-        return $this->render('ville/new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Ville:new.html.twig', array(
             'ville' => $ville,
             'form' => $form->createView(),
         ));
@@ -61,14 +61,14 @@ class VilleController extends Controller
     /**
      * Finds and displays a ville entity.
      *
-     * @Route("/{id}", name="ville_show")
+     * @Route("/show/{id}", name="ville_show")
      * @Method("GET")
      */
     public function showAction(Ville $ville)
     {
         $deleteForm = $this->createDeleteForm($ville);
 
-        return $this->render('ville/show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Ville:show.html.twig', array(
             'ville' => $ville,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -77,7 +77,7 @@ class VilleController extends Controller
     /**
      * Displays a form to edit an existing ville entity.
      *
-     * @Route("/{id}/edit", name="ville_edit")
+     * @Route("/edit/{id}", name="ville_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Ville $ville)
@@ -92,7 +92,7 @@ class VilleController extends Controller
             return $this->redirectToRoute('ville_edit', array('id' => $ville->getId()));
         }
 
-        return $this->render('ville/edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Ville:edit.html.twig', array(
             'ville' => $ville,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -102,7 +102,7 @@ class VilleController extends Controller
     /**
      * Deletes a ville entity.
      *
-     * @Route("/{id}", name="ville_delete")
+     * @Route("/delete/{id}", name="ville_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Ville $ville)

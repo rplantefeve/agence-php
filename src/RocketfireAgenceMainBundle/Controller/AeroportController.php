@@ -18,7 +18,7 @@ class AeroportController extends Controller
     /**
      * Lists all aeroport entities.
      *
-     * @Route("/", name="aeroport_index")
+     * @Route("/list", name="aeroport_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -27,7 +27,7 @@ class AeroportController extends Controller
 
         $aeroports = $em->getRepository('RocketfireAgenceMainBundle:Aeroport')->findAll();
 
-        return $this->render('aeroport/index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Aeroport:index.html.twig', array(
             'aeroports' => $aeroports,
         ));
     }
@@ -35,7 +35,7 @@ class AeroportController extends Controller
     /**
      * Creates a new aeroport entity.
      *
-     * @Route("/new", name="aeroport_new")
+     * @Route("/add", name="aeroport_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -52,7 +52,7 @@ class AeroportController extends Controller
             return $this->redirectToRoute('aeroport_show', array('id' => $aeroport->getIdAero()));
         }
 
-        return $this->render('aeroport/new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Aeroport:new.html.twig', array(
             'aeroport' => $aeroport,
             'form' => $form->createView(),
         ));
@@ -61,14 +61,14 @@ class AeroportController extends Controller
     /**
      * Finds and displays a aeroport entity.
      *
-     * @Route("/{id}", name="aeroport_show")
+     * @Route("/show/{id}", name="aeroport_show")
      * @Method("GET")
      */
     public function showAction(Aeroport $aeroport)
     {
         $deleteForm = $this->createDeleteForm($aeroport);
 
-        return $this->render('aeroport/show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Aeroport:show.html.twig', array(
             'aeroport' => $aeroport,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -77,7 +77,7 @@ class AeroportController extends Controller
     /**
      * Displays a form to edit an existing aeroport entity.
      *
-     * @Route("/{id}/edit", name="aeroport_edit")
+     * @Route("/edit/{id}", name="aeroport_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Aeroport $aeroport)
@@ -92,7 +92,7 @@ class AeroportController extends Controller
             return $this->redirectToRoute('aeroport_edit', array('id' => $aeroport->getIdAero()));
         }
 
-        return $this->render('aeroport/edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Aeroport:edit.html.twig', array(
             'aeroport' => $aeroport,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -102,7 +102,7 @@ class AeroportController extends Controller
     /**
      * Deletes a aeroport entity.
      *
-     * @Route("/{id}", name="aeroport_delete")
+     * @Route("/delete/{id}", name="aeroport_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Aeroport $aeroport)
