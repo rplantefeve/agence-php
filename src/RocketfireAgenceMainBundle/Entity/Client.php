@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Client
  * @ORM\Table(name="client")
- * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
+ * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\ClientRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  */
 abstract class Client

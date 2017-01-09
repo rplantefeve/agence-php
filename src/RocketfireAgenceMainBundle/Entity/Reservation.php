@@ -62,20 +62,9 @@ class Reservation
     /**
      * @var string
      *
-     * @ORM\Column(name="etat", type="string", length=255)
+     * @ORM\Column( type="string",columnDefinition="ENUM('ouvert', 'fermé')")
      */
     private $etat;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set dateReservation
