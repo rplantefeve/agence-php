@@ -5,6 +5,20 @@ agence_de_voyage
 
     git clone https://github.com/salonsalsa/agence_de_voyage.git
 
+### Lorsque l'on bascule sur la debug ne pas oublier de faire :
+
+    // Faire un composer
+    composer update -v
+
+    // Faire un drop schema
+    app/console doctrine:schema:drop (--force)
+
+    // Faire un update schema
+    app/console doctrine:schema:update --force
+
+    // Charger les différentes Fixtures
+    app/console doctrine:fixtures:load
+
 ### Configuration Apache dans le fichier httpd.conf
     Exemple : /wamp/bin/apache/apache2.4.23/conf/httpd.conf
 
