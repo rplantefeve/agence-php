@@ -37,6 +37,9 @@ class LoadVolClass extends AbstractFixture implements OrderedFixtureInterface{
         $manager->persist($volOne);
         $manager->persist($volTwo);
         $manager->flush();
+
+        $this->addReference("vol-one", $volOne);
+        $this->addReference("vol-two", $volTwo);
     }
 
     public function getOrder(){
