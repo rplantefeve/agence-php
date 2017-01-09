@@ -2,116 +2,136 @@
 
 namespace RocketfireAgenceMainBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use RocketfireAgenceMainBundle\Form\AdresseType;
 use RocketfireAgenceMainBundle\Entity\Adresse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class AdresseController extends Controller {
-
+/**
+ * Adresse controller.
+ *
+ * @Route("Adresse")
+ */
+class AdresseController extends Controller
+{
     /**
-     * @Method({"GET","POST"})
-     * @Route("/Adresse/add", host="agence.local", name="cinema_add")
+     * Lists all adresse entities.
+     *
+     * @Route("/list", name="Adresse_index")
+     * @Method("GET")
      */
-    public function createAdresseAction(Request $request) {
-        /*
-         * 1) Construire le formulaire
-         */
-        $adresse = new Adresse();
-        $form = $this->createForm(AdresseType::class, $adresse);
-        /*
-         * 2) Gérer la soumission du formulaire
-         */
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /*
-             * 3) Sauvegarder l'adresse
-             */
-            /*
-             * This line fetches Doctrine's entity manager object, which is responsible
-             * for the process of persisting objects to, and fetching objects from,
-             * the database
-             */
-            $em = $this->getDoctrine()->getManager();
-            // tells Doctrine you want to (eventually) save the Product (no queries yet)
-            $em->persist($adresse);
-            /*
-             * When the flush() method is called, Doctrine looks through all of the
-             * objects
-             * that it's managing to see if they need to be persisted to the database.
-             * In this example, the $product object's data doesn't exist in the database,
-             * so the entity manager executes an INSERT query, creating a new row in the
-             * product table.
-             * Actually executes the queries (i.e. the INSERT query)
-             */
-            $em->flush();
-            // store a message for the very next request
-            $this->addFlash('notice', 'Félicitations, insertion réussie.');
-            // redirection pour le fun
-            return $this->redirectToRoute('default');
-        }
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->render('RocketfireAgenceMainBundle:Adresse:create_adresse.html.twig', array('form' => $form->createView()));
-    }
+        $adresses = $em->getRepository('RocketfireAgenceMainBundle:Adresse')->findAll();
 
-    /**
-     * @Route("/Adresse/show/{idAdd}")
-     * 
-     * @Method({"GET","POST"})
-     * @Route("/Adresse/show/{idAdd}", host="agence.local", name="cinema_show")
-     * 
-     * @param integer $idAdd
-     */
-    public function showAdresseAction($idAdd) {
-        
-        
-        
-        
-        return $this->render('RocketfireAgenceMainBundle:Adresse:show_adresse.html.twig', array(
-                        // ...
+        return $this->render('adresse/index.html.twig', array(
+            'adresses' => $adresses,
         ));
     }
-    
-        public function showAction(Ville $ville)
-    {
-        $deleteForm = $this->createDeleteForm($ville);
 
-        return $this->render('ville/show.html.twig', array(
-            'ville' => $ville,
+    /**
+     * Creates a new adresse entity.
+     *
+     * @Route("/add", name="Adresse_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newAction(Request $request)
+    {
+        $adresse = new Adresse();
+        $form = $this->createForm('RocketfireAgenceMainBundle\Form\Type\AdresseType', $adresse);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($adresse);
+            $em->flush($adresse);
+
+            return $this->redirectToRoute('Adresse_show', array('id' => $adresse->getIdAdd()));
+        }
+
+        return $this->render('adresse/new.html.twig', array(
+            'adresse' => $adresse,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a adresse entity.
+     *
+     * @Route("/show/{id}", name="Adresse_show")
+     * @Method("GET")
+     */
+    public function showAction(Adresse $adresse)
+    {
+        $deleteForm = $this->createDeleteForm($adresse);
+
+        return $this->render('adresse/show.html.twig', array(
+            'adresse' => $adresse,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
-
-    // -----------------------
-
     /**
-     * @Route("/Adresse/list")
+     * Displays a form to edit an existing adresse entity.
+     *
+     * @Route("/edit/{id}", name="Adresse_edit")
+     * @Method({"GET", "POST"})
      */
-    public function listAdresseAction() {
-        return $this->render('RocketfireAgenceMainBundle:Adresse:list_adresse.html.twig', array(
-                        // ...
+    public function editAction(Request $request, Adresse $adresse)
+    {
+        $deleteForm = $this->createDeleteForm($adresse);
+        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\AdresseType', $adresse);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('Adresse_edit', array('id' => $adresse->getIdAdd()));
+        }
+
+        return $this->render('adresse/edit.html.twig', array(
+            'adresse' => $adresse,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * @Route("/Adresse/edit/{idAdd}")
+     * Deletes a adresse entity.
+     *
+     * @Route("/delete/{id}", name="Adresse_delete")
+     * @Method("DELETE")
      */
-    public function editAdresseAction($idAdd) {
-        return $this->render('RocketfireAgenceMainBundle:Adresse:edit_adresse.html.twig', array(
-                        // ...
-        ));
+    public function deleteAction(Request $request, Adresse $adresse)
+    {
+        $form = $this->createDeleteForm($adresse);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($adresse);
+            $em->flush($adresse);
+        }
+
+        return $this->redirectToRoute('Adresse_index');
     }
 
     /**
-     * @Route("/Adresse/delete/{idAdd}")
+     * Creates a form to delete a adresse entity.
+     *
+     * @param Adresse $adresse The adresse entity
+     *
+     * @return \Symfony\Component\Form\Form The form
      */
-    public function deleteAdresseAction($idAdd) {
-        return $this->render('RocketfireAgenceMainBundle:Adresse:delete_adresse.html.twig', array(
-                        // ...
-        ));
+    private function createDeleteForm(Adresse $adresse)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('Adresse_delete', array('id' => $adresse->getIdAdd())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
     }
-
 }

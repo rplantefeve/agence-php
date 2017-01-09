@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Villeaeroports list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for villeAeroport in villeAeroports %}
+            <tr>
+                <td><a href="{{ path('villeaeroport_show', { 'id': villeAeroport.id }) }}">{{ villeAeroport.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('villeaeroport_show', { 'id': villeAeroport.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('villeaeroport_edit', { 'id': villeAeroport.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('villeaeroport_new') }}">Create a new villeAeroport</a>
+        </li>
+    </ul>
+{% endblock %}

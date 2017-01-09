@@ -3,5 +3,36 @@
 {% block title %}RocketfireAgenceMainBundle:CompagnieAerienneVol:listCompagnieAerienneVol{% endblock %}
 
 {% block body %}
-<h1>Welcome to the CompagnieAerienneVol:listCompagnieAerienneVol page</h1>
+    <h1>Welcome to the CompagnieAerienneVol:listCompagnieAerienneVol page</h1>
+
+    <header><h1>Liste des vols de compagnie aérienne</h1></header>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Numero</th>
+            <th>Ouvert</th>
+            <th>Id de la compagnie</th>
+            <th>Id du vol</th>
+        </tr>
+        {% for compagnieAerienneVol in compagnieAerienneVols %}
+            {# boucle de construction de la liste des compagnieAerienneVols #}
+            <tr>
+                <td><a href='{{ path('CompagnieAerienneVol_show', { 'id' : compagnieAerienneVol.id }) }}'>{{ compagnieAerienneVol.id }}</a></td>
+                    {#                <td>{{ compagnieAerienneVol.id }}</td>#}
+                <td>{{ compagnieAerienneVol.numero }}</td>
+                <td>{{ compagnieAerienneVol.ouvert }}</td>
+                <td>{{ compagnieAerienneVol.idCompagnie }}</td>
+                <td>{{ compagnieAerienneVol.idVol }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% for flashMessage in app.session.flashBag.get('notice') %}
+        <p>
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
+    <form action='{{ path('CompagnieAerienneVol_add') }}'>
+        <button type="submit">Ajouter un vol de compagnie aérienne</button>
+    </form>
 {% endblock %}

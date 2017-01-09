@@ -9,8 +9,8 @@
 
     <button type="submit">Sauvegarder la compagnie aérienne</button>
     {{ form_end(form) }}
-    <form action='{{ path('default') }}'>
-        <button type="submit">Retour</button>
+    <form action='{{ path('CompagnieAerienne_list') }}'>
+        <button type="submit">Retour à la liste</button>
     </form>
 
 {% endblock %}

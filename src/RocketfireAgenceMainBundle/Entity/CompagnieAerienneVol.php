@@ -21,6 +21,23 @@ class CompagnieAerienneVol
      */
     private $id;
 
+
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="CompagnieAerienne")
+     * @ORM\JoinColumn(name="idCompagnie", referencedColumnName="id")
+     */
+     private $idCompagnie;
+
+    /**
+     *
+     * @var int
+     * @ORM\ManyToOne(targetEntity="Vol")
+     * @ORM\JoinColumn(name="idVol", referencedColumnName="idVol")
+     */
+     private $idVol;
+
     /**
      * @var string
      *
@@ -34,20 +51,6 @@ class CompagnieAerienneVol
      * @ORM\Column(name="ouvert", type="boolean", nullable=true)
      */
     private $ouvert;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idCompagnie", type="bigint", unique=true)
-     */
-    private $idCompagnie;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idVol", type="bigint", unique=true)
-     */
-    private $idVol;
 
 
     /**
@@ -111,11 +114,11 @@ class CompagnieAerienneVol
     /**
      * Set idCompagnie
      *
-     * @param integer $idCompagnie
+     * @param \RocketfireAgenceMainBundle\Entity\CompagnieAerienne $idCompagnie
      *
      * @return CompagnieAerienneVol
      */
-    public function setIdCompagnie($idCompagnie)
+    public function setIdCompagnie(\RocketfireAgenceMainBundle\Entity\CompagnieAerienne $idCompagnie = null)
     {
         $this->idCompagnie = $idCompagnie;
 
@@ -125,7 +128,7 @@ class CompagnieAerienneVol
     /**
      * Get idCompagnie
      *
-     * @return int
+     * @return \RocketfireAgenceMainBundle\Entity\CompagnieAerienne
      */
     public function getIdCompagnie()
     {
@@ -135,11 +138,11 @@ class CompagnieAerienneVol
     /**
      * Set idVol
      *
-     * @param integer $idVol
+     * @param \RocketfireAgenceMainBundle\Entity\Vol $idVol
      *
      * @return CompagnieAerienneVol
      */
-    public function setIdVol($idVol)
+    public function setIdVol(\RocketfireAgenceMainBundle\Entity\Vol $idVol = null)
     {
         $this->idVol = $idVol;
 
@@ -149,11 +152,10 @@ class CompagnieAerienneVol
     /**
      * Get idVol
      *
-     * @return int
+     * @return \RocketfireAgenceMainBundle\Entity\Vol
      */
     public function getIdVol()
     {
         return $this->idVol;
     }
 }
-

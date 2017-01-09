@@ -36,7 +36,7 @@ abstract class Client
      * @ORM\Column(name="prenom", type="string", length=30, nullable=true)
      */
     protected $prenom;
-  
+
     /**
      * @var string
      *
@@ -47,7 +47,7 @@ abstract class Client
     /**
      * @var int
      *
-     * @ORM\Column(name="numFax", type="integer", unique=true, nullable=true)
+     * @ORM\Column(name="numFax", type="bigint", unique=true, nullable=true)
      */
     protected $numFax;
 
@@ -68,7 +68,8 @@ abstract class Client
     /**
      * @var int
      *
-     * @ORM\Column(name="idAdd", type="integer", nullable=true)
+     * @ORM\OneToOne(targetEntity="Adresse")
+     * @ORM\JoinColumn(name="idAdd", referencedColumnName="idAdd")
      */
     protected $idAdd;
 
@@ -76,6 +77,7 @@ abstract class Client
      * @var Login
      *
      * @ORM\OneToOne(targetEntity="RocketfireAgenceMainBundle\Entity\Login", inversedBy="client")
+     * @ORM\JoinColumn(name="idLog", referencedColumnName="id")
      */
     protected $login;
 

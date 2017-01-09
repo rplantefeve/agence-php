@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+{% block title %}Inscription d'un particulier{% endblock %}
+{% block stylesheets %}<link href="{{ asset('bundles/rocketfireagencemain/style.css') }}" rel="stylesheet">{% endblock %}
+{% block body %}
+    <body>
+        <fieldset>
+            <legend><h1>Association</h1></legend>
+            {{ form_start(form) }}
+            <table class='create_client'>
+                <tr>
+                    <td>Nom de l'association </td>
+                    <td>{{ form_row(form.nom, {'label': ' '}) }}</td>
+                </tr>
+                <tr>
+                    <td>N° Siret </td>
+                    <td>{{ form_row(form.siret, {'label': ' '}) }}</td>
+                </tr>
+                <tr>
+                    <td>N° Tel </td>
+                    <td>{{ form_row(form.numTel, {'label': ' '}) }}</td>
+                </tr>
+                <tr>
+                    <td>N° Fax </td>
+                    <td>{{ form_row(form.numFax, {'label': ' '}) }}</td>
+                </tr>
+                <tr>
+                    <td>Email </td>
+                    <td>{{ form_row(form.eMail, {'label': ' '}) }}</td>
+                </tr>
+            </table>
+            <br /><button type="submit">Valider</button>
+            {{ form_end(form) }}
+            <form action='{{ path('inscrire_client') }}'>
+                <button>Retour</button>
+            </form>
+        </fieldset>
+    </body>
+{% endblock %}

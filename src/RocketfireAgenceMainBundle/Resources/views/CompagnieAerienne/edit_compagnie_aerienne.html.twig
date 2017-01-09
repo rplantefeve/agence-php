@@ -4,4 +4,12 @@
 
 {% block body %}
 <h1>Welcome to the CompagnieAerienne:editCompagnieAerienne page</h1>
+{{ form_start(form) }}
+    {{ form_row(form.nom) }}
+
+    <button type="submit">Sauvegarder la compagnie aérienne</button>
+    {{ form_end(form) }}
+    <form action='{{ path('CompagnieAerienne_list') }}'>
+        <button type="submit">Retour à la liste</button>
+    </form>
 {% endblock %}

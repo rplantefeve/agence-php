@@ -5,7 +5,8 @@ namespace RocketfireAgenceMainBundle\Controller;
 use RocketfireAgenceMainBundle\Entity\Ville;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Ville controller.
@@ -17,7 +18,7 @@ class VilleController extends Controller
     /**
      * Lists all ville entities.
      *
-     * @Route("/list", name="ville_index")
+     * @Route("/", name="ville_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -26,7 +27,7 @@ class VilleController extends Controller
 
         $villes = $em->getRepository('RocketfireAgenceMainBundle:Ville')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Ville:index.html.twig', array(
+        return $this->render('ville/index.html.twig', array(
             'villes' => $villes,
         ));
     }
@@ -34,13 +35,13 @@ class VilleController extends Controller
     /**
      * Creates a new ville entity.
      *
-     * @Route("/add", name="ville_new")
+     * @Route("/new", name="ville_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $ville = new Ville();
-        $form = $this->createForm('RocketfireAgenceMainBundle\Form\VilleType', $ville);
+        $form = $this->createForm('RocketfireAgenceMainBundle\Form\Type\VilleType', $ville);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +52,7 @@ class VilleController extends Controller
             return $this->redirectToRoute('ville_show', array('id' => $ville->getId()));
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Ville:new.html.twig', array(
+        return $this->render('ville/new.html.twig', array(
             'ville' => $ville,
             'form' => $form->createView(),
         ));
@@ -60,14 +61,14 @@ class VilleController extends Controller
     /**
      * Finds and displays a ville entity.
      *
-     * @Route("/show/{id}", name="ville_show")
+     * @Route("/{id}", name="ville_show")
      * @Method("GET")
      */
     public function showAction(Ville $ville)
     {
         $deleteForm = $this->createDeleteForm($ville);
 
-        return $this->render('RocketfireAgenceMainBundle:Ville:show.html.twig', array(
+        return $this->render('ville/show.html.twig', array(
             'ville' => $ville,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -76,13 +77,13 @@ class VilleController extends Controller
     /**
      * Displays a form to edit an existing ville entity.
      *
-     * @Route("/edit/{id}", name="ville_edit")
+     * @Route("/{id}/edit", name="ville_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Ville $ville)
     {
         $deleteForm = $this->createDeleteForm($ville);
-        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\VilleType', $ville);
+        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\VilleType', $ville);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -91,7 +92,7 @@ class VilleController extends Controller
             return $this->redirectToRoute('ville_edit', array('id' => $ville->getId()));
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Ville:edit.html.twig', array(
+        return $this->render('ville/edit.html.twig', array(
             'ville' => $ville,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -101,7 +102,7 @@ class VilleController extends Controller
     /**
      * Deletes a ville entity.
      *
-     * @Route("/delete/{id}", name="ville_delete")
+     * @Route("/{id}", name="ville_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Ville $ville)

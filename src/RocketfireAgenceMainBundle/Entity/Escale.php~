@@ -15,17 +15,17 @@ class Escale
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Column(name="idEscale", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $idEscale;
 
     /**
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Aeroport")
-     * @ORM\JoinColumn(name="idAeroport", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idAeroport", referencedColumnName="idAero")
      */
      private $idAeroport;
 
@@ -33,7 +33,7 @@ class Escale
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Vol")
-     * @ORM\JoinColumn(name="idVol", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idVol", referencedColumnName="idVol")
      */
      private $idVol;
 
@@ -42,34 +42,36 @@ class Escale
      *
      * @ORM\Column(name="dateDepart", type="date")
      */
-    private $dateDepart;
+    private $dateDepartEscale;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateArrivee", type="date")
      */
-    private $dateArrivee;
+    private $dateArriveeEscale;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="heureDepart", type="time")
      */
-    private $heureDepart;
+    private $heureDepartEscale;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="heureArrivee", type="time")
      */
-    private $heureArrivee;
+    private $heureArriveeEscale;
+
+
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -77,99 +79,99 @@ class Escale
     }
 
     /**
-     * Set dateDepart
+     * Set dateDepartEscale
      *
-     * @param \DateTime $dateDepart
+     * @param \DateTime $dateDepartEscale
      *
      * @return Escale
      */
-    public function setDateDepart($dateDepart)
+    public function setDateDepartEscale($dateDepartEscale)
     {
-        $this->dateDepart = $dateDepart;
+        $this->dateDepartEscale = $dateDepartEscale;
 
         return $this;
     }
 
     /**
-     * Get dateDepart
+     * Get dateDepartEscale
      *
      * @return \DateTime
      */
-    public function getDateDepart()
+    public function getDateDepartEscale()
     {
-        return $this->dateDepart;
+        return $this->dateDepartEscale;
     }
 
     /**
-     * Set dateArrivee
+     * Set dateArriveeEscale
      *
-     * @param \DateTime $dateArrivee
+     * @param \DateTime $dateArriveeEscale
      *
      * @return Escale
      */
-    public function setDateArrivee($dateArrivee)
+    public function setDateArriveeEscale($dateArriveeEscale)
     {
-        $this->dateArrivee = $dateArrivee;
+        $this->dateArriveeEscale = $dateArriveeEscale;
 
         return $this;
     }
 
     /**
-     * Get dateArrivee
+     * Get dateArriveeEscale
      *
      * @return \DateTime
      */
-    public function getDateArrivee()
+    public function getDateArriveeEscale()
     {
-        return $this->dateArrivee;
+        return $this->dateArriveeEscale;
     }
 
     /**
-     * Set heureDepart
+     * Set heureDepartEscale
      *
-     * @param string $heureDepart
+     * @param \DateTime $heureDepartEscale
      *
      * @return Escale
      */
-    public function setHeureDepart($heureDepart)
+    public function setHeureDepartEscale($heureDepartEscale)
     {
-        $this->heureDepart = $heureDepart;
+        $this->heureDepartEscale = $heureDepartEscale;
 
         return $this;
     }
 
     /**
-     * Get heureDepart
-     *
-     * @return string
-     */
-    public function getHeureDepart()
-    {
-        return $this->heureDepart;
-    }
-
-    /**
-     * Set heureArrivee
-     *
-     * @param \DateTime $heureArrivee
-     *
-     * @return Escale
-     */
-    public function setHeureArrivee($heureArrivee)
-    {
-        $this->heureArrivee = $heureArrivee;
-
-        return $this;
-    }
-
-    /**
-     * Get heureArrivee
+     * Get heureDepartEscale
      *
      * @return \DateTime
      */
-    public function getHeureArrivee()
+    public function getHeureDepartEscale()
     {
-        return $this->heureArrivee;
+        return $this->heureDepartEscale;
+    }
+
+    /**
+     * Set heureArriveeEscale
+     *
+     * @param \DateTime $heureArriveeEscale
+     *
+     * @return Escale
+     */
+    public function setHeureArriveeEscale($heureArriveeEscale)
+    {
+        $this->heureArriveeEscale = $heureArriveeEscale;
+
+        return $this;
+    }
+
+    /**
+     * Get heureArriveeEscale
+     *
+     * @return \DateTime
+     */
+    public function getHeureArriveeEscale()
+    {
+        return $this->heureArriveeEscale;
     }
 
     /**
@@ -218,5 +220,15 @@ class Escale
     public function getIdVol()
     {
         return $this->idVol;
+    }
+
+    /**
+     * Get idEscale
+     *
+     * @return integer
+     */
+    public function getIdEscale()
+    {
+        return $this->idEscale;
     }
 }

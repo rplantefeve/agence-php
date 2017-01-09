@@ -5,8 +5,8 @@ namespace RocketfireAgenceMainBundle\Controller;
 use RocketfireAgenceMainBundle\Entity\Escale;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 /**
  * Escale controller.
  *
@@ -40,7 +40,7 @@ class EscaleController extends Controller
     public function newAction(Request $request)
     {
         $escale = new Escale();
-        $form = $this->createForm('RocketfireAgenceMainBundle\Form\EscaleType', $escale);
+        $form = $this->createForm('RocketfireAgenceMainBundle\Form\Type\EscaleType', $escale);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +48,7 @@ class EscaleController extends Controller
             $em->persist($escale);
             $em->flush($escale);
 
-            return $this->redirectToRoute('escale_show', array('id' => $escale->getId()));
+            return $this->redirectToRoute('escale_show', array('id' => $escale->getIdClient()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Escale:new.html.twig', array(
@@ -82,13 +82,13 @@ class EscaleController extends Controller
     public function editAction(Request $request, Escale $escale)
     {
         $deleteForm = $this->createDeleteForm($escale);
-        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\EscaleType', $escale);
+        $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\EscaleType', $escale);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('escale_edit', array('id' => $escale->getId()));
+            return $this->redirectToRoute('escale_edit', array('id' => $escale->getIdClient()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Escale:edit.html.twig', array(
@@ -128,7 +128,7 @@ class EscaleController extends Controller
     private function createDeleteForm(Escale $escale)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('escale_delete', array('id' => $escale->getId())))
+            ->setAction($this->generateUrl('escale_delete', array('id' => $escale->getIdClient())))
             ->setMethod('DELETE')
             ->getForm()
         ;
