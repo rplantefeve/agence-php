@@ -18,7 +18,7 @@ class ReservationController extends Controller
     /**
      * Lists all reservation entities.
      *
-     * @Route("/list", name="Reservation_index")
+     * @Route("/list", name="reservation_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -35,7 +35,7 @@ class ReservationController extends Controller
     /**
      * Creates a new reservation entity.
      *
-     * @Route("/add", name="Reservation_new")
+     * @Route("/add", name="reservation_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -49,7 +49,7 @@ class ReservationController extends Controller
             $em->persist($reservation);
             $em->flush($reservation);
 
-            return $this->redirectToRoute('Reservation_show', array('id' => $reservation->getIdResa()));
+            return $this->redirectToRoute('reservation_show', array('id' => $reservation->getIdResa()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Reservation:new.html.twig', array(
@@ -61,7 +61,7 @@ class ReservationController extends Controller
     /**
      * Finds and displays a reservation entity.
      *
-     * @Route("/show/{id}", name="Reservation_show")
+     * @Route("/show/{id}", name="reservation_show")
      * @Method("GET")
      */
     public function showAction(Reservation $reservation)
@@ -77,7 +77,7 @@ class ReservationController extends Controller
     /**
      * Displays a form to edit an existing reservation entity.
      *
-     * @Route("/edit/{id}", name="Reservation_edit")
+     * @Route("/edit/{id}", name="reservation_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Reservation $reservation)
@@ -89,7 +89,7 @@ class ReservationController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('Reservation_edit', array('id' => $reservation->getIdResa()));
+            return $this->redirectToRoute('reservation_edit', array('id' => $reservation->getIdResa()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Reservation:edit.html.twig', array(
@@ -102,7 +102,7 @@ class ReservationController extends Controller
     /**
      * Deletes a reservation entity.
      *
-     * @Route("/delete/{id}", name="Reservation_delete")
+     * @Route("/delete/{id}", name="reservation_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Reservation $reservation)
@@ -116,7 +116,7 @@ class ReservationController extends Controller
             $em->flush($reservation);
         }
 
-        return $this->redirectToRoute('Reservation_index');
+        return $this->redirectToRoute('reservation_index');
     }
 
     /**
@@ -129,7 +129,7 @@ class ReservationController extends Controller
     private function createDeleteForm(Reservation $reservation)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('Reservation_delete', array('id' => $reservation->getIdResa())))
+            ->setAction($this->generateUrl('reservation_delete', array('id' => $reservation->getIdResa())))
             ->setMethod('DELETE')
             ->getForm()
         ;

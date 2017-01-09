@@ -2,7 +2,7 @@
 # http://symfony.com/doc/current/security.html
 security:
     encoders:
-        RocketfireAgenceMainBundle\Entity\Login: 
+        RocketfireAgenceMainBundle\Entity\Login:
             algorithm: bcrypt
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
@@ -32,7 +32,7 @@ security:
             form_login:
                 login_path: /Login/login
                 check_path: /Login/login
-                
+
             logout:
                 path: /Login/logout
                 target: /
@@ -40,6 +40,25 @@ security:
     access_control:
         - { path: ^/Login/edit, roles: ROLE_ADMIN }
         - { path: ^/Login/add, roles: ROLE_ADMIN }
-       
+        - { path: ^/Aeroport, role: ROLE_ADMIN }
+        - { path: ^/Vol/list$, role: ROLE_USER }
+        - { path: ^/Aeroport/list$, role: ROLE_USER }
+        - { path: ^/Client/list$, role: ROLE_USER }
+        - { path: ^/CompagnieAerienne/list$, role: ROLE_USER }
+        - { path: ^/Adresse/list$, role: ROLE_USER }
+        - { path: ^/Escale/list$, role: ROLE_USER }
+        - { path: ^/Reservation/list$, role: ROLE_USER }
+        - { path: ^/Ville/list$, role: ROLE_USER }
+        - { path: ^/Vol, role: ROLE_ADMIN }
+        - { path: ^/Aeroport/list$, role: ROLE_ADMIN }
+        - { path: ^/Client, role: ROLE_ADMIN }
+        - { path: ^/CompagnieAerienne, role: ROLE_ADMIN }
+        - { path: ^/Adresse, role: ROLE_ADMIN }
+        - { path: ^/Escale, role: ROLE_ADMIN }
+        - { path: ^/Reservation, role: ROLE_ADMIN }
+        - { path: ^/Ville, role: ROLE_ADMIN }
+
+        # - { path: ^/Ville, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER

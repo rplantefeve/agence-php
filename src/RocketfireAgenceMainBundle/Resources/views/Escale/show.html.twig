@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ escale.id }}</td>
+                <td>{{ escale.idEscale }}</td>
             </tr>
             <tr>
                 <th>Datedepart</th>
@@ -33,7 +33,7 @@
             <a href="{{ path('escale_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('escale_edit', { 'id': escale.id }) }}">Edit</a>
+            <a href="{{ path('escale_edit', { 'id': escale.idEscale }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

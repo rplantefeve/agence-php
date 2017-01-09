@@ -17,7 +17,7 @@
         <tbody>
         {% for adresse in adresses %}
             <tr>
-                <td><a href="{{ path('Adresse_show', { 'id': adresse.idAdd }) }}">{{ adresse.idAdd }}</a></td>
+                <td><a href="{{ path('adresse_show', { 'id': adresse.idAdd }) }}">{{ adresse.idAdd }}</a></td>
                 <td>{{ adresse.adresse }}</td>
                 <td>{{ adresse.codePostal }}</td>
                 <td>{{ adresse.ville }}</td>
@@ -25,10 +25,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('Adresse_show', { 'id': adresse.idAdd }) }}">show</a>
+                            <a href="{{ path('adresse_show', { 'id': adresse.idAdd }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('Adresse_edit', { 'id': adresse.idAdd }) }}">edit</a>
+                            <a href="{{ path('adresse_edit', { 'id': adresse.idAdd }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +39,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('Adresse_new') }}">Create a new adresse</a>
+            <a href="{{ path('adresse_new') }}">Create a new adresse</a>
         </li>
     </ul>
 {% endblock %}

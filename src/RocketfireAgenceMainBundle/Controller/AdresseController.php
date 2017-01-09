@@ -18,7 +18,7 @@ class AdresseController extends Controller
     /**
      * Lists all adresse entities.
      *
-     * @Route("/list", name="Adresse_index")
+     * @Route("/list", name="adresse_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -35,7 +35,7 @@ class AdresseController extends Controller
     /**
      * Creates a new adresse entity.
      *
-     * @Route("/add", name="Adresse_new")
+     * @Route("/add", name="adresse_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -49,7 +49,7 @@ class AdresseController extends Controller
             $em->persist($adresse);
             $em->flush($adresse);
 
-            return $this->redirectToRoute('Adresse_show', array('id' => $adresse->getIdAdd()));
+            return $this->redirectToRoute('adresse_show', array('id' => $adresse->getIdAdd()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Adresse:new.html.twig', array(
@@ -61,7 +61,7 @@ class AdresseController extends Controller
     /**
      * Finds and displays a adresse entity.
      *
-     * @Route("/show/{id}", name="Adresse_show")
+     * @Route("/show/{id}", name="adresse_show")
      * @Method("GET")
      */
     public function showAction(Adresse $adresse)
@@ -77,7 +77,7 @@ class AdresseController extends Controller
     /**
      * Displays a form to edit an existing adresse entity.
      *
-     * @Route("/edit/{id}", name="Adresse_edit")
+     * @Route("/edit/{id}", name="adresse_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Adresse $adresse)
@@ -89,7 +89,7 @@ class AdresseController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('Adresse_edit', array('id' => $adresse->getIdAdd()));
+            return $this->redirectToRoute('adresse_edit', array('id' => $adresse->getIdAdd()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Adresse:edit.html.twig', array(
@@ -102,7 +102,7 @@ class AdresseController extends Controller
     /**
      * Deletes a adresse entity.
      *
-     * @Route("/delete/{id}", name="Adresse_delete")
+     * @Route("/delete/{id}", name="adresse_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Adresse $adresse)
@@ -116,7 +116,7 @@ class AdresseController extends Controller
             $em->flush($adresse);
         }
 
-        return $this->redirectToRoute('Adresse_index');
+        return $this->redirectToRoute('adresse_index');
     }
 
     /**
@@ -129,7 +129,7 @@ class AdresseController extends Controller
     private function createDeleteForm(Adresse $adresse)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('Adresse_delete', array('id' => $adresse->getIdAdd())))
+            ->setAction($this->generateUrl('adresse_delete', array('id' => $adresse->getIdAdd())))
             ->setMethod('DELETE')
             ->getForm()
         ;

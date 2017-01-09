@@ -16,17 +16,17 @@
         <tbody>
         {% for reservation in reservations %}
             <tr>
-                <td><a href="{{ path('Reservation_show', { 'id': reservation.idResa }) }}">{{ reservation.idResa }}</a></td>
+                <td><a href="{{ path('reservation_show', { 'id': reservation.idResa }) }}">{{ reservation.idResa }}</a></td>
                 <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ reservation.numero }}</td>
                 <td>{{ reservation.etat }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('Reservation_show', { 'id': reservation.idResa }) }}">show</a>
+                            <a href="{{ path('reservation_show', { 'id': reservation.idResa }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('Reservation_edit', { 'id': reservation.idResa }) }}">edit</a>
+                            <a href="{{ path('reservation_edit', { 'id': reservation.idResa }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -37,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('Reservation_new') }}">Create a new reservation</a>
+            <a href="{{ path('reservation_new') }}">Create a new reservation</a>
         </li>
     </ul>
 {% endblock %}

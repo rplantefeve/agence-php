@@ -1,23 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.css')}}" type="text/css">
 
 </head>
 <body>
-    {% block body %}{% endblock %}
+    {% block header %}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Agence de voyage</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="active"><a href="{{ path('logout') }}">{% trans %}link.logout{% endtrans %}<span class="sr-only">(current)</span></a></li>
+                    <li><a href="{{ path('vol_index') }}">Vol</a></li>
+                    <li><a href="{{ path('aeroport_index') }}">Aeroport</a></li>
+                    <li><a href="{{ path('adresse_index') }}">Adresse</a></li>
+                    <li><a href="{{ path('inscrire_client') }}">Client</a></li>
+                    <li><a href="{{ path('CompagnieAerienne_list') }}">Compagnie Aerienne</a></li>
+                    <li><a href="{{ path('CompagnieAerienneVol_list') }}">Compagnie Aerienne Vol</a></li>
+                    <li><a href="{{ path('escale_index') }}">Escale</a></li>
+                    <li><a href="{{ path('reservation_index') }}">Réservation</a></li>
+                    <li><a href="{{ path('ville_index') }}">Ville</a></li>
+                    <li><a href="{{ path('villeaeroport_index') }}">Ville Aeroport</a></li>
+                    {% else %}
+                    <li class="active"><a href="{{ path('login') }}">Login<span class="sr-only">(current)</span></a></li>
+                    {% endif %}
+
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    {% endblock %}
+    <div class="container">
+        {% block body %}
+
+        {% endblock %}
+    </div>
     {% block footer %}
-        <footer>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a href='{{ path('logout') }}'>{% trans %}link.logout{% endtrans %}</a>
-            {% endif %}
-        </footer>
+    <footer>
+        <!-- {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href='{{ path('logout') }}'>{% trans %}link.logout{% endtrans %}</a>
+        {% endif %} -->
+    </footer>
 
     {% endblock %}
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" charset="utf-8"></script>
+    {% endblock %}
 </body>
 </html>

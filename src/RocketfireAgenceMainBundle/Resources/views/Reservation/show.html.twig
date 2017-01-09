@@ -26,10 +26,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('Reservation_index') }}">Back to the list</a>
+            <a href="{{ path('reservation_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('Reservation_edit', { 'id': reservation.idResa }) }}">Edit</a>
+            <a href="{{ path('reservation_edit', { 'id': reservation.idResa }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

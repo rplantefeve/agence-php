@@ -17,7 +17,7 @@
         <tbody>
         {% for escale in escales %}
             <tr>
-                <td><a href="{{ path('escale_show', { 'id': escale.id }) }}">{{ escale.id }}</a></td>
+                <td><a href="{{ path('escale_show', { 'id': escale.idEscale }) }}">{{ escale.idEscale }}</a></td>
                 <td>{% if escale.dateDepartEscale %}{{ escale.dateDepartEscale|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if escale.dateArriveeEscale %}{{ escale.dateArriveeEscale|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if escale.heureDepartEscale %}{{ escale.heureDepartEscale|date('H:i:s') }}{% endif %}</td>
@@ -25,10 +25,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('escale_show', { 'id': escale.id }) }}">show</a>
+                            <a href="{{ path('escale_show', { 'id': escale.idEscale }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('escale_edit', { 'id': escale.id }) }}">edit</a>
+                            <a href="{{ path('escale_edit', { 'id': escale.idEscale }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
