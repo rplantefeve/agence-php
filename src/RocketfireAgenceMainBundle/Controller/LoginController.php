@@ -121,6 +121,7 @@ class LoginController extends Controller {
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            
             $encoder  = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($login, $login->getMotDePasse());
             $login->setMotDePasse($password);

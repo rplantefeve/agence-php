@@ -10,6 +10,10 @@
         <source>This value is not valid.</source>
         <target>Les mots de passe doivent correspondre.</target>
       </trans-unit>
+      <trans-unit>
+        <source>error.wrongLogin</source>
+        <target>Le nom du compte utilisateur choisi est incorrect.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

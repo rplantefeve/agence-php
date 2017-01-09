@@ -48,3 +48,7 @@ table .create-client td
 	position:relative;
 	top:1px;
 }
+
+.inline {
+    display: inline;
+}
