@@ -186,7 +186,7 @@ class ClientAssociation extends Client
      */
     public function setIdLog($idLog)
     {
-        $this->idLog = $idLog;
+        $this->login = $idLog;
 
         return $this;
     }
@@ -198,7 +198,7 @@ class ClientAssociation extends Client
      */
     public function getIdLog()
     {
-        return $this->idLog;
+        return $this->login;
     }
 }
 
