@@ -67,21 +67,8 @@ class Vol
     private $heureArriveeVol;
 
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-
-
-
     public function __toString() {
-        return $this->id;
+        return $this->idVol;
     }
 
     /**
