@@ -1,41 +1,43 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Liste des utilisateurs</h1>
-
+    <header>
+        <h1>{% trans %}title.loginList{% endtrans %}</h1>
+    </header>
     <table>
         <thead>
             <tr>
-                <th>Login</th>
-                <th>Mot de passe</th>
-                <th>Administrateur</th>
-                <th>Actions</th>
+                <th>{% trans %}label.login{% endtrans %}</th>
+                <th>{% trans %}label.administrator{% endtrans %}</th>
+                <th>{% trans %}label.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
-        {% for login in logins %}
-            <tr>
-                <td>{{ login.login }}</td>
-                <td>{{ login.motDePasse }}</td>
-                <td>{% if login.admin %}Oui{% else %}Non{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('login_show', { 'id': login.id }) }}">Détails</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('login_edit', { 'id': login.id }) }}">Modifier</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for login in logins %}
+                <tr>
+                    <td>{{ login.login }}</td>
+                    <td>{% if login.admin %}{% trans %}label.yes{% endtrans %}{% else %}{% trans %}label.no{% endtrans %}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('login_show', { 'id': login.id }) }}">{% trans %}button.show{% endtrans %}</a>
+                            </li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li>
+                                    <a href="{{ path('login_edit', { 'id': login.id }) }}">{% trans %}button.edit{% endtrans %}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('login_add') }}">Créer un nouvel utilisateur</a>
-        </li>
-    </ul>
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li>
+                <a href="{{ path('login_add') }}">{% trans %}button.create{% endtrans %}</a>
+            </li>
+        </ul>
+    {% endif %}
 {% endblock %}

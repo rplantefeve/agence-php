@@ -74,12 +74,12 @@ abstract class Client
     protected $idAdd;
 
     /**
-     * @var int
+     * @var Login
      *
-     * @ORM\OneToOne(targetEntity="Login")
+     * @ORM\OneToOne(targetEntity="RocketfireAgenceMainBundle\Entity\Login", inversedBy="client")
      * @ORM\JoinColumn(name="idLog", referencedColumnName="id")
      */
-    protected $idLog;
+    protected $login;
 
 
      public function getIdClient()
@@ -185,26 +185,98 @@ abstract class Client
     }
 
     /**
-     * Set idLog
+     * Set prenom
      *
-     * @param integer $idLog
+     * @param string $prenom
      *
-     * @return client
+     * @return Client
      */
-    public function setIdLog($idLog)
+    public function setPrenom($prenom)
     {
-        $this->idLog = $idLog;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
     /**
-     * Get idLog
+     * Get prenom
      *
-     * @return int
+     * @return string
      */
-    public function getIdLog()
+    public function getPrenom()
     {
-        return $this->idLog;
+        return $this->prenom;
+    }
+
+    /**
+     * Set numFax
+     *
+     * @param integer $numFax
+     *
+     * @return Client
+     */
+    public function setNumFax($numFax)
+    {
+        $this->numFax = $numFax;
+
+        return $this;
+    }
+
+    /**
+     * Get numFax
+     *
+     * @return integer
+     */
+    public function getNumFax()
+    {
+        return $this->numFax;
+    }
+
+    /**
+     * Set siret
+     *
+     * @param integer $siret
+     *
+     * @return Client
+     */
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * Get siret
+     *
+     * @return integer
+     */
+    public function getSiret()
+    {
+        return $this->siret;
+    }
+
+    /**
+     * Set login
+     *
+     * @param \RocketfireAgenceMainBundle\Entity\Login $login
+     *
+     * @return Client
+     */
+    public function setLogin(\RocketfireAgenceMainBundle\Entity\Login $login = null)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return \RocketfireAgenceMainBundle\Entity\Login
+     */
+    public function getLogin()
+    {
+        return $this->login;
     }
 }

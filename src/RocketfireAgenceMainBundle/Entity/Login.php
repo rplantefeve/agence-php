@@ -3,6 +3,8 @@
 namespace RocketfireAgenceMainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -10,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="login")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\LoginRepository")
+ * @UniqueEntity(fields="login", message="Compte déjà existant")
  */
 class Login implements UserInterface, \Serializable {
 
@@ -26,6 +29,8 @@ class Login implements UserInterface, \Serializable {
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=50, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $login;
 
@@ -49,6 +54,13 @@ class Login implements UserInterface, \Serializable {
      * @ORM\Column(name="isActive", type="boolean")
      */
     private $isActive;
+
+    /**
+     * @var Client 
+     * 
+     * @ORM\OneToOne(targetEntity="RocketfireAgenceMainBundle\Entity\Client", mappedBy="login")
+     */
+    private $client;
 
     public function __construct() {
         $this->isActive = true;
@@ -123,9 +135,9 @@ class Login implements UserInterface, \Serializable {
     /**
      * Get admin
      *
-     * @return bool
+     * @return boolean
      */
-    public function getAdmin() {
+    public function isAdmin() {
         return $this->admin;
     }
 
@@ -136,7 +148,7 @@ class Login implements UserInterface, \Serializable {
      *
      * @return Login
      */
-    public function setIsActive($isActive) {
+    public function setActive($isActive) {
         $this->isActive = $isActive;
 
         return $this;
@@ -147,8 +159,41 @@ class Login implements UserInterface, \Serializable {
      *
      * @return boolean
      */
-    public function getIsActive() {
+    public function isActive() {
         return $this->isActive;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \RocketfireAgenceMainBundle\Entity\Client $client
+     *
+     * @return Login
+     */
+    public function setClient(\RocketfireAgenceMainBundle\Entity\Client $client =
+    null) {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \RocketfireAgenceMainBundle\Entity\Client
+     */
+    public function getClient() {
+        return $this->client;
+    }
+
+    /**
+     * Teste si l'utilisateur loggué est le même que le Login
+     * 
+     * @param \RocketfireAgenceMainBundle\Entity\Login $user
+     * @return boolean
+     */
+    public function isSelf(Login $user = null) {
+        return $user && $user->getLogin() == $this->login;
     }
 
     public function getUsername() {
@@ -165,8 +210,13 @@ class Login implements UserInterface, \Serializable {
     }
 
     public function getRoles() {
-        return array(
-            'ROLE_USER');
+        if ($this->isAdmin()) {
+            return [
+                'ROLE_ADMIN'];
+        } else {
+            return array(
+                'ROLE_USER');
+        }
     }
 
     public function eraseCredentials() {

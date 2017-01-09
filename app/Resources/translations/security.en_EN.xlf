@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-01-08T17:58:56Z" source-language="en" target-language="en_EN" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>Security messages in English language.</note>
+    </header>
+    <body>
+      <trans-unit id="ab31c540610430da052c8ce4ba9c002d41820774" resname="Invalid credentials.">
+        <source>Invalid credentials.</source>
+        <target>Bad credentials.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

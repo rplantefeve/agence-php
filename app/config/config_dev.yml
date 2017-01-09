@@ -32,3 +32,20 @@ monolog:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+jms_translation:
+    configs:
+        app:
+            dirs: [%kernel.root_dir%, %kernel.root_dir%/../src]
+            output_dir: %kernel.root_dir%/Resources/translations
+            ignored_domains: [routes]
+            excluded_names: ["*TestCase.php", "*Test.php"]
+            excluded_dirs: [cache, data, logs]
+            #extractors: []
+        rocket:
+            dirs: [%kernel.root_dir%/../src/RocketfireAgenceMainBundle]
+            output_dir: %kernel.root_dir%/../src/RocketfireAgenceMainBundle/Resources/translations
+            ignored_domains: [routes]
+            excluded_names: ["*TestCase.php", "*Test.php"]
+            excluded_dirs: [cache, data, logs]
+            

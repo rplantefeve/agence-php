@@ -12,5 +12,5 @@ use RocketfireAgenceMainBundle\Entity\Professionnel;
  */
 class ClientAssociation extends Professionnel
 {
-
+  
 }

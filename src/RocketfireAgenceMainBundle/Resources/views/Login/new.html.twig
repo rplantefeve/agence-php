@@ -1,16 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Création d'un login</h1>
-
+    <header>
+        <h1>{% trans %}title.loginCreate{% endtrans %}</h1>
+    </header>
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Créer" />
+    {{ form_widget(form) }}
+    <input type="submit" value="{% trans %}button.create{% endtrans %}" />
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('login_list') }}">Retour à la liste</a>
+            <a href="{{ path('login_list') }}">{% trans %}link.returnList{% endtrans %}</a>
         </li>
     </ul>
 {% endblock %}

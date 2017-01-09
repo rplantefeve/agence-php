@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-01-08T18:52:20Z" source-language="en" target-language="en_EN" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="df90443eda5fa6e0ec474957d9b99bd6cc42ae85" resname="button.create">
+        <source>button.create</source>
+        <target>Create</target>
+      </trans-unit>
+      <trans-unit id="5cbbc6a5584a3e034e59f99a050736a558567e38" resname="button.delete">
+        <source>button.delete</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="ecc5c5c848432fa8f2aecf982ad9645206af1689" resname="button.edit">
+        <source>button.edit</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="a43e1c3083ce5e1df570e02933ca7c6c3e955ec9" resname="button.show">
+        <source>button.show</source>
+        <target>Details</target>
+      </trans-unit>
+      <trans-unit id="bbec3012ccea1aacc10dd0996f8c474a43c10eb8" resname="label.actions">
+        <source>label.actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="ac0ccf3e05fe826e31be2dfe40c7f8e13deeb137" resname="label.active">
+        <source>label.active</source>
+        <target>Activated</target>
+      </trans-unit>
+      <trans-unit id="673689818540bf1fcf127486ec7c743237e62fd9" resname="label.administrator">
+        <source>label.administrator</source>
+        <target>Administrator</target>
+      </trans-unit>
+      <trans-unit id="8dfe7aaa1b9672b3c6257667adfb852daecbbf5a" resname="label.login">
+        <source>label.login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="031635d5f1fbe0228994a3985b0857aed244ec56" resname="label.no">
+        <source>label.no</source>
+        <target>No</target>
+      </trans-unit>
+      <trans-unit id="cfa8968dae7b2e10025cf371de43768dea0fa1ef" resname="label.password">
+        <source>label.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="c63743c24fd777dda18aed698573ce154bc631c6" resname="label.passwordConfirmation">
+        <source>label.passwordConfirmation</source>
+        <target>Confirmation</target>
+      </trans-unit>
+      <trans-unit id="290d6f6d437efca404cdcc0a608152594063351f" resname="label.yes">
+        <source>label.yes</source>
+        <target>Yes</target>
+      </trans-unit>
+      <trans-unit id="7ac4a9814f4a05349b851d7b6e1ad9e96322c9f9" resname="link.returnList">
+        <source>link.returnList</source>
+        <target>Return to list</target>
+      </trans-unit>
+      <trans-unit id="f1aba42d16e3ddbf1fb26088ffb9b672bb2c9280" resname="title.login">
+        <source>title.login</source>
+        <target>Sign-in</target>
+      </trans-unit>
+      <trans-unit id="76dc0a9f9fad7319176823b3cecb1c1c095becd6" resname="title.loginCreate">
+        <source>title.loginCreate</source>
+        <target>Create a login</target>
+      </trans-unit>
+      <trans-unit id="77ceb653b8206a498113f44d39c5a9b622926ede" resname="title.loginEdit">
+        <source>title.loginEdit</source>
+        <target>Change user details</target>
+      </trans-unit>
+      <trans-unit id="75d7615b9fa3174fa5bf2cb7c456b38b2cbbf593" resname="title.loginList">
+        <source>title.loginList</source>
+        <target>Users list</target>
+      </trans-unit>
+      <trans-unit id="5d2a258e0ba00bcaa9c4431eeba7dde914fb4eec" resname="title.utilisateur">
+        <source>title.utilisateur</source>
+        <target>User details</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
