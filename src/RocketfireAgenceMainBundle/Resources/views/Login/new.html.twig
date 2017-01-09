@@ -1,17 +1,31 @@
-{% extends '::base.html.twig' %}
+<tr>
+    <td>Login </td>
+    <td>
+        {{ form_row(form.login.login, {'label': ' '}) }}</td>
+</tr>
 
-{% block body %}
-    <header>
-        <h1>{% trans %}title.loginCreate{% endtrans %}</h1>
-    </header>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="{% trans %}button.create{% endtrans %}" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('login_list') }}">{% trans %}link.returnList{% endtrans %}</a>
-        </li>
-    </ul>
-{% endblock %}
+<tr>
+    <td>Mot de passe </td>
+    <td>
+        {% for flashMessage in app.session.flashBag.get('errorPassword') %}
+            <span class="inline">
+                {{ flashMessage }}
+            </span>
+        {% endfor %}
+        {{ form_row(form.login.motDePasse, {'label': ' '}) }}
+    </td>
+</tr>
+<tr>
+    <td>Confirmation </td>
+    <td>{{ form_row(form.login.motDePasseConf, {'label': ' '}) }}</td>
+</tr>
+<tr>
+    <td>Administrateur </td>
+    <td>
+        {{ form_row(form.login.admin, {'label': ' '}) }}
+    </td>
+</tr>
+<tr>
+    <td>Compte actif </td>
+    <td>{{ form_row(form.login.isActive, {'label': ' '}) }}</td>
+</tr>

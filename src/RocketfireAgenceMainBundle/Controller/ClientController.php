@@ -7,14 +7,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use RocketfireAgenceMainBundle\Entity\ClientParticulier;
 use RocketfireAgenceMainBundle\Entity\ClientAssociation;
-use RocketfireAgenceMainBundle\Form\ClientAssociationType;
-use RocketfireAgenceMainBundle\Form\ClientParticulierType;
+use RocketfireAgenceMainBundle\Form\Type\ClientAssociationType;
+use RocketfireAgenceMainBundle\Form\Type\ClientParticulierAdresseLoginType;
+use RocketfireAgenceMainBundle\Form\Type\ClientEntrepriseAdresseLoginType;
+use RocketfireAgenceMainBundle\Form\Type\ClientAssociationAdresseLoginType;
+use RocketfireAgenceMainBundle\Form\Type\ClientEntrepriseType;
 use Symfony\Component\HttpFoundation\Request;
 use RocketfireAgenceMainBundle\Entity\ClientEntreprise;
-use RocketfireAgenceMainBundle\Form\Type\ClientEntrepriseType;
+use RocketfireAgenceMainBundle\Entity\Adresse;
+use RocketfireAgenceMainBundle\Entity\Login;
 
 class ClientController extends Controller {
-
 
     /**
      * @param Request $request
@@ -22,8 +25,8 @@ class ClientController extends Controller {
      * @Method({"GET","POST"})
      * @Route("/inscrire/client", name="inscrire_client")
      */
-    public function clientHome(Request $request){
-         return $this->render(
+    public function clientHomeAction(Request $request) {
+        return $this->render(
                         'RocketfireAgenceMainBundle:Client:client.create.html.twig');
     }
 
@@ -33,97 +36,93 @@ class ClientController extends Controller {
      * @Method({"GET","POST"})
      * @Route("/Client/Particulier/add", name="client_particulier_add")
      */
-    public function createClientParticulierAction(Request $request) {
-        /*
-         * 1) Construire le formulaire
-         */
+    public function linkClientParticulierAdresseAction(Request $request) {
         $clientParticulier = new ClientParticulier();
-        $form   = $this->createForm(ClientParticulierType::class, $clientParticulier);
+        $adresse = new Adresse();
+        $login = new Login();
 
-        /*
-         * 2) Gérer la soumission du formulaire
-         */
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /*
-             * 3) Sauvegarder le client
-             */
-            /*
-             * This line fetches Doctrine's entity manager object, which is responsible
-             * for the process of persisting objects to, and fetching objects from,
-             * the database
-             */
-            $em = $this->getDoctrine()->getManager();
-            // tells Doctrine you want to (eventually) save the Product (no queries yet)
-            $em->persist($clientParticulier);
-            /*
-             * When the flush() method is called, Doctrine looks through all of the objects
-             * that it's managing to see if they need to be persisted to the database.
-             * In this example, the $product object's data doesn't exist in the database,
-             * so the entity manager executes an INSERT query, creating a new row in the
-             * product table.
-             * Actually executes the queries (i.e. the INSERT query)
-             */
-            $em->flush();
-            // store a message for the very next request
-            $this->addFlash('notice', 'Félicitations, insertion réussie.');
-            // redirection pour le fun
-            return $this->redirectToRoute('inscrire_client');
+        $formData['client'] = $clientParticulier;
+        $formData['adresse'] = $adresse;
+        $formData['login'] = $login;
+
+        $formClientAdresse = $this->createForm(ClientParticulierAdresseLoginType::class, $formData);
+
+        $formClientAdresse->handleRequest($request);
+        if ($formClientAdresse->isSubmitted() && $formClientAdresse->isValid()) {
+            if ($login->getMotDePasse() == $login->getMotDePasseConf()) {
+                $encoder = $this->get('security.password_encoder');
+                $password = $encoder->encodePassword($login, $login->getMotDePasse());
+                $login->setMotDePasse($password);
+                /*
+                 * 3) Sauvegarder le client
+                 */
+                $em = $this->getDoctrine()->getManager();
+                // tells Doctrine you want to (eventually) save the Product (no queries yet)
+                $clientParticulier->setAdresse($adresse);
+                $clientParticulier->setLogin($login);
+                $em->persist($adresse);
+                $em->persist($login);
+                $em->persist($clientParticulier);
+                $em->flush();
+                // store a message for the very next request
+                $this->addFlash('notice', 'Félicitations, insertion réussie.');
+                // redirection pour le fun
+                return $this->redirectToRoute('inscrire_client');
+            } else {
+                $this->addFlash('errorPassword', "Le mot de passe ne correspond pas à la confirmation.");
+            }
         }
         return $this->render(
-                        'RocketfireAgenceMainBundle:Client:client.create.particulier.html.twig',
-                        array(
-                    'form' => $form->createView())
+                        'RocketfireAgenceMainBundle:Client:client.create.particulier.html.twig', array(
+                    'form' => $formClientAdresse->createView())
         );
     }
 
-     /**
+    /**
      * @param Request $request
      * @return type
      * @Method({"GET","POST"})
      * @Route("/Client/Association/add", name="client_association_add")
      */
-    public function createClientAssociationAction(Request $request) {
-        /*
-         * 1) Construire le formulaire
-         */
+    public function linkClientAssociationAdresseAction(Request $request) {
         $clientAssociation = new ClientAssociation();
-        $form   = $this->createForm(ClientAssociationType::class, $clientAssociation);
+        $adresse = new Adresse();
+        $login = new Login();
 
-        /*
-         * 2) Gérer la soumission du formulaire
-         */
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /*
-             * 3) Sauvegarder le client
-             */
-            /*
-             * This line fetches Doctrine's entity manager object, which is responsible
-             * for the process of persisting objects to, and fetching objects from,
-             * the database
-             */
-            $em = $this->getDoctrine()->getManager();
-            // tells Doctrine you want to (eventually) save the Product (no queries yet)
-            $em->persist($clientAssociation);
-            /*
-             * When the flush() method is called, Doctrine looks through all of the objects
-             * that it's managing to see if they need to be persisted to the database.
-             * In this example, the $product object's data doesn't exist in the database,
-             * so the entity manager executes an INSERT query, creating a new row in the
-             * product table.
-             * Actually executes the queries (i.e. the INSERT query)
-             */
-            $em->flush();
-            // store a message for the very next request
-            $this->addFlash('notice', 'Félicitations, insertion réussie.');
-            // redirection pour le fun
-            return $this->redirectToRoute('inscrire_client');
+        $formData['client'] = $clientAssociation;
+        $formData['adresse'] = $adresse;
+        $formData['login'] = $login;
+
+        $formClientAdresse = $this->createForm(ClientAssociationAdresseLoginType::class, $formData);
+
+        $formClientAdresse->handleRequest($request);
+        if ($formClientAdresse->isSubmitted() && $formClientAdresse->isValid()) {
+            if ($login->getMotDePasse() == $login->getMotDePasseConf()) {
+                $encoder = $this->get('security.password_encoder');
+                $password = $encoder->encodePassword($login, $login->getMotDePasse());
+                $login->setMotDePasse($password);
+                /*
+                 * 3) Sauvegarder le client
+                 */
+                $em = $this->getDoctrine()->getManager();
+                // tells Doctrine you want to (eventually) save the Product (no queries yet)
+                $clientAssociation->setAdresse($adresse);
+                $clientAssociation->setLogin($login);
+                $em->persist($adresse);
+                $em->persist($login);
+                $em->persist($clientAssociation);
+                $em->flush();
+                // store a message for the very next request
+                $this->addFlash('notice', 'Félicitations, insertion réussie.');
+                // redirection pour le fun
+                return $this->redirectToRoute('inscrire_client');
+            } else {
+                $this->addFlash('errorPassword', "Le mot de passe ne correspond pas à la confirmation.");
+            }
         }
         return $this->render(
-                        'RocketfireAgenceMainBundle:Client:client.create.association.html.twig',
-                        array(
-                    'form' => $form->createView())
+                        'RocketfireAgenceMainBundle:Client:client.create.association.html.twig', array(
+                    'form' => $formClientAdresse->createView())
         );
     }
 
@@ -133,47 +132,46 @@ class ClientController extends Controller {
      * @Method({"GET","POST"})
      * @Route("/Client/Entreprise/add", name="client_entreprise_add")
      */
-    public function createClientEntrepriseAction(Request $request) {
-        /*
-         * 1) Construire le formulaire
-         */
+    public function linkClientEntrepriseAdresseAction(Request $request) {
         $clientEntreprise = new ClientEntreprise();
-        $form   = $this->createForm(ClientEntrepriseType::class, $clientEntreprise);
+        $adresse = new Adresse();
+        $login = new Login();
 
-        /*
-         * 2) Gérer la soumission du formulaire
-         */
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /*
-             * 3) Sauvegarder le client
-             */
-            /*
-             * This line fetches Doctrine's entity manager object, which is responsible
-             * for the process of persisting objects to, and fetching objects from,
-             * the database
-             */
-            $em = $this->getDoctrine()->getManager();
-            // tells Doctrine you want to (eventually) save the Product (no queries yet)
-            $em->persist($clientEntreprise);
-            /*
-             * When the flush() method is called, Doctrine looks through all of the objects
-             * that it's managing to see if they need to be persisted to the database.
-             * In this example, the $product object's data doesn't exist in the database,
-             * so the entity manager executes an INSERT query, creating a new row in the
-             * product table.
-             * Actually executes the queries (i.e. the INSERT query)
-             */
-            $em->flush();
-            // store a message for the very next request
-            $this->addFlash('notice', 'Félicitations, insertion réussie.');
-            // redirection pour le fun
-            return $this->redirectToRoute('inscrire_client');
+        $formData['client'] = $clientEntreprise;
+        $formData['adresse'] = $adresse;
+        $formData['login'] = $login;
+
+        $formClientAdresse = $this->createForm(ClientEntrepriseAdresseLoginType::class, $formData);
+
+        $formClientAdresse->handleRequest($request);
+        if ($formClientAdresse->isSubmitted() && $formClientAdresse->isValid()) {
+            if ($login->getMotDePasse() == $login->getMotDePasseConf()) {
+                $encoder = $this->get('security.password_encoder');
+                $password = $encoder->encodePassword($login, $login->getMotDePasse());
+                $login->setMotDePasse($password);
+                /*
+                 * 3) Sauvegarder le client
+                 */
+                $em = $this->getDoctrine()->getManager();
+                // tells Doctrine you want to (eventually) save the Product (no queries yet)
+                $clientEntreprise->setAdresse($adresse);
+                $clientEntreprise->setLogin($login);
+                $em->persist($adresse);
+                $em->persist($login);
+                $em->persist($clientEntreprise);
+                $em->flush();
+                // store a message for the very next request
+                $this->addFlash('notice', 'Félicitations, insertion réussie.');
+                // redirection pour le fun
+                return $this->redirectToRoute('inscrire_client');
+            } else {
+                $this->addFlash('errorPassword', "Le mot de passe ne correspond pas à la confirmation.");
+            }
         }
         return $this->render(
-                        'RocketfireAgenceMainBundle:Client:client.create.entreprise.html.twig',
-                        array(
-                    'form' => $form->createView())
+                        'RocketfireAgenceMainBundle:Client:client.create.entreprise.html.twig', array(
+                    'form' => $formClientAdresse->createView())
         );
     }
+
 }

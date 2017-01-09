@@ -2,36 +2,37 @@
 {% block title %}Inscription d'un particulier{% endblock %}
 {% block stylesheets %}<link href="{{ asset('bundles/rocketfireagencemain/style.css') }}" rel="stylesheet">{% endblock %}
 {% block body %}
-<body>
-    <fieldset>
-        <legend><h1>Entreprise</h1></legend>
-        {{ form_start(form) }}
-        <table>
-            <tr>
-                <td>Raison sociale </td>
-                <td>{{ form_row(form.nom, {'label': ' '}) }}</td>
-            </tr>
-            <tr>
-                <td>N° Siret </td>
-                <td>{{ form_row(form.siret, {'label': ' '}) }}</td>
-            </tr>
-            <tr>
-                <td>N° Tel </td>
-                <td>{{ form_row(form.numTel, {'label': ' '}) }}</td>
-            </tr>
-            <tr>
-                <td>N° Fax </td>
-                <td>{{ form_row(form.numFax, {'label': ' '}) }}</td>
-            </tr>
-            <tr>
-                <td>Email </td>
-                <td>{{ form_row(form.eMail, {'label': ' '}) }}</td>
-            </tr>
-        </table>
-        <br /><button type="submit">Valider</button>
-        {{ form_end(form) }}
-        <form action='{{ path('inscrire_client') }}'>
-            <button>Retour</button>
+    <body>
+        <fieldset>
+            <legend><h1>Entreprise</h1></legend>
+            {{ form_start(form) }}
+            <table>
+                <tr>
+                    <td>Raison sociale </td>
+                    <td>{{ form_row(form.client.nom, {'label': ' '}) }}</td>
+                </tr>
+                <tr>
+                    <td>N° Siret </td>
+                    <td>{{ form_row(form.client.siret, {'label': ' '}) }}</td>
+                </tr>
+                <tr>
+                    <td>N° Tel </td>
+                    <td>{{ form_row(form.client.numTel, {'label': ' '}) }}</td>
+                </tr>
+                <tr>
+                    <td>N° Fax </td>
+                    <td>{{ form_row(form.client.numFax, {'label': ' '}) }}</td>
+                </tr>
+                <tr>
+                    <td>Email </td>
+                    <td>{{ form_row(form.client.eMail, {'label': ' '}) }}</td>
+                </tr>
+                {% include 'RocketfireAgenceMainBundle:Adresse:new.html.twig' %}
+                {% include 'RocketfireAgenceMainBundle:Login:new.html.twig' %}
+            </table>
+            <br /><button class='button1' type="submit">Valider</button>
+            <button class='button1' formaction="{{ path('inscrire_client') }}" formnovalidate>Retour</button>
+            {{ form_end(form) }}
         </form>
     </fieldset>
 </body>

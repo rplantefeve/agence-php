@@ -48,6 +48,13 @@ class Adresse
      * @ORM\Column(name="pays", type="string", length=31)
      */
     private $pays;
+    
+    /**
+     * @var Client 
+     * 
+     * @ORM\OneToOne(targetEntity="RocketfireAgenceMainBundle\Entity\Client", mappedBy="adresse")
+     */
+    private $client;
 
 
     /**
@@ -169,6 +176,32 @@ class Adresse
     {
         return $this->pays;
     }
+
+
+    /**
+     * Set client
+     *
+     * @param \RocketfireAgenceMainBundle\Entity\Client $client
+     *
+     * @return Adresse
+     */
+    public function setClient(\RocketfireAgenceMainBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \RocketfireAgenceMainBundle\Entity\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
     
     /**
      * 

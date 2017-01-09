@@ -30,7 +30,6 @@ class Login implements UserInterface, \Serializable {
      *
      * @ORM\Column(name="login", type="string", length=50, unique=true)
      * @Assert\NotBlank()
-     * @Assert\Email()
      */
     private $login;
 
@@ -40,6 +39,12 @@ class Login implements UserInterface, \Serializable {
      * @ORM\Column(name="motDePasse", type="string", length=64)
      */
     private $motDePasse;
+    
+    /**
+     * @var string
+     *
+     */
+    private $motDePasseConf;
 
     /**
      * @var bool
@@ -117,6 +122,28 @@ class Login implements UserInterface, \Serializable {
      */
     public function getMotDePasse() {
         return $this->motDePasse;
+    }
+    
+    /**
+     * Set motDePasseConf
+     *
+     * @param string $motDePasseConf
+     *
+     * @return Login
+     */
+    public function setMotDePasseConf($motDePasseConf) {
+        $this->motDePasseConf = $motDePasseConf;
+
+        return $this;
+    }
+
+    /**
+     * Get motDePasseConf
+     *
+     * @return string
+     */
+    public function getMotDePasseConf() {
+        return $this->motDePasseConf;
     }
 
     /**
