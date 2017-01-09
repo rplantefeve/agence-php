@@ -33,9 +33,9 @@ class EscaleType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\Escale'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\Escale',
+        ]);
     }
 
     /**
@@ -45,6 +45,4 @@ class EscaleType extends AbstractType
     {
         return 'rocketfireagencemainbundle_escale';
     }
-
-
 }

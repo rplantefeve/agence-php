@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Client
+ * Client.
+ *
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\ClientRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
@@ -24,6 +25,7 @@ abstract class Client
 
     /**
      * @Assert\NotBlank()
+     *
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=30)
@@ -81,14 +83,13 @@ abstract class Client
      */
     protected $login;
 
-
-     public function getIdClient()
+    public function getIdClient()
     {
         return $this->idClient;
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
@@ -102,18 +103,17 @@ abstract class Client
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */
-
     public function getNom()
     {
         return $this->nom;
     }
 
     /**
-     * Set numTel
+     * Set numTel.
      *
      * @param string $numTel
      *
@@ -127,7 +127,7 @@ abstract class Client
     }
 
     /**
-     * Get numTel
+     * Get numTel.
      *
      * @return string
      */
@@ -137,7 +137,7 @@ abstract class Client
     }
 
     /**
-     * Set eMail
+     * Set eMail.
      *
      * @param string $eMail
      *
@@ -151,7 +151,7 @@ abstract class Client
     }
 
     /**
-     * Get eMail
+     * Get eMail.
      *
      * @return string
      */
@@ -161,7 +161,7 @@ abstract class Client
     }
 
     /**
-     * Set prenom
+     * Set prenom.
      *
      * @param string $prenom
      *
@@ -175,7 +175,7 @@ abstract class Client
     }
 
     /**
-     * Get prenom
+     * Get prenom.
      *
      * @return string
      */
@@ -185,9 +185,9 @@ abstract class Client
     }
 
     /**
-     * Set numFax
+     * Set numFax.
      *
-     * @param integer $numFax
+     * @param int $numFax
      *
      * @return Client
      */
@@ -199,9 +199,9 @@ abstract class Client
     }
 
     /**
-     * Get numFax
+     * Get numFax.
      *
-     * @return integer
+     * @return int
      */
     public function getNumFax()
     {
@@ -209,9 +209,9 @@ abstract class Client
     }
 
     /**
-     * Set siret
+     * Set siret.
      *
-     * @param integer $siret
+     * @param int $siret
      *
      * @return Client
      */
@@ -223,9 +223,9 @@ abstract class Client
     }
 
     /**
-     * Get siret
+     * Get siret.
      *
-     * @return integer
+     * @return int
      */
     public function getSiret()
     {
@@ -233,7 +233,7 @@ abstract class Client
     }
 
     /**
-     * Set login
+     * Set login.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Login $login
      *
@@ -247,7 +247,7 @@ abstract class Client
     }
 
     /**
-     * Get login
+     * Get login.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Login
      */
@@ -257,7 +257,7 @@ abstract class Client
     }
 
     /**
-     * Set adresse
+     * Set adresse.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Adresse $adresse
      *
@@ -271,7 +271,7 @@ abstract class Client
     }
 
     /**
-     * Get adresse
+     * Get adresse.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Adresse
      */

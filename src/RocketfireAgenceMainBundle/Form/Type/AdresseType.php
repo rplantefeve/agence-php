@@ -13,17 +13,17 @@ class AdresseType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('adresse')->add('codePostal')->add('ville')->add('pays')        ;
+        $builder->add('adresse')->add('codePostal')->add('ville')->add('pays');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\Adresse'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\Adresse',
+        ]);
     }
 
     /**
@@ -33,6 +33,4 @@ class AdresseType extends AbstractType
     {
         return 'rocketfireagencemainbundle_adresse';
     }
-
-
 }

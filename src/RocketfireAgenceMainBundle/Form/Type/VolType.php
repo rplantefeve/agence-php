@@ -31,9 +31,9 @@ class VolType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\Vol'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\Vol',
+        ]);
     }
 
     /**
@@ -43,6 +43,4 @@ class VolType extends AbstractType
     {
         return 'rocketfireagencemainbundle_vol';
     }
-
-
 }

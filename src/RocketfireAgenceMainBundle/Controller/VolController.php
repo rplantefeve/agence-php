@@ -27,9 +27,9 @@ class VolController extends Controller
 
         $vols = $em->getRepository('RocketfireAgenceMainBundle:Vol')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Vol:index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Vol:index.html.twig', [
             'vols' => $vols,
-        ));
+        ]);
     }
 
     /**
@@ -49,13 +49,13 @@ class VolController extends Controller
             $em->persist($vol);
             $em->flush($vol);
 
-            return $this->redirectToRoute('vol_show', array('id' => $vol->getIdVol()));
+            return $this->redirectToRoute('vol_show', ['id' => $vol->getIdVol()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Vol:new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Vol:new.html.twig', [
             'vol' => $vol,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -68,10 +68,10 @@ class VolController extends Controller
     {
         $deleteForm = $this->createDeleteForm($vol);
 
-        return $this->render('RocketfireAgenceMainBundle:Vol:show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Vol:show.html.twig', [
             'vol' => $vol,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,14 +89,14 @@ class VolController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('vol_edit', array('id' => $vol->getIdVol()));
+            return $this->redirectToRoute('vol_edit', ['id' => $vol->getIdVol()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Vol:edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Vol:edit.html.twig', [
             'vol' => $vol,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -129,7 +129,7 @@ class VolController extends Controller
     private function createDeleteForm(Vol $vol)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('vol_delete', array('id' => $vol->getIdVol())))
+            ->setAction($this->generateUrl('vol_delete', ['id' => $vol->getIdVol()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

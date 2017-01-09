@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+
 /**
  * Escale controller.
  *
@@ -26,9 +27,9 @@ class EscaleController extends Controller
 
         $escales = $em->getRepository('RocketfireAgenceMainBundle:Escale')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Escale:index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Escale:index.html.twig', [
             'escales' => $escales,
-        ));
+        ]);
     }
 
     /**
@@ -51,10 +52,10 @@ class EscaleController extends Controller
             return $this->redirectToRoute('escale_show', array('id' => $escale->getIdEscale()));
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Escale:new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Escale:new.html.twig', [
             'escale' => $escale,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -67,10 +68,10 @@ class EscaleController extends Controller
     {
         $deleteForm = $this->createDeleteForm($escale);
 
-        return $this->render('RocketfireAgenceMainBundle:Escale:show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Escale:show.html.twig', [
             'escale' => $escale,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -91,11 +92,11 @@ class EscaleController extends Controller
             return $this->redirectToRoute('escale_edit', array('id' => $escale->getIdEscale()));
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Escale:edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Escale:edit.html.twig', [
             'escale' => $escale,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**

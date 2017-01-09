@@ -27,9 +27,9 @@ class VilleController extends Controller
 
         $villes = $em->getRepository('RocketfireAgenceMainBundle:Ville')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Ville:index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Ville:index.html.twig', [
             'villes' => $villes,
-        ));
+        ]);
     }
 
     /**
@@ -49,13 +49,13 @@ class VilleController extends Controller
             $em->persist($ville);
             $em->flush($ville);
 
-            return $this->redirectToRoute('ville_show', array('id' => $ville->getId()));
+            return $this->redirectToRoute('ville_show', ['id' => $ville->getId()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Ville:new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Ville:new.html.twig', [
             'ville' => $ville,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -68,10 +68,10 @@ class VilleController extends Controller
     {
         $deleteForm = $this->createDeleteForm($ville);
 
-        return $this->render('RocketfireAgenceMainBundle:Ville:show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Ville:show.html.twig', [
             'ville' => $ville,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,14 +89,14 @@ class VilleController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('ville_edit', array('id' => $ville->getId()));
+            return $this->redirectToRoute('ville_edit', ['id' => $ville->getId()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Ville:edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Ville:edit.html.twig', [
             'ville' => $ville,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -129,7 +129,7 @@ class VilleController extends Controller
     private function createDeleteForm(Ville $ville)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ville_delete', array('id' => $ville->getId())))
+            ->setAction($this->generateUrl('ville_delete', ['id' => $ville->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

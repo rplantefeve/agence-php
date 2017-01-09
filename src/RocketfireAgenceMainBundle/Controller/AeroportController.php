@@ -27,9 +27,9 @@ class AeroportController extends Controller
 
         $aeroports = $em->getRepository('RocketfireAgenceMainBundle:Aeroport')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Aeroport:index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Aeroport:index.html.twig', [
             'aeroports' => $aeroports,
-        ));
+        ]);
     }
 
     /**
@@ -49,13 +49,13 @@ class AeroportController extends Controller
             $em->persist($aeroport);
             $em->flush($aeroport);
 
-            return $this->redirectToRoute('aeroport_show', array('id' => $aeroport->getIdAero()));
+            return $this->redirectToRoute('aeroport_show', ['id' => $aeroport->getIdAero()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Aeroport:new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Aeroport:new.html.twig', [
             'aeroport' => $aeroport,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -68,10 +68,10 @@ class AeroportController extends Controller
     {
         $deleteForm = $this->createDeleteForm($aeroport);
 
-        return $this->render('RocketfireAgenceMainBundle:Aeroport:show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Aeroport:show.html.twig', [
             'aeroport' => $aeroport,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,14 +89,14 @@ class AeroportController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('aeroport_edit', array('id' => $aeroport->getIdAero()));
+            return $this->redirectToRoute('aeroport_edit', ['id' => $aeroport->getIdAero()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Aeroport:edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Aeroport:edit.html.twig', [
             'aeroport' => $aeroport,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -129,7 +129,7 @@ class AeroportController extends Controller
     private function createDeleteForm(Aeroport $aeroport)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('aeroport_delete', array('id' => $aeroport->getIdAero())))
+            ->setAction($this->generateUrl('aeroport_delete', ['id' => $aeroport->getIdAero()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

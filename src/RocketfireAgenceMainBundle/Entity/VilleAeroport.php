@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * VilleAeroport
+ * VilleAeroport.
  *
  * @ORM\Table(name="ville_aeroport")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\VilleAeroportRepository")
@@ -37,10 +37,8 @@ class VilleAeroport
      */
     protected $idAeroport;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -50,7 +48,7 @@ class VilleAeroport
     }
 
     /**
-     * Set idVille
+     * Set idVille.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Ville $idVille
      *
@@ -64,7 +62,7 @@ class VilleAeroport
     }
 
     /**
-     * Get idVille
+     * Get idVille.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Ville
      */
@@ -74,7 +72,7 @@ class VilleAeroport
     }
 
     /**
-     * Set idAeroport
+     * Set idAeroport.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroport
      *
@@ -88,7 +86,7 @@ class VilleAeroport
     }
 
     /**
-     * Get idAeroport
+     * Get idAeroport.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */

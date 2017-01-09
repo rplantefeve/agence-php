@@ -28,9 +28,9 @@ class VilleAeroportType extends AbstractType
     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\VilleAeroport'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\VilleAeroport',
+        ]);
     }
 
     /**
@@ -40,6 +40,4 @@ class VilleAeroportType extends AbstractType
     {
         return 'rocketfireagencemainbundle_villeaeroport';
     }
-
-
 }

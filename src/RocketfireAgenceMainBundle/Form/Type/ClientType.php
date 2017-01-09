@@ -22,9 +22,9 @@ class ClientType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\client'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\client',
+        ]);
     }
 
     /**

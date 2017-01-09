@@ -27,9 +27,9 @@ class VilleAeroportController extends Controller
 
         $villeAeroports = $em->getRepository('RocketfireAgenceMainBundle:VilleAeroport')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:VilleAeroport:index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:VilleAeroport:index.html.twig', [
             'villeAeroports' => $villeAeroports,
-        ));
+        ]);
     }
 
     /**
@@ -49,13 +49,13 @@ class VilleAeroportController extends Controller
             $em->persist($villeAeroport);
             $em->flush($villeAeroport);
 
-            return $this->redirectToRoute('villeaeroport_show', array('id' => $villeAeroport->getId()));
+            return $this->redirectToRoute('villeaeroport_show', ['id' => $villeAeroport->getId()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:VilleAeroport:new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:VilleAeroport:new.html.twig', [
             'villeAeroport' => $villeAeroport,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -68,10 +68,10 @@ class VilleAeroportController extends Controller
     {
         $deleteForm = $this->createDeleteForm($villeAeroport);
 
-        return $this->render('RocketfireAgenceMainBundle:VilleAeroport:show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:VilleAeroport:show.html.twig', [
             'villeAeroport' => $villeAeroport,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,14 +89,14 @@ class VilleAeroportController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('villeaeroport_edit', array('id' => $villeAeroport->getId()));
+            return $this->redirectToRoute('villeaeroport_edit', ['id' => $villeAeroport->getId()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:VilleAeroport:edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:VilleAeroport:edit.html.twig', [
             'villeAeroport' => $villeAeroport,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -129,7 +129,7 @@ class VilleAeroportController extends Controller
     private function createDeleteForm(VilleAeroport $villeAeroport)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('villeaeroport_delete', array('id' => $villeAeroport->getId())))
+            ->setAction($this->generateUrl('villeaeroport_delete', ['id' => $villeAeroport->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

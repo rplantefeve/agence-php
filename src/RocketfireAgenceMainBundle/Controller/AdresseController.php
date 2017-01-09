@@ -27,9 +27,9 @@ class AdresseController extends Controller
 
         $adresses = $em->getRepository('RocketfireAgenceMainBundle:Adresse')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Adresse:index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Adresse:index.html.twig', [
             'adresses' => $adresses,
-        ));
+        ]);
     }
 
     /**
@@ -49,13 +49,13 @@ class AdresseController extends Controller
             $em->persist($adresse);
             $em->flush($adresse);
 
-            return $this->redirectToRoute('adresse_show', array('id' => $adresse->getIdAdd()));
+            return $this->redirectToRoute('adresse_show', ['id' => $adresse->getIdAdd()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Adresse:new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Adresse:new.html.twig', [
             'adresse' => $adresse,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -68,10 +68,10 @@ class AdresseController extends Controller
     {
         $deleteForm = $this->createDeleteForm($adresse);
 
-        return $this->render('RocketfireAgenceMainBundle:Adresse:show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Adresse:show.html.twig', [
             'adresse' => $adresse,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,14 +89,14 @@ class AdresseController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('adresse_edit', array('id' => $adresse->getIdAdd()));
+            return $this->redirectToRoute('adresse_edit', ['id' => $adresse->getIdAdd()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Adresse:edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Adresse:edit.html.twig', [
             'adresse' => $adresse,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -129,7 +129,7 @@ class AdresseController extends Controller
     private function createDeleteForm(Adresse $adresse)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('adresse_delete', array('id' => $adresse->getIdAdd())))
+            ->setAction($this->generateUrl('adresse_delete', ['id' => $adresse->getIdAdd()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

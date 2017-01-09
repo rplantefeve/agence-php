@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CompagnieAerienneVol
+ * CompagnieAerienneVol.
  *
  * @ORM\Table(name="compagnie_aerienne_vol")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\CompagnieAerienneVolRepository")
@@ -21,21 +21,19 @@ class CompagnieAerienneVol
      */
     private $id;
 
-
-    /**
-     * @var int
-     *
-     * @ORM\ManyToOne(targetEntity="CompagnieAerienne")
-     * @ORM\JoinColumn(name="idCompagnie", referencedColumnName="id")
-     */
+     /**
+      * @var int
+      *
+      * @ORM\ManyToOne(targetEntity="CompagnieAerienne")
+      * @ORM\JoinColumn(name="idCompagnie", referencedColumnName="id")
+      */
      private $idCompagnie;
 
-    /**
-     *
-     * @var int
-     * @ORM\ManyToOne(targetEntity="Vol")
-     * @ORM\JoinColumn(name="idVol", referencedColumnName="idVol")
-     */
+     /**
+      * @var int
+      * @ORM\ManyToOne(targetEntity="Vol")
+      * @ORM\JoinColumn(name="idVol", referencedColumnName="idVol")
+      */
      private $idVol;
 
     /**
@@ -52,9 +50,8 @@ class CompagnieAerienneVol
      */
     private $ouvert;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -64,7 +61,7 @@ class CompagnieAerienneVol
     }
 
     /**
-     * Set numero
+     * Set numero.
      *
      * @param string $numero
      *
@@ -78,7 +75,7 @@ class CompagnieAerienneVol
     }
 
     /**
-     * Get numero
+     * Get numero.
      *
      * @return string
      */
@@ -88,9 +85,9 @@ class CompagnieAerienneVol
     }
 
     /**
-     * Set ouvert
+     * Set ouvert.
      *
-     * @param boolean $ouvert
+     * @param bool $ouvert
      *
      * @return CompagnieAerienneVol
      */
@@ -102,7 +99,7 @@ class CompagnieAerienneVol
     }
 
     /**
-     * Get ouvert
+     * Get ouvert.
      *
      * @return bool
      */
@@ -112,7 +109,7 @@ class CompagnieAerienneVol
     }
 
     /**
-     * Set idCompagnie
+     * Set idCompagnie.
      *
      * @param \RocketfireAgenceMainBundle\Entity\CompagnieAerienne $idCompagnie
      *
@@ -126,7 +123,7 @@ class CompagnieAerienneVol
     }
 
     /**
-     * Get idCompagnie
+     * Get idCompagnie.
      *
      * @return \RocketfireAgenceMainBundle\Entity\CompagnieAerienne
      */
@@ -136,7 +133,7 @@ class CompagnieAerienneVol
     }
 
     /**
-     * Set idVol
+     * Set idVol.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Vol $idVol
      *
@@ -150,7 +147,7 @@ class CompagnieAerienneVol
     }
 
     /**
-     * Get idVol
+     * Get idVol.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Vol
      */
@@ -158,5 +155,4 @@ class CompagnieAerienneVol
     {
         return $this->idVol;
     }
-
 }

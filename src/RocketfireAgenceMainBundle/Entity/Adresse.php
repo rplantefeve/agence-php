@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Adresse
+ * Adresse.
  *
  * @ORM\Table(name="adresse")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\AdresseRepository")
@@ -48,19 +48,18 @@ class Adresse
      * @ORM\Column(name="pays", type="string", length=31)
      */
     private $pays;
-    
+
     /**
-     * @var Client 
-     * 
+     * @var Client
+     *
      * @ORM\OneToOne(targetEntity="RocketfireAgenceMainBundle\Entity\Client", mappedBy="adresse")
      */
     private $client;
 
-
     /**
-     * Set idAdd
+     * Set idAdd.
      *
-     * @param integer $idAdd
+     * @param int $idAdd
      *
      * @return Adresse
      */
@@ -72,7 +71,7 @@ class Adresse
     }
 
     /**
-     * Get idAdd
+     * Get idAdd.
      *
      * @return int
      */
@@ -82,7 +81,7 @@ class Adresse
     }
 
     /**
-     * Set adresse
+     * Set adresse.
      *
      * @param string $adresse
      *
@@ -96,7 +95,7 @@ class Adresse
     }
 
     /**
-     * Get adresse
+     * Get adresse.
      *
      * @return string
      */
@@ -106,7 +105,7 @@ class Adresse
     }
 
     /**
-     * Set codePostal
+     * Set codePostal.
      *
      * @param string $codePostal
      *
@@ -120,7 +119,7 @@ class Adresse
     }
 
     /**
-     * Get codePostal
+     * Get codePostal.
      *
      * @return string
      */
@@ -130,7 +129,7 @@ class Adresse
     }
 
     /**
-     * Set ville
+     * Set ville.
      *
      * @param string $ville
      *
@@ -144,7 +143,7 @@ class Adresse
     }
 
     /**
-     * Get ville
+     * Get ville.
      *
      * @return string
      */
@@ -154,7 +153,7 @@ class Adresse
     }
 
     /**
-     * Set pays
+     * Set pays.
      *
      * @param string $pays
      *
@@ -168,7 +167,7 @@ class Adresse
     }
 
     /**
-     * Get pays
+     * Get pays.
      *
      * @return string
      */
@@ -177,9 +176,8 @@ class Adresse
         return $this->pays;
     }
 
-
     /**
-     * Set client
+     * Set client.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Client $client
      *
@@ -193,7 +191,7 @@ class Adresse
     }
 
     /**
-     * Get client
+     * Get client.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Client
      */
@@ -202,13 +200,11 @@ class Adresse
         return $this->client;
     }
 
-    
     /**
-     * 
      * @return string
      */
-    public function __toString() {
-		return $this->adresse;
+    public function __toString()
+    {
+        return $this->adresse;
     }
-     
 }

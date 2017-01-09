@@ -13,17 +13,17 @@ class CompagnieAerienneVolType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numero')->add('ouvert')->add('idCompagnie')->add('idVol')        ;
+        $builder->add('numero')->add('ouvert')->add('idCompagnie')->add('idVol');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\CompagnieAerienneVol'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\CompagnieAerienneVol',
+        ]);
     }
 
     /**
@@ -33,6 +33,4 @@ class CompagnieAerienneVolType extends AbstractType
     {
         return 'rocketfireagencemainbundle_compagnieaeriennevol';
     }
-
-
 }

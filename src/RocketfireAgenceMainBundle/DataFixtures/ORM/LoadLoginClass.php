@@ -9,28 +9,30 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use RocketfireAgenceMainBundle\Entity\Login;
 
 /**
- * Description of LoadLoginClass
+ * Description of LoadLoginClass.
  *
  * @author Seme
  */
-class LoadLoginClass implements FixtureInterface, ContainerAwareInterface {
-
+class LoadLoginClass implements FixtureInterface, ContainerAwareInterface
+{
     /**
      * @var ContainerInterface
      */
     private $container;
 
-    public function setContainer(ContainerInterface $container = null) {
+    public function setContainer(ContainerInterface $container = null)
+    {
         $this->container = $container;
     }
 
-    public function load(ObjectManager $manager) {
+    public function load(ObjectManager $manager)
+    {
         $loginOne = new Login();
         $loginOne->setAdmin(false);
         $loginOne->setActive(true);
         $loginOne->setLogin('j.dupont@gmail.com');
         // the 'security.password_encoder' service requires Symfony 2.6 or higher
-        $encoder  = $this->container->get('security.password_encoder');
+        $encoder = $this->container->get('security.password_encoder');
         $password = $encoder->encodePassword($loginOne, 'lolilol');
         $loginOne->setMotDePasse($password);
 
@@ -45,5 +47,4 @@ class LoadLoginClass implements FixtureInterface, ContainerAwareInterface {
         $manager->persist($loginTwo);
         $manager->flush();
     }
-
 }

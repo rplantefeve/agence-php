@@ -8,19 +8,19 @@ use Doctrine\Common\Persistence\ObjectManager;
 use RocketfireAgenceMainBundle\Entity\Aeroport;
 
 /**
- * Description of LoadAeroportClass
+ * Description of LoadAeroportClass.
  *
  * @author Seme
  */
-class LoadAeroportClass extends AbstractFixture implements OrderedFixtureInterface {
-
-    public function load(ObjectManager $manager) {
+class LoadAeroportClass extends AbstractFixture implements OrderedFixtureInterface
+{
+    public function load(ObjectManager $manager)
+    {
         $aeroportOne = new Aeroport();
-        $aeroportOne->setNom("Aeroport One");
+        $aeroportOne->setNom('Aeroport One');
 
         $aeroportTwo = new Aeroport();
-        $aeroportTwo->setNom("Aeroport Two");
-
+        $aeroportTwo->setNom('Aeroport Two');
 
         $manager->persist($aeroportOne);
         $manager->persist($aeroportTwo);
@@ -30,10 +30,10 @@ class LoadAeroportClass extends AbstractFixture implements OrderedFixtureInterfa
         $this->addReference('aeroport-two', $aeroportTwo);
     }
 
-    public function getOrder(){
+    public function getOrder()
+    {
         // the order in which fixtures will be loaded
         // the lower the number, the sooner that this fixture is loaded
         return 5;
     }
-
 }
