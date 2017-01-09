@@ -1,48 +1,39 @@
 <?php
 
-// namespace RocketfireAgenceMainBundle\DataFixtures\ORM;
-//
-// use Doctrine\Common\DataFixtures\AbstractFixture;
-// use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-// use Doctrine\Common\Persistence\ObjectManager;
-// use RocketfireAgenceMainBundle\Entity\VilleAeroport;
-//
-// /**
-// * Description of LoadVilleAeroportClass
-// *
-// */
-// class LoadVilleAeroportClass extends AbstractFixture implements OrderedFixtureInterface{
-//
-//     public function load(ObjectManager $manager) {
-//         $volOne = new Vol();
-//         $date = new \DateTime("2016-10-01 15:01:02");
-//         $date2 = new \DateTime("2016-10-01 17:06:54");
-//         $volOne->setDateDepartVol($date);
-//         $volOne->setDateArriveeVol($date2);
-//         $volOne->setHeureDepartVol($date);
-//         $volOne->setHeureArriveeVol($date2);
-//         $volOne->setIdAeroportDepart( $this->getReference('aeroport-one'));
-//         $volOne->setIdAeroportArrivee( $this->getReference('aeroport-two'));
-//
-//         $volTwo = new Vol();
-//         $date = new \DateTime("2017-02-16 07:54:02");
-//         $date2 = new \DateTime("2017-02-16 23:59:54");
-//         $volTwo->setDateDepartVol($date);
-//         $volTwo->setDateArriveeVol($date2);
-//         $volTwo->setHeureDepartVol($date);
-//         $volTwo->setHeureArriveeVol($date2);
-//         $volTwo->setIdAeroportDepart( $this->getReference('aeroport-two'));
-//         $volTwo->setIdAeroportArrivee( $this->getReference('aeroport-one'));
-//
-//         $manager->persist($volOne);
-//         $manager->persist($volTwo);
-//         $manager->flush();
-//     }
-//
-//     public function getOrder(){
-//         // the order in which fixtures will be loaded
-//         // the lower the number, the sooner that this fixture is loaded
-//         return 6;
-//     }
-//
-// }
+ namespace RocketfireAgenceMainBundle\DataFixtures\ORM;
+
+ use Doctrine\Common\DataFixtures\AbstractFixture;
+ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+ use Doctrine\Common\Persistence\ObjectManager;
+ use RocketfireAgenceMainBundle\Entity\VilleAeroport;
+
+ /**
+ * Description of LoadVilleAeroportClass
+ *
+ */
+ class LoadVilleAeroportClass extends AbstractFixture implements OrderedFixtureInterface{
+
+     public function load(ObjectManager $manager) {
+
+         $villeAeroportOne = new VilleAeroport();
+         $villeAeroportOne->setIdAeroport($this->getReference("aeroport-one"));
+         $villeAeroportOne->setIdVille($this->getReference("ville-one"));
+         
+         $villeAeroportTwo = new VilleAeroport();
+         $villeAeroportTwo->setIdAeroport($this->getReference("aeroport-two"));
+         $villeAeroportTwo->setIdVille($this->getReference("ville-two"));
+         
+         
+
+         $manager->persist($villeAeroportOne);
+         $manager->persist($villeAeroportTwo);
+         $manager->flush();
+     }
+
+     public function getOrder(){
+         // the order in which fixtures will be loaded
+         // the lower the number, the sooner that this fixture is loaded
+         return 6;
+     }
+
+ }
