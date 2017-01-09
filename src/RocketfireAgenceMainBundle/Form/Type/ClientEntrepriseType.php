@@ -3,7 +3,7 @@
 namespace RocketfireAgenceMainBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use RocketfireAgenceMainBundle\Form\ClientType;
+use RocketfireAgenceMainBundle\Form\Type\ClientType;
 
 class ClientEntrepriseType extends ClientType
 {
