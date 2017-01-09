@@ -12,6 +12,7 @@ class AdresseControllerTest extends WebTestCase
         // Create a new client to browse the application
         $client = static::createClient();
 
+<<<<<<< HEAD
 <<<<<<< debug
         // Create a new entry in the database
         $crawler = $client->request('GET', '/Adresse/');
@@ -51,6 +52,8 @@ class AdresseControllerTest extends WebTestCase
         // Check the entity has been delete on the list
         $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
 =======
+=======
+>>>>>>> AdresseVille
         $crawler = $client->request('GET', '/Adresse/add');
     }
 
@@ -80,7 +83,10 @@ class AdresseControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/Adresse/delete/{idAdd}');
+<<<<<<< HEAD
 >>>>>>> Entité Adresse complète
+=======
+>>>>>>> AdresseVille
     }
 
     */
