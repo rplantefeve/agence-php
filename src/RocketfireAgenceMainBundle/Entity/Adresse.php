@@ -169,4 +169,13 @@ class Adresse
     {
         return $this->pays;
     }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function __toString() {
+		return $this->adresse;
+    }
+     
 }
