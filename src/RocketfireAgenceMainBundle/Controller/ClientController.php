@@ -22,7 +22,7 @@ class ClientController extends Controller {
      * @Method({"GET","POST"})
      * @Route("/inscrire/client", name="inscrire_client")
      */
-    public function clientHome(Request $request){
+    public function clientHomeAction(Request $request){
          return $this->render(
                         'RocketfireAgenceMainBundle:Client:client.create.html.twig');
     }
