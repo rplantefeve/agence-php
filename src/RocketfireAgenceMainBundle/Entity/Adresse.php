@@ -177,6 +177,7 @@ class Adresse
         return $this->pays;
     }
 
+
     /**
      * Set client
      *
@@ -200,4 +201,14 @@ class Adresse
     {
         return $this->client;
     }
+
+    
+    /**
+     * 
+     * @return string
+     */
+    public function __toString() {
+		return $this->adresse;
+    }
+     
 }
