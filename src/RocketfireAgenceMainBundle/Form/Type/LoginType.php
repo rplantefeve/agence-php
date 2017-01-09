@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class LoginType extends AbstractType {
 
@@ -14,16 +16,24 @@ class LoginType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('login')
-                ->add('motDePasse', PasswordType::class)
+        $builder->add('login', TextType::class,
+                        [
+                    'label_format' => 'label.login'])
+                ->add('motDePasse', RepeatedType::class,
+                        [
+                    'type'           => PasswordType::class,
+                    'first_options'  => [
+                        'label_format' => 'label.password'],
+                    'second_options' => [
+                        'label_format' => 'label.passwordConfirmation']])
                 ->add('admin', CheckboxType::class,
                         [
-                    'label'    => 'Administrateur',
-                    'required' => false])
+                    'label_format' => 'label.administrator',
+                    'required'     => false])
                 ->add('isActive', CheckboxType::class,
                         [
-                    'label'    => 'Actif',
-                    'required' => false]);
+                    'label_format' => 'label.active',
+                    'required'     => false]);
     }
 
     /**

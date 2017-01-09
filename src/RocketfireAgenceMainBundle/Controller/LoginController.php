@@ -6,6 +6,7 @@ use RocketfireAgenceMainBundle\Entity\Login;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use RocketfireAgenceMainBundle\Form\Type\LoginType;
 
@@ -15,6 +16,30 @@ use RocketfireAgenceMainBundle\Form\Type\LoginType;
  * @Route("Login")
  */
 class LoginController extends Controller {
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function loginAction(Request $request) {
+        $authenticationUtils = $this->get('security.authentication_utils');
+        // si l'utilisateur est déjà connecté, on redirige vers la homepage
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('homepage');
+        } else {
+            // get the login error if there is one
+            $error        = $authenticationUtils->getLastAuthenticationError();
+            // last username entered by the user
+            $lastUsername = $authenticationUtils->getLastUsername();
+            return $this->render(
+                            'RocketfireAgenceMainBundle:Login:login.html.twig',
+                            array(
+                        // last username entered by the user
+                        'last_username' => $lastUsername,
+                        'error'         => $error,
+                            )
+            );
+        }
+    }
 
     /**
      * Lists all login entities.
@@ -40,17 +65,21 @@ class LoginController extends Controller {
      * @Method({"GET", "POST"})
      */
     public function addLoginAction(Request $request) {
+        // 1) Créer le formulaire
         $login = new Login();
         $form  = $this->createForm(LoginType::class, $login);
+
+        // 2) Gérer la requête
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
+            // 3) Encoder le mot de passe avant enregistrement
             $encoder  = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($login, $login->getMotDePasse());
             $login->setMotDePasse($password);
 
+            // 4) Sauvegarde du Login
+            $em = $this->getDoctrine()->getManager();
             $em->persist($login);
             $em->flush($login);
 
@@ -73,12 +102,9 @@ class LoginController extends Controller {
      * @Method("GET")
      */
     public function showLoginAction(Login $login) {
-        $deleteForm = $this->createDeleteForm($login);
-
         return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig',
                         array(
-                    'login'       => $login,
-                    'delete_form' => $deleteForm->createView(),
+                    'login' => $login
         ));
     }
 
@@ -87,6 +113,7 @@ class LoginController extends Controller {
      *
      * @Route("/edit/{id}", name="login_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editLoginAction(Request $request, Login $login) {
         $deleteForm = $this->createDeleteForm($login);
@@ -119,6 +146,7 @@ class LoginController extends Controller {
      *
      * @Route("/delete/{id}", name="login_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN') && !login.isSelf(user)")
      */
     public function deleteLoginAction(Request $request, Login $login) {
         $form = $this->createDeleteForm($login);

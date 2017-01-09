@@ -3,11 +3,18 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+    {% block body %}{% endblock %}
+    {% block footer %}
+        <footer>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href='{{ path('logout') }}'>{% trans %}link.logout{% endtrans %}</a>
+            {% endif %}
+        </footer>
+    {% endblock %}
+    {% block javascripts %}{% endblock %}
+</body>
 </html>

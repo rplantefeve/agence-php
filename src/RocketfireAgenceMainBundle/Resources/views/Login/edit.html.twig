@@ -1,14 +1,15 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Modifier un utilisateur</h1>
-
+    <header>
+        <h1>{% trans %}title.loginEdit{% endtrans %}</h1>
+    </header>
     {{ form_start(edit_form) }}
     {{ form_row(edit_form.login, { 'attr' : { 'readonly' : true } }) }}
     {{ form_row(edit_form.motDePasse) }}
     {{ form_row(edit_form.admin) }}
     {{ form_row(edit_form.isActive) }}
-    <input type="submit" value="Modifier" />
+    <input type="submit" value="{% trans %}button.edit{% endtrans %}" />
     {% for flashMessage in app.session.flashBag.get('notice') %}
         <p>
             {{ flashMessage }}
@@ -18,12 +19,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('login_list') }}">Retour à la liste</a>
+            <a href="{{ path('login_list') }}">{% trans %}link.returnList{% endtrans %}</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
+        {% if not login.isSelf(app.user) %}
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="{% trans %}button.delete{% endtrans %}">
+                {{ form_end(delete_form) }}
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}

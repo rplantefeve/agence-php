@@ -27,7 +27,7 @@ class LoadLoginClass implements FixtureInterface, ContainerAwareInterface {
     public function load(ObjectManager $manager) {
         $loginOne = new Login();
         $loginOne->setAdmin(false);
-        $loginOne->setIsActive(true);
+        $loginOne->setActive(true);
         $loginOne->setLogin('j.dupont@gmail.com');
         // the 'security.password_encoder' service requires Symfony 2.6 or higher
         $encoder  = $this->container->get('security.password_encoder');
@@ -36,7 +36,7 @@ class LoadLoginClass implements FixtureInterface, ContainerAwareInterface {
 
         $loginTwo = new Login();
         $loginTwo->setAdmin(true);
-        $loginTwo->setIsActive(true);
+        $loginTwo->setActive(true);
         $loginTwo->setLogin('larrybambelle@gmail.com');
         $password = $encoder->encodePassword($loginTwo, 'zzzZZZ');
         $loginTwo->setMotDePasse($password);

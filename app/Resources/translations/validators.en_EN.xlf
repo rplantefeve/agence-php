@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-01-08T18:00:25Z" source-language="en" target-language="en_EN" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>Validation messages in English language.</note>
+    </header>
+    <body>
+      <trans-unit id="b90fce5565e26ead8c380ee566331246e4eb5ceb" resname="This value is not valid.">
+        <source>This value is not valid.</source>
+        <target>Passwords must match.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
