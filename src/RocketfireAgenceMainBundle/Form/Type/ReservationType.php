@@ -11,35 +11,33 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class ReservationType extends AbstractType
 {
     /**
-    * {@inheritdoc}
-    */
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateReservation')->add('numero')->add('etat', ChoiceType::class, array(
+        $builder->add('dateReservation')->add('numero')->add('etat', ChoiceType::class, [
             'choice_list' => new ChoiceList(
-                array("ouvert", "fermé"),
-                array('Ouvert', 'Fermé')
-            )
-            ))->add('idVol')->add('idAdd')->add('idPassager');
-        }
+                ['ouvert', 'fermé'],
+                ['Ouvert', 'Fermé']
+            ),
+            ])->add('idVol')->add('idAdd')->add('idPassager');
+    }
 
         /**
-        * {@inheritdoc}
-        */
+         * {@inheritdoc}
+         */
         public function configureOptions(OptionsResolver $resolver)
         {
-            $resolver->setDefaults(array(
-                'data_class' => 'RocketfireAgenceMainBundle\Entity\Reservation'
-            ));
+            $resolver->setDefaults([
+                'data_class' => 'RocketfireAgenceMainBundle\Entity\Reservation',
+            ]);
         }
 
         /**
-        * {@inheritdoc}
-        */
+         * {@inheritdoc}
+         */
         public function getBlockPrefix()
         {
             return 'rocketfireagencemainbundle_reservation';
         }
-
-
-    }
+}

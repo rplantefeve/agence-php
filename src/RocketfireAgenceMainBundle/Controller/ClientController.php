@@ -15,26 +15,30 @@ use RocketfireAgenceMainBundle\Entity\ClientEntreprise;
 use RocketfireAgenceMainBundle\Entity\Adresse;
 use RocketfireAgenceMainBundle\Entity\Login;
 
-class ClientController extends Controller {
-
+class ClientController extends Controller
+{
     /**
      * @param Request $request
+     *
      * @return type
      * @Method({"GET","POST"})
      * @Route("/inscrire/client", name="inscrire_client")
      */
-    public function clientHomeAction(Request $request) {
+    public function clientHomeAction(Request $request)
+    {
         return $this->render(
                         'RocketfireAgenceMainBundle:Client:client.create.html.twig');
     }
 
     /**
      * @param Request $request
+     *
      * @return type
      * @Method({"GET","POST"})
      * @Route("/Client/Particulier/add", name="client_particulier_add")
      */
-    public function linkClientParticulierAdresseAction(Request $request) {
+    public function linkClientParticulierAdresseAction(Request $request)
+    {
         $clientParticulier = new ClientParticulier();
         $adresse = new Adresse();
         $login = new Login();
@@ -67,22 +71,25 @@ class ClientController extends Controller {
                 // redirection pour le fun
                 return $this->redirectToRoute('inscrire_client');
             } else {
-                $this->addFlash('errorPassword', "Le mot de passe ne correspond pas à la confirmation.");
+                $this->addFlash('errorPassword', 'Le mot de passe ne correspond pas à la confirmation.');
             }
         }
+
         return $this->render(
-                        'RocketfireAgenceMainBundle:Client:client.create.particulier.html.twig', array(
-                    'form' => $formClientAdresse->createView())
+                        'RocketfireAgenceMainBundle:Client:client.create.particulier.html.twig', [
+                    'form' => $formClientAdresse->createView(), ]
         );
     }
 
     /**
      * @param Request $request
+     *
      * @return type
      * @Method({"GET","POST"})
      * @Route("/Client/Association/add", name="client_association_add")
      */
-    public function linkClientAssociationAdresseAction(Request $request) {
+    public function linkClientAssociationAdresseAction(Request $request)
+    {
         $clientAssociation = new ClientAssociation();
         $adresse = new Adresse();
         $login = new Login();
@@ -115,22 +122,25 @@ class ClientController extends Controller {
                 // redirection pour le fun
                 return $this->redirectToRoute('inscrire_client');
             } else {
-                $this->addFlash('errorPassword', "Le mot de passe ne correspond pas à la confirmation.");
+                $this->addFlash('errorPassword', 'Le mot de passe ne correspond pas à la confirmation.');
             }
         }
+
         return $this->render(
-                        'RocketfireAgenceMainBundle:Client:client.create.association.html.twig', array(
-                    'form' => $formClientAdresse->createView())
+                        'RocketfireAgenceMainBundle:Client:client.create.association.html.twig', [
+                    'form' => $formClientAdresse->createView(), ]
         );
     }
 
     /**
      * @param Request $request
+     *
      * @return type
      * @Method({"GET","POST"})
      * @Route("/Client/Entreprise/add", name="client_entreprise_add")
      */
-    public function linkClientEntrepriseAdresseAction(Request $request) {
+    public function linkClientEntrepriseAdresseAction(Request $request)
+    {
         $clientEntreprise = new ClientEntreprise();
         $adresse = new Adresse();
         $login = new Login();
@@ -163,13 +173,13 @@ class ClientController extends Controller {
                 // redirection pour le fun
                 return $this->redirectToRoute('inscrire_client');
             } else {
-                $this->addFlash('errorPassword', "Le mot de passe ne correspond pas à la confirmation.");
+                $this->addFlash('errorPassword', 'Le mot de passe ne correspond pas à la confirmation.');
             }
         }
+
         return $this->render(
-                        'RocketfireAgenceMainBundle:Client:client.create.entreprise.html.twig', array(
-                    'form' => $formClientAdresse->createView())
+                        'RocketfireAgenceMainBundle:Client:client.create.entreprise.html.twig', [
+                    'form' => $formClientAdresse->createView(), ]
         );
     }
-
 }

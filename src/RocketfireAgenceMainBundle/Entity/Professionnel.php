@@ -3,10 +3,9 @@
 namespace RocketfireAgenceMainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use RocketfireAgenceMainBundle\Entity\Client;
 
 /**
- * ClientAssociation
+ * ClientAssociation.
  *
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
  */
@@ -18,12 +17,12 @@ abstract class Professionnel extends Client
     protected $numFax;
 
      /**
-     * @var int
-     */
+      * @var int
+      */
      protected $siret;
 
     /**
-     * Get idClient
+     * Get idClient.
      *
      * @return int
      */
@@ -33,7 +32,7 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
@@ -47,17 +46,17 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */
-
     public function getNom()
     {
         return $this->nom;
     }
+
     /**
-     * Set numTel
+     * Set numTel.
      *
      * @param string $numTel
      *
@@ -71,7 +70,7 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Get numTel
+     * Get numTel.
      *
      * @return string
      */
@@ -81,9 +80,9 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Set numFax
+     * Set numFax.
      *
-     * @param integer $numFax
+     * @param int $numFax
      *
      * @return client
      */
@@ -95,7 +94,7 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Get numFax
+     * Get numFax.
      *
      * @return int
      */
@@ -105,7 +104,7 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Set eMail
+     * Set eMail.
      *
      * @param string $eMail
      *
@@ -119,7 +118,7 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Get eMail
+     * Get eMail.
      *
      * @return string
      */
@@ -129,9 +128,9 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Set siret
+     * Set siret.
      *
-     * @param integer $siret
+     * @param int $siret
      *
      * @return client
      */
@@ -143,7 +142,7 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Get siret
+     * Get siret.
      *
      * @return int
      */
@@ -153,9 +152,9 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Set idAdd
+     * Set idAdd.
      *
-     * @param integer $idAdd
+     * @param int $idAdd
      *
      * @return client
      */
@@ -167,7 +166,7 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Get idAdd
+     * Get idAdd.
      *
      * @return int
      */
@@ -177,9 +176,9 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Set idLog
+     * Set idLog.
      *
-     * @param integer $idLog
+     * @param int $idLog
      *
      * @return client
      */
@@ -191,7 +190,7 @@ abstract class Professionnel extends Client
     }
 
     /**
-     * Get idLog
+     * Get idLog.
      *
      * @return int
      */

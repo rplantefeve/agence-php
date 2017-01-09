@@ -5,39 +5,38 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* Ville
-*
-* @ORM\Table(name="ville")
-* @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\VilleRepository")
-*/
+ * Ville.
+ *
+ * @ORM\Table(name="ville")
+ * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\VilleRepository")
+ */
 class Ville
 {
-
     /**
-    * @var int
-    *
-    * @ORM\Column(name="id", type="bigint")
-    * @ORM\Id
-    * @ORM\GeneratedValue(strategy="AUTO")
-    */
+     * @var int
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="nom", type="string", length=120, unique=true)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=120, unique=true)
+     */
     private $nom;
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nom;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -45,7 +44,7 @@ class Ville
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
@@ -59,7 +58,7 @@ class Ville
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */
@@ -67,5 +66,4 @@ class Ville
     {
         return $this->nom;
     }
-
 }

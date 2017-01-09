@@ -9,43 +9,45 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class LoginEditType extends AbstractType {
-
+class LoginEditType extends AbstractType
+{
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         $builder->add('login', TextType::class,
                         [
                     'attr' => [
-                        'readonly' => true]])
+                        'readonly' => true, ], ])
                 ->add('motDePasse', PasswordType::class,
                         [
-                    'required' => true])
+                    'required' => true, ])
                 ->add('admin', CheckboxType::class,
                         [
-                    'label'    => 'Administrateur',
-                    'required' => false])
+                    'label' => 'Administrateur',
+                    'required' => false, ])
                 ->add('isActive', CheckboxType::class,
                         [
-                    'label'    => 'Actif',
-                    'required' => false]);
+                    'label' => 'Actif',
+                    'required' => false, ]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\Login'
-        ));
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\Login',
+        ]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix() {
+    public function getBlockPrefix()
+    {
         return 'rocketfireagencemainbundle_login';
     }
-
 }

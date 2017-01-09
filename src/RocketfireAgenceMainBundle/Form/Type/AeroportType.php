@@ -21,9 +21,9 @@ class AeroportType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\Aeroport'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\Aeroport',
+        ]);
     }
 
     /**
@@ -33,6 +33,4 @@ class AeroportType extends AbstractType
     {
         return 'rocketfireagencemainbundle_aeroport';
     }
-
-
 }

@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Escale
+ * Escale.
  *
  * @ORM\Table(name="escale")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\EscaleRepository")
@@ -21,20 +21,20 @@ class Escale
      */
     private $idEscale;
 
-    /**
-     * @var int
-     *
-     * @ORM\ManyToOne(targetEntity="Aeroport")
-     * @ORM\JoinColumn(name="idAeroport", referencedColumnName="idAero")
-     */
+     /**
+      * @var int
+      *
+      * @ORM\ManyToOne(targetEntity="Aeroport")
+      * @ORM\JoinColumn(name="idAeroport", referencedColumnName="idAero")
+      */
      private $idAeroport;
 
-    /**
-     * @var int
-     *
-     * @ORM\ManyToOne(targetEntity="Vol")
-     * @ORM\JoinColumn(name="idVol", referencedColumnName="idVol")
-     */
+     /**
+      * @var int
+      *
+      * @ORM\ManyToOne(targetEntity="Vol")
+      * @ORM\JoinColumn(name="idVol", referencedColumnName="idVol")
+      */
      private $idVol;
 
     /**
@@ -65,13 +65,10 @@ class Escale
      */
     private $heureArriveeEscale;
 
-
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -79,7 +76,7 @@ class Escale
     }
 
     /**
-     * Set dateDepartEscale
+     * Set dateDepartEscale.
      *
      * @param \DateTime $dateDepartEscale
      *
@@ -93,7 +90,7 @@ class Escale
     }
 
     /**
-     * Get dateDepartEscale
+     * Get dateDepartEscale.
      *
      * @return \DateTime
      */
@@ -103,7 +100,7 @@ class Escale
     }
 
     /**
-     * Set dateArriveeEscale
+     * Set dateArriveeEscale.
      *
      * @param \DateTime $dateArriveeEscale
      *
@@ -117,7 +114,7 @@ class Escale
     }
 
     /**
-     * Get dateArriveeEscale
+     * Get dateArriveeEscale.
      *
      * @return \DateTime
      */
@@ -127,7 +124,7 @@ class Escale
     }
 
     /**
-     * Set heureDepartEscale
+     * Set heureDepartEscale.
      *
      * @param \DateTime $heureDepartEscale
      *
@@ -141,7 +138,7 @@ class Escale
     }
 
     /**
-     * Get heureDepartEscale
+     * Get heureDepartEscale.
      *
      * @return \DateTime
      */
@@ -151,7 +148,7 @@ class Escale
     }
 
     /**
-     * Set heureArriveeEscale
+     * Set heureArriveeEscale.
      *
      * @param \DateTime $heureArriveeEscale
      *
@@ -165,7 +162,7 @@ class Escale
     }
 
     /**
-     * Get heureArriveeEscale
+     * Get heureArriveeEscale.
      *
      * @return \DateTime
      */
@@ -175,7 +172,7 @@ class Escale
     }
 
     /**
-     * Set idAeroport
+     * Set idAeroport.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroport
      *
@@ -189,7 +186,7 @@ class Escale
     }
 
     /**
-     * Get idAeroport
+     * Get idAeroport.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */
@@ -199,7 +196,7 @@ class Escale
     }
 
     /**
-     * Set idVol
+     * Set idVol.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Vol $idVol
      *
@@ -213,7 +210,7 @@ class Escale
     }
 
     /**
-     * Get idVol
+     * Get idVol.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Vol
      */
@@ -223,9 +220,9 @@ class Escale
     }
 
     /**
-     * Get idEscale
+     * Get idEscale.
      *
-     * @return integer
+     * @return int
      */
     public function getIdEscale()
     {

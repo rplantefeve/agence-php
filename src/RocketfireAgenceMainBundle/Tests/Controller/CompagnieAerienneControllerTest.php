@@ -40,5 +40,4 @@ class CompagnieAerienneControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/CompagnieAerienne/list');
     }
-
 }

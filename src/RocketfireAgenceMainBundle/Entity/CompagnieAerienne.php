@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CompagnieAerienne
+ * CompagnieAerienne.
  *
  * @ORM\Table(name="compagnie_aerienne")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\CompagnieAerienneRepository")
@@ -28,9 +28,8 @@ class CompagnieAerienne
      */
     private $nom;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -40,7 +39,7 @@ class CompagnieAerienne
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
@@ -54,7 +53,7 @@ class CompagnieAerienne
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */
@@ -62,9 +61,9 @@ class CompagnieAerienne
     {
         return $this->nom;
     }
-    
+
     /**
-     * ToString nom
+     * ToString nom.
      *
      * @return string
      */

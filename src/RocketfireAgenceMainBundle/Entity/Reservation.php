@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Reservation
+ * Reservation.
  *
  * @ORM\Table(name="reservation")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\ReservationRepository")
@@ -67,7 +67,7 @@ class Reservation
     private $etat;
 
     /**
-     * Set dateReservation
+     * Set dateReservation.
      *
      * @param \DateTime $dateReservation
      *
@@ -81,7 +81,7 @@ class Reservation
     }
 
     /**
-     * Get dateReservation
+     * Get dateReservation.
      *
      * @return \DateTime
      */
@@ -91,9 +91,9 @@ class Reservation
     }
 
     /**
-     * Set numero
+     * Set numero.
      *
-     * @param integer $numero
+     * @param int $numero
      *
      * @return Reservation
      */
@@ -105,7 +105,7 @@ class Reservation
     }
 
     /**
-     * Get numero
+     * Get numero.
      *
      * @return int
      */
@@ -115,7 +115,7 @@ class Reservation
     }
 
     /**
-     * Set etat
+     * Set etat.
      *
      * @param string $etat
      *
@@ -129,7 +129,7 @@ class Reservation
     }
 
     /**
-     * Get etat
+     * Get etat.
      *
      * @return string
      */
@@ -139,9 +139,9 @@ class Reservation
     }
 
     /**
-     * Get idResa
+     * Get idResa.
      *
-     * @return integer
+     * @return int
      */
     public function getIdResa()
     {
@@ -149,7 +149,7 @@ class Reservation
     }
 
     /**
-     * Set idVol
+     * Set idVol.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Vol $idVol
      *
@@ -163,7 +163,7 @@ class Reservation
     }
 
     /**
-     * Get idVol
+     * Get idVol.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Vol
      */
@@ -173,7 +173,7 @@ class Reservation
     }
 
     /**
-     * Set idAdd
+     * Set idAdd.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Client $idAdd
      *
@@ -187,7 +187,7 @@ class Reservation
     }
 
     /**
-     * Get idAdd
+     * Get idAdd.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Client
      */
@@ -197,7 +197,7 @@ class Reservation
     }
 
     /**
-     * Set idPassager
+     * Set idPassager.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Passager $idPassager
      *
@@ -211,7 +211,7 @@ class Reservation
     }
 
     /**
-     * Get idPassager
+     * Get idPassager.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Passager
      */

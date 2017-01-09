@@ -27,9 +27,9 @@ class ReservationController extends Controller
 
         $reservations = $em->getRepository('RocketfireAgenceMainBundle:Reservation')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Reservation:index.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Reservation:index.html.twig', [
             'reservations' => $reservations,
-        ));
+        ]);
     }
 
     /**
@@ -49,13 +49,13 @@ class ReservationController extends Controller
             $em->persist($reservation);
             $em->flush($reservation);
 
-            return $this->redirectToRoute('reservation_show', array('id' => $reservation->getIdResa()));
+            return $this->redirectToRoute('reservation_show', ['id' => $reservation->getIdResa()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Reservation:new.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Reservation:new.html.twig', [
             'reservation' => $reservation,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -68,10 +68,10 @@ class ReservationController extends Controller
     {
         $deleteForm = $this->createDeleteForm($reservation);
 
-        return $this->render('RocketfireAgenceMainBundle:Reservation:show.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Reservation:show.html.twig', [
             'reservation' => $reservation,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,14 +89,14 @@ class ReservationController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('reservation_edit', array('id' => $reservation->getIdResa()));
+            return $this->redirectToRoute('reservation_edit', ['id' => $reservation->getIdResa()]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Reservation:edit.html.twig', array(
+        return $this->render('RocketfireAgenceMainBundle:Reservation:edit.html.twig', [
             'reservation' => $reservation,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -129,7 +129,7 @@ class ReservationController extends Controller
     private function createDeleteForm(Reservation $reservation)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('reservation_delete', array('id' => $reservation->getIdResa())))
+            ->setAction($this->generateUrl('reservation_delete', ['id' => $reservation->getIdResa()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

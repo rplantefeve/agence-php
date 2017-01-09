@@ -13,17 +13,17 @@ class VilleAeroportType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('idVille')->add('idAeroport')        ;
+        $builder->add('idVille')->add('idAeroport');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\VilleAeroport'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\VilleAeroport',
+        ]);
     }
 
     /**
@@ -33,6 +33,4 @@ class VilleAeroportType extends AbstractType
     {
         return 'rocketfireagencemainbundle_villeaeroport';
     }
-
-
 }
