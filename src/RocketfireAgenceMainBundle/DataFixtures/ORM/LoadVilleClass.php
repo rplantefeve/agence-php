@@ -27,7 +27,7 @@ class LoadVilleClass implements FixtureInterface
 
     public function getOrder()
     {
-        return 10;
+        return 4;
     }
 
     private function generateEntities()
