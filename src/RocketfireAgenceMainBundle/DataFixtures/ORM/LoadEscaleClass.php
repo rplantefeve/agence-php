@@ -21,7 +21,7 @@ class LoadEscaleClass extends AbstractFixture implements OrderedFixtureInterface
         $escaleOne->setDateDepartEscale($datedeb);
         $escaleOne->setHeureDepartEscale($datedeb);        
         $escaleOne->setDateArriveeEscale($datefin);
-        $escaleOne->setHeureArriveeEscale($datedeb);  
+        $escaleOne->setHeureArriveeEscale($datefin);  
         $escaleOne->setIdAeroport($this->getReference('aeroport-two'));
         $escaleOne->setIdVol($this->getReference('vol-two'));
         
@@ -31,7 +31,7 @@ class LoadEscaleClass extends AbstractFixture implements OrderedFixtureInterface
         $escaleTwo->setDateDepartEscale($datedeb);
         $escaleTwo->setHeureDepartEscale($datedeb);        
         $escaleTwo->setDateArriveeEscale($datefin);
-        $escaleTwo->setHeureArriveeEscale($datedeb);        
+        $escaleTwo->setHeureArriveeEscale($datefin);        
         $escaleTwo->setIdAeroport($this->getReference('aeroport-one'));
         $escaleTwo->setIdVol($this->getReference('vol-two'));
         
@@ -42,7 +42,7 @@ class LoadEscaleClass extends AbstractFixture implements OrderedFixtureInterface
         $escaleThree->setDateDepartEscale($datedeb);
         $escaleThree->setHeureDepartEscale($datedeb);        
         $escaleThree->setDateArriveeEscale($datefin);
-        $escaleThree->setHeureArriveeEscale($datedeb);        
+        $escaleThree->setHeureArriveeEscale($datefin);        
         $escaleThree->setIdAeroport($this->getReference('aeroport-one'));
         $escaleThree->setIdVol($this->getReference('vol-one'));
 
