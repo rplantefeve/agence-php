@@ -74,16 +74,16 @@ class LoadCompagnieAerienneClass extends AbstractFixture implements OrderedFixtu
         /**
          * Ajout de référence * 10
          */
-        $CompagnieAerienne1->addReference('compagnie-aerienne-one', $CompagnieAerienne1);
-        $CompagnieAerienne2->addReference('compagnie-aerienne-two', $CompagnieAerienne2);
-        $CompagnieAerienne3->addReference('compagnie-aerienne-three', $CompagnieAerienne3);
-        $CompagnieAerienne4->addReference('compagnie-aerienne-four', $CompagnieAerienne4);
-        $CompagnieAerienne5->addReference('compagnie-aerienne-five', $CompagnieAerienne5);
-        $CompagnieAerienne6->addReference('compagnie-aerienne-six', $CompagnieAerienne6);
-        $CompagnieAerienne7->addReference('compagnie-aerienne-seven', $CompagnieAerienne7);
-        $CompagnieAerienne8->addReference('compagnie-aerienne-eight', $CompagnieAerienne8);
-        $CompagnieAerienne9->addReference('compagnie-aerienne-nine', $CompagnieAerienne9);
-        $CompagnieAerienne10->addReference('compagnie-aerienne-ten', $CompagnieAerienne10);
+        $this->addReference('compagnie-aerienne-one', $CompagnieAerienne1);
+        $this->addReference('compagnie-aerienne-two', $CompagnieAerienne2);
+        $this->addReference('compagnie-aerienne-three', $CompagnieAerienne3);
+        $this->addReference('compagnie-aerienne-four', $CompagnieAerienne4);
+        $this->addReference('compagnie-aerienne-five', $CompagnieAerienne5);
+        $this->addReference('compagnie-aerienne-six', $CompagnieAerienne6);
+        $this->addReference('compagnie-aerienne-seven', $CompagnieAerienne7);
+        $this->addReference('compagnie-aerienne-eight', $CompagnieAerienne8);
+        $this->addReference('compagnie-aerienne-nine', $CompagnieAerienne9);
+        $this->addReference('compagnie-aerienne-ten', $CompagnieAerienne10);
     }
     /**
      * Ordre de chargement fixé à 3
