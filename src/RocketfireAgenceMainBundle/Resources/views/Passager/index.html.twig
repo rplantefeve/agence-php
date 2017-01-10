@@ -10,7 +10,6 @@
 <table class="table table-hover table-striped">
     <thead>
         <tr>
-            <th>Idpassager</th>
             <th>Nom</th>
             <th>Prenom</th>
             <th>Actions</th>
@@ -19,7 +18,6 @@
     <tbody>
         {% for passager in passagers %}
         <tr>
-            <td><a href="{{ path('passager_show', { 'id': passager.idPassager }) }}">{{ passager.idPassager }}</a></td>
             <td>{{ passager.nom }}</td>
             <td>{{ passager.prenom }}</td>
             <td>
