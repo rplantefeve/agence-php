@@ -16,7 +16,9 @@
         <label for="password">{% trans %}label.password{% endtrans %}</label>
         <input type="password" id="password" name="_password" class="form-control" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-default">{% trans %}title.login{% endtrans %}</button>
+    <button type="submit" class="btn btn-warning btn-lg col-sm-12">{% trans %}title.login{% endtrans %}</button>
 </form>
+<a href="{{ path('inscrire_client') }}"><button type="submit" class="btn btn-primary btn-lg col-sm-12">S'enregistrer</button></a>
+<a href="{{ path('vol_index') }}"><button type="submit" class="btn btn-default btn-lg col-sm-12">Voir les vols</button></a>
 {% block footer %}{% endblock %}
 {% endblock %}
