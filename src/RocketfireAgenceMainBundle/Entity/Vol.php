@@ -174,7 +174,7 @@ class Vol
     }
 
     /**
-     * Set idAeroportDepart.
+     * Set AeroportDepart
      *
      * @param \RocketfireAgenceMainBundle\Entity\Aeroport $AeroportDepart
      *
@@ -188,7 +188,7 @@ class Vol
     }
 
     /**
-     * Get idAeroportDepart.
+     * Get AeroportDepart
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */
@@ -198,7 +198,7 @@ class Vol
     }
 
     /**
-     * Set idAeroportArrivee.
+     * Set AeroportArrivee
      *
      * @param \RocketfireAgenceMainBundle\Entity\Aeroport $AeroportArrivee
      *
@@ -212,7 +212,7 @@ class Vol
     }
 
     /**
-     * Get idAeroportArrivee.
+     * Get AeroportArrivee
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */
