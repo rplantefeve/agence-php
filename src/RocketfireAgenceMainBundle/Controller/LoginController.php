@@ -15,13 +15,12 @@ use RocketfireAgenceMainBundle\Form\Type\LoginType;
  *
  * @Route("Login")
  */
-class LoginController extends Controller
-{
+class LoginController extends Controller {
+
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction(Request $request)
-    {
+    public function loginAction(Request $request) {
         $authenticationUtils = $this->get('security.authentication_utils');
         // si l'utilisateur est déjà connecté, on redirige vers la homepage
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -33,8 +32,7 @@ class LoginController extends Controller
             $lastUsername = $authenticationUtils->getLastUsername();
 
             return $this->render(
-                            'RocketfireAgenceMainBundle:Login:login.html.twig',
-                            [
+                            'RocketfireAgenceMainBundle:Login:login.html.twig', [
                         // last username entered by the user
                         'last_username' => $lastUsername,
                         'error' => $error,
@@ -49,14 +47,12 @@ class LoginController extends Controller
      * @Route("/list", name="login_list")
      * @Method("GET")
      */
-    public function listLoginAction()
-    {
+    public function listLoginAction() {
         $em = $this->getDoctrine()->getManager();
 
         $logins = $em->getRepository('RocketfireAgenceMainBundle:Login')->findAll();
 
-        return $this->render('RocketfireAgenceMainBundle:Login:index.html.twig',
-                        [
+        return $this->render('RocketfireAgenceMainBundle:Login:index.html.twig', [
                     'logins' => $logins,
         ]);
     }
@@ -67,8 +63,7 @@ class LoginController extends Controller
      * @Route("/add", name="login_add")
      * @Method({"GET", "POST"})
      */
-    public function addLoginAction(Request $request)
-    {
+    public function addLoginAction(Request $request) {
         // 1) Créer le formulaire
         $login = new Login();
         $form = $this->createForm(LoginType::class, $login);
@@ -87,13 +82,11 @@ class LoginController extends Controller
             $em->persist($login);
             $em->flush($login);
 
-            return $this->redirectToRoute('login_show',
-                            [
-                        'id' => $login->getId(), ]);
+            return $this->redirectToRoute('login_show', [
+                        'id' => $login->getId(),]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Login:new.html.twig',
-                        [
+        return $this->render('RocketfireAgenceMainBundle:Login:new.html.twig', [
                     'login' => $login,
                     'form' => $form->createView(),
         ]);
@@ -105,10 +98,8 @@ class LoginController extends Controller
      * @Route("/show/{id}", name="login_show")
      * @Method("GET")
      */
-    public function showLoginAction(Login $login)
-    {
-        return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig',
-                        [
+    public function showLoginAction(Login $login) {
+        return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig', [
                     'login' => $login,
         ]);
     }
@@ -120,8 +111,7 @@ class LoginController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function editLoginAction(Request $request, Login $login)
-    {
+    public function editLoginAction(Request $request, Login $login) {
         $deleteForm = $this->createDeleteForm($login);
         $editForm = $this->createForm(LoginType::class, $login);
         $editForm->handleRequest($request);
@@ -135,13 +125,11 @@ class LoginController extends Controller
 
             $this->addFlash('notice', 'Félicitations, modification réussie.');
 
-            return $this->redirectToRoute('login_edit',
-                            [
-                        'id' => $login->getId(), ]);
+            return $this->redirectToRoute('login_edit', [
+                        'id' => $login->getId(),]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Login:edit.html.twig',
-                        [
+        return $this->render('RocketfireAgenceMainBundle:Login:edit.html.twig', [
                     'login' => $login,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
@@ -155,15 +143,21 @@ class LoginController extends Controller
      * @Method("DELETE")
      * @Security("has_role('ROLE_ADMIN') && !login.isSelf(user)")
      */
-    public function deleteLoginAction(Request $request, Login $login)
-    {
+    public function deleteLoginAction(Request $request, Login $login) {
         $form = $this->createDeleteForm($login);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($login);
-            $em->flush($login);
+
+
+            try {
+                $em->remove($login);
+                $em->flush($login);
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                // store a message for the very next request
+                $this->addFlash('error', 'Delete unauthorized : ForeignKey Constraint Violation (child exist) !');
+            }
         }
 
         return $this->redirectToRoute('login_list');
@@ -176,14 +170,13 @@ class LoginController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Login $login)
-    {
+    private function createDeleteForm(Login $login) {
         return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('login_delete',
-                                        [
-                                    'id' => $login->getId(), ]))
+                        ->setAction($this->generateUrl('login_delete', [
+                                    'id' => $login->getId(),]))
                         ->setMethod('DELETE')
                         ->getForm()
         ;
     }
+
 }
