@@ -22,6 +22,7 @@ class VolController extends Controller {
      * @Method("GET")
      */
     public function indexAction() {
+
         $em = $this->getDoctrine()->getManager();
 
         $vols = $em->getRepository('RocketfireAgenceMainBundle:Vol')->findAll();

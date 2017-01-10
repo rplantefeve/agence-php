@@ -10,7 +10,6 @@
     <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Idresa</th>
                 <th>Datereservation</th>
                 <th>Numero</th>
                 <th>Etat</th>
@@ -23,7 +22,6 @@
         <tbody>
         {% for reservation in reservations %}
             <tr>
-                <td><a href="{{ path('reservation_show', { 'id': reservation.idResa }) }}">{{ reservation.idResa }}</a></td>
                 <td>{% if reservation.dateReservation %}{{ reservation.dateReservation|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ reservation.numero }}</td>
                 <td>{{ reservation.etat }}</td>

@@ -5,7 +5,6 @@ namespace RocketfireAgenceMainBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use RocketfireAgenceMainBundle\Entity\Aeroport;
 
 class VolType extends AbstractType
 {
@@ -18,10 +17,10 @@ class VolType extends AbstractType
                 ->add('dateArriveeVol')
                 ->add('heureDepartVol')
                 ->add('heureArriveeVol')
-                ->add('idAeroportDepart','entity', array(
+                ->add('AeroportDepart','entity', array(
                     'class' => 'RocketfireAgenceMainBundle:Aeroport',
                     'label'=>'Aeroport de Départ'))
-                ->add('idAeroportArrivee','entity', array(
+                ->add('AeroportArrivee','entity', array(
                     'class' => 'RocketfireAgenceMainBundle:Aeroport',
                     'label'=>'Aeroport d\'Arrivée'));
     }
