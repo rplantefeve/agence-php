@@ -2,31 +2,23 @@
 {% block title %}Inscription d'un particulier{% endblock %}
 {% block stylesheets %}<link href="{{ asset('bundles/rocketfireagencemain/style.css') }}" rel="stylesheet">{% endblock %}
 {% block body %}
-<body>
-    <h1>Inscription</h1>
-    <table>
-        <tr>
-            <td>
-                <form action='{{ path('client_particulier_add') }}'>
-                    <button class='button1'>Particulier</button>
-                </form>
-            </td>
-            <td>
-                <form action='{{ path('client_association_add') }}'>
-                    <button class='button1'>Association</button>
-                </form>
-            </td>
-            <td>
-                <form action='{{ path('client_entreprise_add') }}'>
-                    <button class='button1'>Entreprise</button>
-                </form>
-            </td>
-            <td>
-                <form action='{{ path('inscrire_client') }}'>
-                    <button class='button1'>Compagnie</button>
-                </form>
-            </td>
-        </tr>
-    </table>
-</body>
+    <body>
+        <h1>Inscription</h1>
+        <br />
+        <form action='{{ path('client_particulier_add') }}'>
+            <button class="btn btn-info">Particulier</button>
+        </form>
+        <br />
+        <form action='{{ path('client_association_add') }}'>
+            <button class="btn btn-info">Association</button>
+        </form>
+        <br />
+        <form action='{{ path('client_entreprise_add') }}'>
+            <button class="btn btn-info">Entreprise</button>
+        </form>
+        <br />
+        <form action='{{ path('inscrire_client') }}'>
+            <button class="btn btn-info">Compagnie</button>
+        </form>
+    </body>
 {% endblock %}
