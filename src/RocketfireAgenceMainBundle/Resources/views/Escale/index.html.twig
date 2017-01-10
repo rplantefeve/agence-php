@@ -7,45 +7,7 @@
             Create a new Escale
         </button>
     </a>
-    <table class="table table-hover table-striped">
-        <thead>
-            <tr>
-                <th>Datedepart</th>
-                <th>Datearrivee</th>
-                <th>Heuredepart</th>
-                <th>Heurearrivee</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for escale in escales %}
-            <tr>
-                <td>{% if escale.dateDepartEscale %}{{ escale.dateDepartEscale|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if escale.dateArriveeEscale %}{{ escale.dateArriveeEscale|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if escale.heureDepartEscale %}{{ escale.heureDepartEscale|date('H:i:s') }}{% endif %}</td>
-                <td>{% if escale.heureArriveeEscale %}{{ escale.heureArriveeEscale|date('H:i:s') }}{% endif %}</td>
-                <td>
-                    <a href="{{ path('escale_show', { 'id': escale.idEscale }) }}">
-                        <button type="button" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                        </button>
-                    </a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('escale_edit', { 'id': escale.idEscale }) }}">
-                        <button type="button" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
-                    </a>
-                    {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% for flashMessage in app.session.flashBag.get('error') %}
-        <p>
-            {{ flashMessage }}
-        </p>
+    {% for escale in escales %}
+    {% include 'RocketfireAgenceMainBundle:Escale:table.body.html.twig' %}
     {% endfor %}
-        
 {% endblock %}

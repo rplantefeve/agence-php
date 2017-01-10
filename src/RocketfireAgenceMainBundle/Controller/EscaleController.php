@@ -25,9 +25,11 @@ class EscaleController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $escales = $em->getRepository('RocketfireAgenceMainBundle:Escale')->findAll();
+        $villes_aeroports = $em->getRepository('RocketfireAgenceMainBundle:VilleAeroport')->findAll();
 
         return $this->render('RocketfireAgenceMainBundle:Escale:index.html.twig', [
-                    'escales' => $escales,
+            'escales' => $escales,
+            'villes_aeroports' => $villes_aeroports,
         ]);
     }
 
