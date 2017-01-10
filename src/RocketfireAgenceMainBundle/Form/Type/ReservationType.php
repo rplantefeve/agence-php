@@ -20,7 +20,7 @@ class ReservationType extends AbstractType
                 array("ouvert", "fermé"),
                 array('Ouvert', 'Fermé')
             )
-            ))
+        ])
             ->add('idVol', 'entity', array(
                 'class' => 'RocketfireAgenceMainBundle:Vol',
                 'label' => 'Vol'
