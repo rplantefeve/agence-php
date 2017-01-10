@@ -3,22 +3,22 @@
 {% block stylesheets %}<link href="{{ asset('bundles/rocketfireagencemain/style.css') }}" rel="stylesheet">{% endblock %}
 {% block body %}
     <body>
-        <h1>Inscription</h1>
+        <h1 class="text-center">Inscription</h1>
         <br />
         <form action='{{ path('client_particulier_add') }}'>
-            <button class="btn btn-info">Particulier</button>
+            <button class="btn btn-info col-sm-6 col-sm-offset-3 btn-lg">Particulier</button>
         </form>
         <br />
         <form action='{{ path('client_association_add') }}'>
-            <button class="btn btn-info">Association</button>
+            <button class="btn btn-info col-sm-6 col-sm-offset-3 btn-lg">Association</button>
         </form>
         <br />
         <form action='{{ path('client_entreprise_add') }}'>
-            <button class="btn btn-info">Entreprise</button>
+            <button class="btn btn-info col-sm-6 col-sm-offset-3 btn-lg">Entreprise</button>
         </form>
         <br />
         <form action='{{ path('inscrire_client') }}'>
-            <button class="btn btn-info">Compagnie</button>
+            <button class="btn btn-info col-sm-6 col-sm-offset-3 btn-lg">Compagnie</button>
         </form>
     </body>
 {% endblock %}
