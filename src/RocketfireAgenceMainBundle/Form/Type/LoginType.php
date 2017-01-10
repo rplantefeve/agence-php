@@ -20,7 +20,7 @@ class LoginType extends AbstractType
                 ->add('motDePasse', PasswordType::class)
                 ->add('motDePasseConf', PasswordType::class)
                 ->add('admin', CheckboxType::class, ['label_format' => 'label.administrator', 'required' => false])
-                ->add('isActive', CheckboxType::class, ['label_format' => 'label.active', 'required' => false]);
+                ->add('active', CheckboxType::class, ['label_format' => 'label.active', 'required' => false]);
     }
 
     /**

@@ -13,22 +13,21 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("Aeroport")
  */
-class AeroportController extends Controller
-{
+class AeroportController extends Controller {
+
     /**
      * Lists all aeroport entities.
      *
      * @Route("/list", name="aeroport_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $aeroports = $em->getRepository('RocketfireAgenceMainBundle:Aeroport')->findAll();
 
         return $this->render('RocketfireAgenceMainBundle:Aeroport:index.html.twig', [
-            'aeroports' => $aeroports,
+                    'aeroports' => $aeroports,
         ]);
     }
 
@@ -38,8 +37,7 @@ class AeroportController extends Controller
      * @Route("/add", name="aeroport_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $aeroport = new Aeroport();
         $form = $this->createForm('RocketfireAgenceMainBundle\Form\Type\AeroportType', $aeroport);
         $form->handleRequest($request);
@@ -53,8 +51,8 @@ class AeroportController extends Controller
         }
 
         return $this->render('RocketfireAgenceMainBundle:Aeroport:new.html.twig', [
-            'aeroport' => $aeroport,
-            'form' => $form->createView(),
+                    'aeroport' => $aeroport,
+                    'form' => $form->createView(),
         ]);
     }
 
@@ -64,13 +62,12 @@ class AeroportController extends Controller
      * @Route("/show/{id}", name="aeroport_show")
      * @Method("GET")
      */
-    public function showAction(Aeroport $aeroport)
-    {
+    public function showAction(Aeroport $aeroport) {
         $deleteForm = $this->createDeleteForm($aeroport);
 
         return $this->render('RocketfireAgenceMainBundle:Aeroport:show.html.twig', [
-            'aeroport' => $aeroport,
-            'delete_form' => $deleteForm->createView(),
+                    'aeroport' => $aeroport,
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -80,8 +77,7 @@ class AeroportController extends Controller
      * @Route("/edit/{id}", name="aeroport_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Aeroport $aeroport)
-    {
+    public function editAction(Request $request, Aeroport $aeroport) {
         $deleteForm = $this->createDeleteForm($aeroport);
         $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\AeroportType', $aeroport);
         $editForm->handleRequest($request);
@@ -93,9 +89,9 @@ class AeroportController extends Controller
         }
 
         return $this->render('RocketfireAgenceMainBundle:Aeroport:edit.html.twig', [
-            'aeroport' => $aeroport,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'aeroport' => $aeroport,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -105,15 +101,19 @@ class AeroportController extends Controller
      * @Route("/delete/{id}", name="aeroport_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Aeroport $aeroport)
-    {
+    public function deleteAction(Request $request, Aeroport $aeroport) {
         $form = $this->createDeleteForm($aeroport);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($aeroport);
-            $em->flush($aeroport);
+            try {
+                $em->remove($aeroport);
+                $em->flush($aeroport);
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                // store a message for the very next request
+                $this->addFlash('error', 'Delete unauthorized : ForeignKey Constraint Violation (child exist) !');
+            }
         }
 
         return $this->redirectToRoute('aeroport_index');
@@ -126,12 +126,12 @@ class AeroportController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Aeroport $aeroport)
-    {
+    private function createDeleteForm(Aeroport $aeroport) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('aeroport_delete', ['id' => $aeroport->getIdAero()]))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('aeroport_delete', ['id' => $aeroport->getIdAero()]))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

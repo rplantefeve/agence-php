@@ -13,26 +13,28 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("Vol")
  */
-class VolController extends Controller
-{
+class VolController extends Controller {
+
     /**
      * Lists all vol entities.
      *
      * @Route("/list", name="vol_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
-        $escale = new Escale();
-
-        $formData['escale'] = $escale;
+    public function indexAction() {
 
         $em = $this->getDoctrine()->getManager();
 
         $vols = $em->getRepository('RocketfireAgenceMainBundle:Vol')->findAll();
+        $escales = $em->getRepository('RocketfireAgenceMainBundle:Escale')->findAll();
+        $villes_aeroports = $em->getRepository('RocketfireAgenceMainBundle:VilleAeroport')->findAll();
+        $comp_vols = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienneVol')->findAll();
 
         return $this->render('RocketfireAgenceMainBundle:Vol:index.html.twig', [
             'vols' => $vols,
+            'escales' => $escales,
+            'villes_aeroports' => $villes_aeroports,
+            'comp_vols'=> $comp_vols,
         ]);
     }
 
@@ -42,8 +44,7 @@ class VolController extends Controller
      * @Route("/add", name="vol_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $vol = new Vol();
         $form = $this->createForm('RocketfireAgenceMainBundle\Form\Type\VolType', $vol);
         $form->handleRequest($request);
@@ -57,8 +58,8 @@ class VolController extends Controller
         }
 
         return $this->render('RocketfireAgenceMainBundle:Vol:new.html.twig', [
-            'vol' => $vol,
-            'form' => $form->createView(),
+                    'vol' => $vol,
+                    'form' => $form->createView(),
         ]);
     }
 
@@ -68,13 +69,12 @@ class VolController extends Controller
      * @Route("/show/{id}", name="vol_show")
      * @Method("GET")
      */
-    public function showAction(Vol $vol)
-    {
+    public function showAction(Vol $vol) {
         $deleteForm = $this->createDeleteForm($vol);
 
         return $this->render('RocketfireAgenceMainBundle:Vol:show.html.twig', [
-            'vol' => $vol,
-            'delete_form' => $deleteForm->createView(),
+                    'vol' => $vol,
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -84,8 +84,7 @@ class VolController extends Controller
      * @Route("/edit/{id}", name="vol_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Vol $vol)
-    {
+    public function editAction(Request $request, Vol $vol) {
         $deleteForm = $this->createDeleteForm($vol);
         $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\VolType', $vol);
         $editForm->handleRequest($request);
@@ -97,9 +96,9 @@ class VolController extends Controller
         }
 
         return $this->render('RocketfireAgenceMainBundle:Vol:edit.html.twig', [
-            'vol' => $vol,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'vol' => $vol,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -109,15 +108,19 @@ class VolController extends Controller
      * @Route("/delete/{id}", name="vol_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Vol $vol)
-    {
+    public function deleteAction(Request $request, Vol $vol) {
         $form = $this->createDeleteForm($vol);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($vol);
-            $em->flush($vol);
+            try {
+                $em->remove($vol);
+                $em->flush($vol);
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                // store a message for the very next request
+                $this->addFlash('error', 'Delete unauthorized : ForeignKey Constraint Violation (child exist) !');
+            }
         }
 
         return $this->redirectToRoute('vol_index');
@@ -130,12 +133,12 @@ class VolController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Vol $vol)
-    {
+    private function createDeleteForm(Vol $vol) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('vol_delete', ['id' => $vol->getIdVol()]))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('vol_delete', ['id' => $vol->getIdVol()]))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

@@ -1,31 +1,11 @@
-<tr>
-    <td>Login </td>
-    <td>
-        {{ form_row(form.login.login, {'label': ' '}) }}</td>
-</tr>
+{{ form_row(form.login.login, {'label': 'Login'}) }}
+{% for flashMessage in app.session.flashBag.get('errorPassword') %}
+    <span class="inline">
+        {{ flashMessage }}
+    </span>
+{% endfor %}
+{{ form_row(form.login.motDePasse, {'label': 'Mot de passe'}) }}
+{{ form_row(form.login.motDePasseConf, {'label': 'Confirmation'}) }}
+{{ form_row(form.login.admin, {'label': 'Administrateur' }) }}
+{{ form_row(form.login.active, {'label': 'Compte actif'}) }}
 
-<tr>
-    <td>Mot de passe </td>
-    <td>
-        {% for flashMessage in app.session.flashBag.get('errorPassword') %}
-            <span class="inline">
-                {{ flashMessage }}
-            </span>
-        {% endfor %}
-        {{ form_row(form.login.motDePasse, {'label': ' '}) }}
-    </td>
-</tr>
-<tr>
-    <td>Confirmation </td>
-    <td>{{ form_row(form.login.motDePasseConf, {'label': ' '}) }}</td>
-</tr>
-<tr>
-    <td>Administrateur </td>
-    <td>
-        {{ form_row(form.login.admin, {'label': ' '}) }}
-    </td>
-</tr>
-<tr>
-    <td>Compte actif </td>
-    <td>{{ form_row(form.login.isActive, {'label': ' '}) }}</td>
-</tr>

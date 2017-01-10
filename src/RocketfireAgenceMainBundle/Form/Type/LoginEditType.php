@@ -27,7 +27,7 @@ class LoginEditType extends AbstractType
                         [
                     'label' => 'Administrateur',
                     'required' => false, ])
-                ->add('isActive', CheckboxType::class,
+                ->add('active', CheckboxType::class,
                         [
                     'label' => 'Actif',
                     'required' => false, ]);
