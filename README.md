@@ -24,24 +24,68 @@ agence_de_voyage
 
     Listen 8080
 
-    <VirtualHost *:8080>
-      DocumentRoot "/srv/http/agence_de_voyage/web"
-      DirectoryIndex index.php
-      <Directory "/srv/http/agence_de_voyage/web">
+    <VirtualHost agence.local:80>
+    ServerName agence.local
+
+    DocumentRoot "/home/sam/Documents/php/agence_de_voyage/web"
+    LogLevel warn
+    CustomLog logs/agence.local_access.log common
+    ErrorLog logs/agence.local_error.log
+
+    <Directory "/home/sam/Documents/php/agence_de_voyage/web">
         AllowOverride All
-        Order Allow,Deny
-        Allow from All
-      </Directory>
+        Order allow,deny
+        Allow from all
+        Require all granted
+        <IfModule mod_negotiation.c>
+            Options -MultiViews
+        </IfModule>
 
-      <Directory "/srv/http/agence_de_voyage/lib/vendor/symfony/data/web/sf">
-        AllowOverride All
-        Allow from All
-      </Directory>
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
 
-        ErrorLog /var/log/httpd/project_error.log
-        CustomLog /var/log/httpd/project_access.log combined
-    </VirtualHost>
+            RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+            RewriteRule ^(.*) - [E=BASE:%1]
 
+            RewriteCond %{HTTP:Authorization} .
+            RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+            RewriteCond %{ENV:REDIRECT_STATUS} ^$
+            RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
+
+
+            RewriteCond %{REQUEST_FILENAME} -f
+            RewriteRule .? - [L]
+
+            RewriteRule .? %{ENV:BASE}/app.php [L]
+        </IfModule>
+
+        <IfModule !mod_rewrite.c>
+            <IfModule mod_alias.c>
+                RedirectMatch 302 ^/$ /app.php/
+            </IfModule>
+        </IfModule>
+    </Directory>
+    <Directory "/home/sam/Documents/php/agence_de_voyage/app">
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order deny,allow
+            Deny from all
+        </IfModule>
+    </Directory>
+    <Directory "/home/sam/Documents/php/agence_de_voyage/src">
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order deny,allow
+            Deny from all
+        </IfModule>
+    </Directory>
+
+</VirtualHost>
 ### Configuration de : parameters.yml
 Il faut créer un fichier : parameters.yml et le placer dans app/config
 
@@ -51,6 +95,8 @@ Il faut y placer ces lignes :
 
     # This file is auto-generated during the composer install
     parameters:
+        database_driver: pdo_sqlite
+        database_path: "%kernel.root_dir%/data.db3"
         database_host: 127.0.0.1
         database_port: 3306
         database_name: agence
