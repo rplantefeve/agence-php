@@ -6,30 +6,27 @@
 
     <h1>Liste des vols de compagnie aérienne</h1>
     
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('CompagnieAerienneVol_add') }}">
         <button type="button" class="btn btn-info">
             Créer un nouveau vol de compagnie aerienne
         </button>
     </a>
+     {% endif %}
     
     <table class="table table-hover table-striped">
         <tr>
-            <th>Id</th>
             <th>Numero</th>
             <th>Ouvert</th>
             <th>Compagnie aérienne</th>
-            <th>Id du vol</th>
             <th>Actions</th>
         </tr>
         {% for compagnieAerienneVol in compagnieAerienneVols %}
             {# boucle de construction de la liste des compagnieAerienneVols #}
             <tr>
-                <td><a href='{{ path('CompagnieAerienneVol_show', { 'id' : compagnieAerienneVol.id }) }}'>{{ compagnieAerienneVol.id }}</a></td>
                 <td>{{ compagnieAerienneVol.numero }}</td>
                 <td>{{ compagnieAerienneVol.ouvert }}</td>
-                <td>{{ compagnieAerienneVol.idCompagnie }}</td>
-                <td>{{ compagnieAerienneVol.idVol }}</td>
-                
+                <td>{{ compagnieAerienneVol.idCompagnie }}</td>        
                 <td>
                     <a href="{{ path('CompagnieAerienneVol_show', { 'id': compagnieAerienneVol.id }) }}">
                         <button type="submit" class="btn btn-default" aria-label="Left Align">
