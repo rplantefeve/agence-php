@@ -24,7 +24,7 @@ class LoginController extends Controller {
         $authenticationUtils = $this->get('security.authentication_utils');
         // si l'utilisateur est déjà connecté, on redirige vers la homepage
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('home');
         } else {
             // get the login error if there is one
             $error = $authenticationUtils->getLastAuthenticationError();

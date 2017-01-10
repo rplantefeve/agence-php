@@ -32,10 +32,11 @@ security:
             form_login:
                 login_path: /Login/login
                 check_path: /Login/login
+                default_target_path: /home
 
             logout:
                 path: /Login/logout
-                target: /
+                target: /home
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
         - { path: ^/Vol/list$, role: IS_AUTHENTICATED_ANONYMOUSLY }
