@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('/assets/css/form.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('/bundles/rocketfireagencemain/style.css')}}" type="text/css">
-    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 
 </head>
 <body>
@@ -47,7 +46,7 @@
                             <li><a href="{{ path('reservation_index') }}">Réservation</a></li>
                             <li><a href="{{ path('ville_index') }}">Ville</a></li>
                             <li><a href="{{ path('villeaeroport_index') }}">Ville Aeroport</a></li>
-                            <li><a href="{{ path('passager_index') }}">Passager</a></li>                           
+                            <li><a href="{{ path('passager_index') }}">Passager</a></li>
                           {% else %}
                            <li class="active"><a href="{{ path('logout') }}">{% trans %}link.logout{% endtrans %}<span class="sr-only">(current)</span></a></li>
                             <li><a href="{{ path('inscrire_client') }}">Client</a></li>
@@ -78,8 +77,8 @@
     </footer>
 
     {% endblock %}
-    {% block javascripts %}
     <script src="{{ asset('assets/js/bootstrap.min.js') }}" charset="utf-8"></script>
+    {% block javascripts %}
     {% endblock %}
 </body>
 </html>
