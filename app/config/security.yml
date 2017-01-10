@@ -53,7 +53,7 @@ security:
         - { path: ^/CompagnieAerienne/list$, role: ROLE_USER }
         - { path: ^/Adresse/list$, role: ROLE_USER }
         - { path: ^/Escale/list$, role: ROLE_USER }
-        - { path: ^/Reservation/list$, role: ROLE_USER }
+        - { path: ^/Reservation, role: ROLE_USER }
         - { path: ^/Ville/list$, role: ROLE_USER }
         - { path: ^/Login/edit, roles: ROLE_ADMIN }
         - { path: ^/Login/add, roles: ROLE_ADMIN }
@@ -62,7 +62,7 @@ security:
         - { path: ^/CompagnieAerienne, role: ROLE_ADMIN }
         - { path: ^/Adresse, role: ROLE_ADMIN }
         - { path: ^/Escale, role: ROLE_ADMIN }
-        - { path: ^/Reservation, role: ROLE_ADMIN }
+        # - { path: ^/Reservation, role: ROLE_ADMIN }
         - { path: ^/Ville, role: ROLE_ADMIN }
 
 
