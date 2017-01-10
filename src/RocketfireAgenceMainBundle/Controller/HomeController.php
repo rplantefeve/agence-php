@@ -19,6 +19,7 @@ class HomeController extends Controller {
      *
      * @return type
      * @Route("/home", name="home")
+     * @Method("GET")
      */
     public function homeAction (Request $request) {
         return $this->render('RocketfireAgenceMainBundle:Home:home.html.twig');

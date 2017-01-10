@@ -11,15 +11,16 @@ use Symfony\Component\HttpFoundation\Request;
 use RocketfireAgenceMainBundle\Form\Type\LoginType;
 
 /**
- * Login controller.
- *
- * @Route("Login")
- */
+* Login controller.
+*
+* @Route("Login")
+*/
 class LoginController extends Controller {
 
     /**
-     * @Route("/login", name="login")
-     */
+    * @Route("/login", name="login")
+    * @Method({"GET", "POST"})
+    */
     public function loginAction(Request $request) {
         $authenticationUtils = $this->get('security.authentication_utils');
         // si l'utilisateur est déjà connecté, on redirige vers la homepage
@@ -32,37 +33,37 @@ class LoginController extends Controller {
             $lastUsername = $authenticationUtils->getLastUsername();
 
             return $this->render(
-                            'RocketfireAgenceMainBundle:Login:login.html.twig', [
-                        // last username entered by the user
-                        'last_username' => $lastUsername,
-                        'error' => $error,
-                            ]
+                'RocketfireAgenceMainBundle:Login:login.html.twig', [
+                    // last username entered by the user
+                    'last_username' => $lastUsername,
+                    'error' => $error,
+                ]
             );
         }
     }
 
     /**
-     * Lists all login entities.
-     *
-     * @Route("/list", name="login_list")
-     * @Method("GET")
-     */
+    * Lists all login entities.
+    *
+    * @Route("/list", name="login_list")
+    * @Method("GET")
+    */
     public function listLoginAction() {
         $em = $this->getDoctrine()->getManager();
 
         $logins = $em->getRepository('RocketfireAgenceMainBundle:Login')->findAll();
 
         return $this->render('RocketfireAgenceMainBundle:Login:index.html.twig', [
-                    'logins' => $logins,
+            'logins' => $logins,
         ]);
     }
 
     /**
-     * Creates a new login entity.
-     *
-     * @Route("/add", name="login_add")
-     * @Method({"GET", "POST"})
-     */
+    * Creates a new login entity.
+    *
+    * @Route("/add", name="login_add")
+    * @Method({"GET", "POST"})
+    */
     public function addLoginAction(Request $request) {
         // 1) Créer le formulaire
         $login = new Login();
@@ -83,100 +84,100 @@ class LoginController extends Controller {
             $em->flush($login);
 
             return $this->redirectToRoute('login_show', [
-                        'id' => $login->getId(),]);
+                'id' => $login->getId(),]);
+            }
+
+            return $this->render('RocketfireAgenceMainBundle:Login:new.html.twig', [
+                'login' => $login,
+                'form' => $form->createView(),
+            ]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Login:new.html.twig', [
-                    'login' => $login,
-                    'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * Finds and displays a login entity.
-     *
-     * @Route("/show/{id}", name="login_show")
-     * @Method("GET")
-     */
-    public function showLoginAction(Login $login) {
-        return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig', [
-                    'login' => $login,
-        ]);
-    }
-
-    /**
-     * Displays a form to edit an existing login entity.
-     *
-     * @Route("/edit/{id}", name="login_edit")
-     * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function editLoginAction(Request $request, Login $login) {
-        $deleteForm = $this->createDeleteForm($login);
-        $editForm = $this->createForm(LoginType::class, $login);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $encoder = $this->get('security.password_encoder');
-            $password = $encoder->encodePassword($login, $login->getMotDePasse());
-            $login->setMotDePasse($password);
-
-            $this->getDoctrine()->getManager()->flush();
-
-            $this->addFlash('notice', 'Félicitations, modification réussie.');
-
-            return $this->redirectToRoute('login_edit', [
-                        'id' => $login->getId(),]);
+        /**
+        * Finds and displays a login entity.
+        *
+        * @Route("/show/{id}", name="login_show")
+        * @Method("GET")
+        */
+        public function showLoginAction(Login $login) {
+            return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig', [
+                'login' => $login,
+            ]);
         }
 
-        return $this->render('RocketfireAgenceMainBundle:Login:edit.html.twig', [
+        /**
+        * Displays a form to edit an existing login entity.
+        *
+        * @Route("/edit/{id}", name="login_edit")
+        * @Method({"GET", "POST"})
+        * @Security("has_role('ROLE_ADMIN')")
+        */
+        public function editLoginAction(Request $request, Login $login) {
+            $deleteForm = $this->createDeleteForm($login);
+            $editForm = $this->createForm(LoginType::class, $login);
+            $editForm->handleRequest($request);
+
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $encoder = $this->get('security.password_encoder');
+                $password = $encoder->encodePassword($login, $login->getMotDePasse());
+                $login->setMotDePasse($password);
+
+                $this->getDoctrine()->getManager()->flush();
+
+                $this->addFlash('notice', 'Félicitations, modification réussie.');
+
+                return $this->redirectToRoute('login_edit', [
+                    'id' => $login->getId(),]);
+                }
+
+                return $this->render('RocketfireAgenceMainBundle:Login:edit.html.twig', [
                     'login' => $login,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
-        ]);
-    }
-
-    /**
-     * Deletes a login entity.
-     *
-     * @Route("/delete/{id}", name="login_delete")
-     * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN') && !login.isSelf(user)")
-     */
-    public function deleteLoginAction(Request $request, Login $login) {
-        $form = $this->createDeleteForm($login);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-
-            try {
-                $em->remove($login);
-                $em->flush($login);
-            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
-                // store a message for the very next request
-                $this->addFlash('error', 'Delete unauthorized : ForeignKey Constraint Violation (child exist) !');
+                ]);
             }
-        }
 
-        return $this->redirectToRoute('login_list');
-    }
+            /**
+            * Deletes a login entity.
+            *
+            * @Route("/delete/{id}", name="login_delete")
+            * @Method("DELETE")
+            * @Security("has_role('ROLE_ADMIN') && !login.isSelf(user)")
+            */
+            public function deleteLoginAction(Request $request, Login $login) {
+                $form = $this->createDeleteForm($login);
+                $form->handleRequest($request);
 
-    /**
-     * Creates a form to delete a login entity.
-     *
-     * @param Login $login The login entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Login $login) {
-        return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('login_delete', [
-                                    'id' => $login->getId(),]))
-                        ->setMethod('DELETE')
-                        ->getForm()
-        ;
-    }
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $em = $this->getDoctrine()->getManager();
 
-}
+
+                    try {
+                        $em->remove($login);
+                        $em->flush($login);
+                    } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                        // store a message for the very next request
+                        $this->addFlash('error', 'Delete unauthorized : ForeignKey Constraint Violation (child exist) !');
+                    }
+                }
+
+                return $this->redirectToRoute('login_list');
+            }
+
+            /**
+            * Creates a form to delete a login entity.
+            *
+            * @param Login $login The login entity
+            *
+            * @return \Symfony\Component\Form\Form The form
+            */
+            private function createDeleteForm(Login $login) {
+                return $this->createFormBuilder()
+                ->setAction($this->generateUrl('login_delete', [
+                    'id' => $login->getId(),]))
+                    ->setMethod('DELETE')
+                    ->getForm()
+                    ;
+                }
+
+            }
