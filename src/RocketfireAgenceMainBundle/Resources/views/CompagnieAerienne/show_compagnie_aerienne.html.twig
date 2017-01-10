@@ -3,7 +3,37 @@
 {% block title %}RocketfireAgenceMainBundle:CompagnieAerienne:showCompagnieAerienne{% endblock %}
 
 {% block body %}
-    <h1>Welcome to the CompagnieAerienne:showCompagnieAerienne page</h1>
-    Num&#233;ro identifiant : {{ compagnieAerienne.id }}&nbsp;
-    Nom de la compagnie : {{ compagnieAerienne.nom }}
+    <h1>Détails de la compagnie aérienne</h1>
+    <table class="table table-hover table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ compagnieAerienne.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ compagnieAerienne.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <a href="{{ path('CompagnieAerienne_list') }}">
+                <button type="button" class="btn btn-default">
+                    Retour
+                </button>
+            </a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="{{ path('CompagnieAerienne_edit', { 'id': compagnieAerienne.id }) }}">
+                <button type="button" class="btn btn-warning">Editer</button>
+            </a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="{{ path('CompagnieAerienne_delete', { 'id': compagnieAerienne.id }) }}">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </a>
+        </div>
+    </div>
 {% endblock %}
