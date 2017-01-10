@@ -28,8 +28,8 @@
                 <td>{% if vol.dateArriveeVol %}{{ vol.dateArriveeVol|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if vol.heureDepartVol %}{{ vol.heureDepartVol|date('H:i:s') }}{% endif %}</td>
                 <td>{% if vol.heureArriveeVol %}{{ vol.heureArriveeVol|date('H:i:s') }}{% endif %}</td>
-                <td>{% if vol.idAeroportDepart %}{{ vol.idAeroportDepart }}{% endif %}</td>
-                <td>{% if vol.idAeroportArrivee %}{{ vol.idAeroportArrivee }}{% endif %}</td>
+                <td>{% if vol.AeroportDepart %}{{ vol.AeroportDepart }}{% endif %}</td>
+                <td>{% if vol.AeroportArrivee %}{{ vol.AeroportArrivee }}{% endif %}</td>
                 <td>
                     <a href="{{ path('vol_show', { 'id': vol.idVol }) }}">
                         <button type="button" class="btn btn-default" aria-label="Left Align">
