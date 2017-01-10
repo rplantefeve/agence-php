@@ -23,6 +23,10 @@ class VolController extends Controller
      */
     public function indexAction()
     {
+        $escale = new Escale();
+
+        $formData['escale'] = $escale;
+
         $em = $this->getDoctrine()->getManager();
 
         $vols = $em->getRepository('RocketfireAgenceMainBundle:Vol')->findAll();
