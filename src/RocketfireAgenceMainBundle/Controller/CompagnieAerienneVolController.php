@@ -104,6 +104,8 @@ class CompagnieAerienneVolController extends Controller
 
         return $this->render('RocketfireAgenceMainBundle:CompagnieAerienneVol:edit_compagnie_aerienne_vol.html.twig', [
                     'form' => $form->createView(),
+                    'compagnieAerienneVol' => $compagnieAerienneVol,
+            
         ]);
     }
 
