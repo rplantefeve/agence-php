@@ -1,36 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Passager</h1>
+<h1>Passager</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idpassager</th>
-                <td>{{ passager.idPassager }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ passager.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ passager.prenom }}</td>
-            </tr>
-        </tbody>
-    </table>
+<table class="table table-hover table-striped">
+    <tbody>
+        <tr>
+            <th>Idpassager</th>
+            <td>{{ passager.idPassager }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ passager.nom }}</td>
+        </tr>
+        <tr>
+            <th>Prenom</th>
+            <td>{{ passager.prenom }}</td>
+        </tr>
+    </tbody>
+</table>
 
-    <ul>
-        <li>
-            <a href="{{ path('passager_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('passager_edit', { 'id': passager.idPassager }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+        <a href="{{ path('passager_index') }}">
+            <button type="button" class="btn btn-default">
+                Retour
+            </button>
+        </a>
+    </div>
+    <div class="btn-group" role="group">
+        <a href="{{ path('passager_edit', { 'id': passager.idPassager }) }}">
+            <button type="button" class="btn btn-warning">Editer</button>
+        </a>
+    </div>
+    <div class="btn-group" role="group">
+        {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+</div>
 {% endblock %}

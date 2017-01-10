@@ -49,7 +49,7 @@ class PassagerController extends Controller
             $em->persist($passager);
             $em->flush($passager);
 
-            return $this->redirectToRoute('passager_show', array('id' => $passager->getId()));
+            return $this->redirectToRoute('passager_show', array('id' => $passager->getIdPassager()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Passager:new.html.twig', array(
@@ -89,7 +89,7 @@ class PassagerController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('passager_edit', array('id' => $passager->getId()));
+            return $this->redirectToRoute('passager_edit', array('id' => $passager->getIdPassager()));
         }
 
         return $this->render('RocketfireAgenceMainBundle:Passager:edit.html.twig', array(
@@ -129,7 +129,7 @@ class PassagerController extends Controller
     private function createDeleteForm(Passager $passager)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('passager_delete', array('id' => $passager->getId())))
+            ->setAction($this->generateUrl('passager_delete', array('id' => $passager->getIdPassager())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -44,16 +44,6 @@ class Passager
     private $prenom;
 
     /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set nom.
      *
      * @param string $nom
