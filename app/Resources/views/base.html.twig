@@ -47,12 +47,14 @@
                             <li><a href="{{ path('reservation_index') }}">Réservation</a></li>
                             <li><a href="{{ path('ville_index') }}">Ville</a></li>
                             <li><a href="{{ path('villeaeroport_index') }}">Ville Aeroport</a></li>
+                            <li><a href="{{ path('passager_index') }}">Passager</a></li>                           
                           {% else %}
                            <li class="active"><a href="{{ path('logout') }}">{% trans %}link.logout{% endtrans %}<span class="sr-only">(current)</span></a></li>
-                            <li><a href="{{ path('inscrire_client') }}">Client</a></li> 
-                           <li><a href="{{ path('vol_index') }}">Vol</a></li>                          
-                            <li><a href="{{ path('reservation_index') }}">Réservation</a></li>                           
-                           {% endif %}                          
+                            <li><a href="{{ path('inscrire_client') }}">Client</a></li>
+                           <li><a href="{{ path('vol_index') }}">Vol</a></li>
+                            <li><a href="{{ path('reservation_index') }}">Réservation</a></li>
+                            <li><a href="{{ path('passager_index') }}">Passager</a></li>
+                           {% endif %}
                     {% else %}
                     <li class="active"><a href="{{ path('login') }}">Login<span class="sr-only">(current)</span></a></li>
                     {% endif %}
