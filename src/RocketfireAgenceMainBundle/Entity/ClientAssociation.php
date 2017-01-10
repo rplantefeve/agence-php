@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ClientAssociation.
  *
- * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
+ * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\ClientRepository")
  */
 class ClientAssociation extends Professionnel
 {

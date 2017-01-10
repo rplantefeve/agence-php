@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ClientParticulier.
  *
- * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
+ * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\ClientRepository")
  */
 class ClientParticulier extends Client
 {
