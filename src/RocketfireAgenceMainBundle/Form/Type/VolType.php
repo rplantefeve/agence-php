@@ -13,7 +13,16 @@ class VolType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateDepartVol')->add('dateArriveeVol')->add('heureDepartVol')->add('heureArriveeVol')->add('idAeroportDepart')->add('idAeroportArrivee')        ;
+        $builder->add('dateDepartVol')
+                ->add('dateArriveeVol')
+                ->add('heureDepartVol')
+                ->add('heureArriveeVol')
+                ->add('AeroportDepart','entity', array(
+                    'class' => 'RocketfireAgenceMainBundle:Aeroport',
+                    'label'=>'Aeroport de Départ'))
+                ->add('AeroportArrivee','entity', array(
+                    'class' => 'RocketfireAgenceMainBundle:Aeroport',
+                    'label'=>'Aeroport d\'Arrivée'));
     }
 
     /**

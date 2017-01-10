@@ -28,7 +28,7 @@ class Vol
      * @ORM\ManyToOne(targetEntity="Aeroport")
      * @ORM\JoinColumn(name="idAeroportDepart", referencedColumnName="idAero")
      */
-     private $idAeroportDepart;
+     private $AeroportDepart;
 
     /**
      * @var int
@@ -36,7 +36,7 @@ class Vol
      * @ORM\ManyToOne(targetEntity="Aeroport")
      * @ORM\JoinColumn(name="idAeroportArrivee", referencedColumnName="idAero")
      */
-     private $idAeroportArrivee;
+     private $AeroportArrivee;
 
     /**
      * @var \DateTime
@@ -168,51 +168,51 @@ class Vol
     }
 
     /**
-     * Set idAeroportDepart
+     * Set AeroportDepart
      *
-     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart
+     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $AeroportDepart
      *
      * @return Vol
      */
-    public function setIdAeroportDepart(\RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart = null)
+    public function setAeroportDepart(\RocketfireAgenceMainBundle\Entity\Aeroport $AeroportDepart = null)
     {
-        $this->idAeroportDepart = $idAeroportDepart;
+        $this->AeroportDepart = $AeroportDepart;
 
         return $this;
     }
 
     /**
-     * Get idAeroportDepart
+     * Get AeroportDepart
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */
-    public function getIdAeroportDepart()
+    public function getAeroportDepart()
     {
-        return $this->idAeroportDepart;
+        return $this->AeroportDepart;
     }
 
     /**
-     * Set idAeroportArrivee
+     * Set AeroportArrivee
      *
-     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee
+     * @param \RocketfireAgenceMainBundle\Entity\Aeroport $AeroportArrivee
      *
      * @return Vol
      */
-    public function setIdAeroportArrivee(\RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee = null)
+    public function setAeroportArrivee(\RocketfireAgenceMainBundle\Entity\Aeroport $AeroportArrivee = null)
     {
-        $this->idAeroportArrivee = $idAeroportArrivee;
+        $this->AeroportArrivee = $AeroportArrivee;
 
         return $this;
     }
 
     /**
-     * Get idAeroportArrivee
+     * Get AeroportArrivee
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */
-    public function getIdAeroportArrivee()
+    public function getAeroportArrivee()
     {
-        return $this->idAeroportArrivee;
+        return $this->AeroportArrivee;
     }
 
     /**
