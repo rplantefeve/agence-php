@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservation edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit"  class="btn btn-lg btn-warning col-sm-12"/>
+    {{ form_end(edit_form) }}
+
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <a href="{{ path('reservation_index') }}">
+                <button type="button" class="btn btn-default">
+                    Retour
+                </button>
+            </a>
+        </div>
+
+        <div class="btn-group" role="group">
+            {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger" value="Delete">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

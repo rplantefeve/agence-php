@@ -5,7 +5,7 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Passager
+ * Passager.
  *
  * @ORM\Table(name="passager")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\PassagerRepository")
@@ -43,9 +43,8 @@ class Passager
      */
     private $prenom;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -55,7 +54,7 @@ class Passager
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
@@ -69,7 +68,7 @@ class Passager
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */
@@ -79,7 +78,7 @@ class Passager
     }
 
     /**
-     * Set prenom
+     * Set prenom.
      *
      * @param string $prenom
      *
@@ -93,7 +92,7 @@ class Passager
     }
 
     /**
-     * Get prenom
+     * Get prenom.
      *
      * @return string
      */
@@ -103,9 +102,9 @@ class Passager
     }
 
     /**
-     * Get idPassager
+     * Get idPassager.
      *
-     * @return integer
+     * @return int
      */
     public function getIdPassager()
     {
@@ -113,7 +112,7 @@ class Passager
     }
 
     /**
-     * Set idAdd
+     * Set idAdd.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Adresse $idAdd
      *
@@ -127,12 +126,16 @@ class Passager
     }
 
     /**
-     * Get idAdd
+     * Get idAdd.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Adresse
      */
     public function getIdAdd()
     {
         return $this->idAdd;
+    }
+
+    public function __toString(){
+        return $this->nom;
     }
 }

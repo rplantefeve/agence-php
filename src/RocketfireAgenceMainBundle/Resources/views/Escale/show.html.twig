@@ -3,11 +3,11 @@
 {% block body %}
     <h1>Escale</h1>
 
-    <table>
+    <table class="table table-hover table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ escale.id }}</td>
+                <td>{{ escale.idEscale }}</td>
             </tr>
             <tr>
                 <th>Datedepart</th>
@@ -28,17 +28,23 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('escale_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('escale_edit', { 'id': escale.id }) }}">Edit</a>
-        </li>
-        <li>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <a href="{{ path('escale_index') }}">
+                <button type="button" class="btn btn-default">
+                    Retour
+                </button>
+            </a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="{{ path('escale_edit', { 'id': escale.idEscale }) }}">
+                <button type="button" class="btn btn-warning">Editer</button>
+            </a>
+        </div>
+        <div class="btn-group" role="group">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
 {% endblock %}

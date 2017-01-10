@@ -1,44 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Adresse</h1>
+<h1>Adresse</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idadd</th>
-                <td>{{ adresse.idAdd }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ adresse.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Codepostal</th>
-                <td>{{ adresse.codePostal }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ adresse.ville }}</td>
-            </tr>
-            <tr>
-                <th>Pays</th>
-                <td>{{ adresse.pays }}</td>
-            </tr>
-        </tbody>
-    </table>
+<table class="table table-hover table-striped">
+    <tbody>
+        <tr>
+            <th>Idadd</th>
+            <td>{{ adresse.idAdd }}</td>
+        </tr>
+        <tr>
+            <th>Adresse</th>
+            <td>{{ adresse.adresse }}</td>
+        </tr>
+        <tr>
+            <th>Codepostal</th>
+            <td>{{ adresse.codePostal }}</td>
+        </tr>
+        <tr>
+            <th>Ville</th>
+            <td>{{ adresse.ville }}</td>
+        </tr>
+        <tr>
+            <th>Pays</th>
+            <td>{{ adresse.pays }}</td>
+        </tr>
+    </tbody>
+</table>
 
-    <ul>
-        <li>
-            <a href="{{ path('Adresse_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('Adresse_edit', { 'id': adresse.idAdd }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+        <a href="{{ path('adresse_index') }}">
+            <button type="button" class="btn btn-default">
+                Retour
+            </button>
+        </a>
+    </div>
+    <div class="btn-group" role="group">
+        <a href="{{ path('adresse_edit', { 'id': adresse.idAdd }) }}">
+            <button type="button" class="btn btn-warning">Editer</button>
+        </a>
+    </div>
+    <div class="btn-group" role="group">
+        {{ form_start(delete_form) }}
+            <input type="submit" class="btn btn-danger" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+</div>
+
 {% endblock %}

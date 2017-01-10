@@ -3,10 +3,9 @@
 namespace RocketfireAgenceMainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use RocketfireAgenceMainBundle\Entity\Client;
 
 /**
- * ClientParticulier
+ * ClientParticulier.
  *
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\clientRepository")
  */
@@ -18,7 +17,7 @@ class ClientParticulier extends Client
     protected $prenom;
 
     /**
-     * Set prenom
+     * Set prenom.
      *
      * @param string $prenom
      *
@@ -30,12 +29,16 @@ class ClientParticulier extends Client
     }
 
     /**
-     * Get prenom
+     * Get prenom.
      *
      * @return string
      */
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
+    }
+    
+    public function __toString(){
+        return $this->prenom;
     }
 }

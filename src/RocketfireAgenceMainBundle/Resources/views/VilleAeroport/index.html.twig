@@ -2,11 +2,17 @@
 
 {% block body %}
     <h1>Villeaeroports list</h1>
-
-    <table>
+    <a href="{{ path('villeaeroport_new') }}">
+        <button type="button" class="btn btn-info">
+            Create a new aeroport
+        </button>
+    </a>
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Ville</th>
+                <th>Aeroport</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -14,24 +20,23 @@
         {% for villeAeroport in villeAeroports %}
             <tr>
                 <td><a href="{{ path('villeaeroport_show', { 'id': villeAeroport.id }) }}">{{ villeAeroport.id }}</a></td>
+                <td>{{ villeAeroport.idVille }}</td>
+                <td>{{ villeAeroport.idAeroport }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('villeaeroport_show', { 'id': villeAeroport.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('villeaeroport_edit', { 'id': villeAeroport.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('villeaeroport_show', { 'id': villeAeroport.id }) }}">
+                        <button type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        </button>
+                    </a>
+                    <a href="{{ path('villeaeroport_edit', { 'id': villeAeroport.id }) }}">
+                        <button type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </button>
+                    </a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('villeaeroport_new') }}">Create a new villeAeroport</a>
-        </li>
-    </ul>
 {% endblock %}

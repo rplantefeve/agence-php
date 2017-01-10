@@ -8,14 +8,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Login
+ * Login.
  *
  * @ORM\Table(name="login")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\LoginRepository")
  * @UniqueEntity(fields="login", message="Compte déjà existant")
  */
-class Login implements UserInterface, \Serializable {
-
+class Login implements UserInterface, \Serializable
+{
     /**
      * @var int
      *
@@ -39,10 +39,9 @@ class Login implements UserInterface, \Serializable {
      * @ORM\Column(name="motDePasse", type="string", length=64)
      */
     private $motDePasse;
-    
+
     /**
      * @var string
-     *
      */
     private $motDePasseConf;
 
@@ -55,217 +54,271 @@ class Login implements UserInterface, \Serializable {
 
     /**
      * @var bool
-     * 
+     *
      * @ORM\Column(name="isActive", type="boolean")
      */
     private $isActive;
 
     /**
-     * @var Client 
-     * 
+     * @var Client
+     *
      * @ORM\OneToOne(targetEntity="RocketfireAgenceMainBundle\Entity\Client", mappedBy="login")
      */
     private $client;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->isActive = true;
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
-     * Set login
+     * Set login.
      *
      * @param string $login
      *
      * @return Login
      */
-    public function setLogin($login) {
+    public function setLogin($login)
+    {
         $this->login = $login;
 
         return $this;
     }
 
     /**
-     * Get login
+     * Get login.
      *
      * @return string
      */
-    public function getLogin() {
+    public function getLogin()
+    {
         return $this->login;
     }
 
     /**
-     * Set motDePasse
+     * Set motDePasse.
      *
      * @param string $motDePasse
      *
      * @return Login
      */
-    public function setMotDePasse($motDePasse) {
+    public function setMotDePasse($motDePasse)
+    {
         $this->motDePasse = $motDePasse;
 
         return $this;
     }
 
     /**
-     * Get motDePasse
+     * Get motDePasse.
      *
      * @return string
      */
-    public function getMotDePasse() {
+    public function getMotDePasse()
+    {
         return $this->motDePasse;
     }
-    
+
     /**
-     * Set motDePasseConf
+     * Set motDePasseConf.
      *
      * @param string $motDePasseConf
      *
      * @return Login
      */
-    public function setMotDePasseConf($motDePasseConf) {
+    public function setMotDePasseConf($motDePasseConf)
+    {
         $this->motDePasseConf = $motDePasseConf;
 
         return $this;
     }
 
     /**
-     * Get motDePasseConf
+     * Get motDePasseConf.
      *
      * @return string
      */
-    public function getMotDePasseConf() {
+    public function getMotDePasseConf()
+    {
         return $this->motDePasseConf;
     }
 
     /**
-     * Set admin
+     * Set admin.
      *
-     * @param boolean $admin
+     * @param bool $admin
      *
      * @return Login
      */
-    public function setAdmin($admin) {
+    public function setAdmin($admin)
+    {
         $this->admin = $admin;
 
         return $this;
     }
 
     /**
-     * Get admin
+     * Get admin.
      *
-     * @return boolean
+     * @return bool
      */
-    public function isAdmin() {
+    public function isAdmin()
+    {
         return $this->admin;
     }
 
     /**
-     * Set isActive
+     * Set isActive.
      *
-     * @param boolean $isActive
+     * @param bool $isActive
      *
      * @return Login
      */
-    public function setActive($isActive) {
+    public function setActive($isActive)
+    {
         $this->isActive = $isActive;
 
         return $this;
     }
 
     /**
-     * Get isActive
+     * Get isActive.
      *
-     * @return boolean
+     * @return bool
      */
-    public function isActive() {
+    public function isActive()
+    {
         return $this->isActive;
     }
 
     /**
-     * Set client
+     * Set client.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Client $client
      *
      * @return Login
      */
     public function setClient(\RocketfireAgenceMainBundle\Entity\Client $client =
-    null) {
+    null)
+    {
         $this->client = $client;
 
         return $this;
     }
 
     /**
-     * Get client
+     * Get client.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Client
      */
-    public function getClient() {
+    public function getClient()
+    {
         return $this->client;
     }
 
     /**
-     * Teste si l'utilisateur loggué est le même que le Login
-     * 
+     * Teste si l'utilisateur loggué est le même que le Login.
+     *
      * @param \RocketfireAgenceMainBundle\Entity\Login $user
-     * @return boolean
+     *
+     * @return bool
      */
-    public function isSelf(Login $user = null) {
+    public function isSelf(Login $user = null)
+    {
         return $user && $user->getLogin() == $this->login;
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->login;
     }
 
-    public function getSalt() {
+    public function getSalt()
+    {
         // on retourne null car en utilisant bcrypt, le salt est généré en interne
         return null;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->motDePasse;
     }
 
-    public function getRoles() {
+    public function getRoles()
+    {
         if ($this->isAdmin()) {
             return [
-                'ROLE_ADMIN'];
+                'ROLE_ADMIN', ];
         } else {
-            return array(
-                'ROLE_USER');
+            return [
+                'ROLE_USER', ];
         }
     }
 
-    public function eraseCredentials() {
-        
+    public function eraseCredentials()
+    {
     }
 
     /** @see \Serializable::serialize() */
-    public function serialize() {
-        return serialize(array(
+    public function serialize()
+    {
+        return serialize([
             $this->id,
             $this->login,
             $this->motDePasse,
-        ));
+        ]);
     }
 
     /** @see \Serializable::unserialize() */
-    public function unserialize($serialized) {
-        list (
+    public function unserialize($serialized)
+    {
+        list(
                 $this->id,
                 $this->login,
-                $this->motDePasse,
-                ) = unserialize($serialized);
+                $this->motDePasse) = unserialize($serialized);
     }
 
+    /**
+     * Get admin.
+     *
+     * @return bool
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
+
+    /**
+     * Set isActive.
+     *
+     * @param bool $isActive
+     *
+     * @return Login
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive.
+     *
+     * @return bool
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 }

@@ -5,34 +5,33 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* Aeroport
-*
-* @ORM\Table(name="aeroport")
-* @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\AeroportRepository")
-*/
+ * Aeroport.
+ *
+ * @ORM\Table(name="aeroport")
+ * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\AeroportRepository")
+ */
 class Aeroport
 {
-
     /**
-    * @var int
-    *
-    * @ORM\Column(name="idAero", type="bigint")
-    * @ORM\Id
-    * @ORM\GeneratedValue(strategy="AUTO")
-    */
+     * @var int
+     *
+     * @ORM\Column(name="idAero", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $idAero;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="nom", type="string", length=60)
-    */
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=60)
+     */
     private $nom;
 
     /**
-     * Get idAero
+     * Get idAero.
      *
-     * @return integer
+     * @return int
      */
     public function getIdAero()
     {
@@ -40,7 +39,7 @@ class Aeroport
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
@@ -54,7 +53,7 @@ class Aeroport
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */
@@ -63,7 +62,8 @@ class Aeroport
         return $this->nom;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->nom;
     }
 }

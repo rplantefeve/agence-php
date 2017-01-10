@@ -13,7 +13,19 @@ class EscaleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateDepartEscale')->add('dateArriveeEscale')->add('heureDepartEscale')->add('heureArriveeEscale')->add('idAeroport')->add('idVol')        ;
+        $builder->add('dateDepartEscale')
+                ->add('dateArriveeEscale')
+                ->add('heureDepartEscale')
+                ->add('heureArriveeEscale')
+                ->add('idAeroport', 'entity', array(
+                    'class' => 'RocketfireAgenceMainBundle:Aeroport',
+                    'label' => 'Aeroport'
+                ))
+                ->add('idVol', 'entity', array(
+                    'class' => 'RocketfireAgenceMainBundle:Vol',
+                    'label' => 'Vol'
+
+                ));
     }
 
     /**
@@ -21,9 +33,9 @@ class EscaleType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\Escale'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\Escale',
+        ]);
     }
 
     /**
@@ -33,6 +45,4 @@ class EscaleType extends AbstractType
     {
         return 'rocketfireagencemainbundle_escale';
     }
-
-
 }

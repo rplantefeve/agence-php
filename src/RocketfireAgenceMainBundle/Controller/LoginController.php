@@ -15,28 +15,30 @@ use RocketfireAgenceMainBundle\Form\Type\LoginType;
  *
  * @Route("Login")
  */
-class LoginController extends Controller {
-
+class LoginController extends Controller
+{
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction(Request $request) {
+    public function loginAction(Request $request)
+    {
         $authenticationUtils = $this->get('security.authentication_utils');
         // si l'utilisateur est déjà connecté, on redirige vers la homepage
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('homepage');
         } else {
             // get the login error if there is one
-            $error        = $authenticationUtils->getLastAuthenticationError();
+            $error = $authenticationUtils->getLastAuthenticationError();
             // last username entered by the user
             $lastUsername = $authenticationUtils->getLastUsername();
+
             return $this->render(
                             'RocketfireAgenceMainBundle:Login:login.html.twig',
-                            array(
+                            [
                         // last username entered by the user
                         'last_username' => $lastUsername,
-                        'error'         => $error,
-                            )
+                        'error' => $error,
+                            ]
             );
         }
     }
@@ -47,15 +49,16 @@ class LoginController extends Controller {
      * @Route("/list", name="login_list")
      * @Method("GET")
      */
-    public function listLoginAction() {
+    public function listLoginAction()
+    {
         $em = $this->getDoctrine()->getManager();
 
         $logins = $em->getRepository('RocketfireAgenceMainBundle:Login')->findAll();
 
         return $this->render('RocketfireAgenceMainBundle:Login:index.html.twig',
-                        array(
+                        [
                     'logins' => $logins,
-        ));
+        ]);
     }
 
     /**
@@ -64,17 +67,18 @@ class LoginController extends Controller {
      * @Route("/add", name="login_add")
      * @Method({"GET", "POST"})
      */
-    public function addLoginAction(Request $request) {
+    public function addLoginAction(Request $request)
+    {
         // 1) Créer le formulaire
         $login = new Login();
-        $form  = $this->createForm(LoginType::class, $login);
+        $form = $this->createForm(LoginType::class, $login);
 
         // 2) Gérer la requête
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // 3) Encoder le mot de passe avant enregistrement
-            $encoder  = $this->get('security.password_encoder');
+            $encoder = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($login, $login->getMotDePasse());
             $login->setMotDePasse($password);
 
@@ -84,15 +88,15 @@ class LoginController extends Controller {
             $em->flush($login);
 
             return $this->redirectToRoute('login_show',
-                            array(
-                        'id' => $login->getId()));
+                            [
+                        'id' => $login->getId(), ]);
         }
 
         return $this->render('RocketfireAgenceMainBundle:Login:new.html.twig',
-                        array(
+                        [
                     'login' => $login,
-                    'form'  => $form->createView(),
-        ));
+                    'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -101,11 +105,12 @@ class LoginController extends Controller {
      * @Route("/show/{id}", name="login_show")
      * @Method("GET")
      */
-    public function showLoginAction(Login $login) {
+    public function showLoginAction(Login $login)
+    {
         return $this->render('RocketfireAgenceMainBundle:Login:show.html.twig',
-                        array(
-                    'login' => $login
-        ));
+                        [
+                    'login' => $login,
+        ]);
     }
 
     /**
@@ -115,31 +120,32 @@ class LoginController extends Controller {
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function editLoginAction(Request $request, Login $login) {
+    public function editLoginAction(Request $request, Login $login)
+    {
         $deleteForm = $this->createDeleteForm($login);
-        $editForm   = $this->createForm(LoginType::class, $login);
+        $editForm = $this->createForm(LoginType::class, $login);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            
-            $encoder  = $this->get('security.password_encoder');
+            $encoder = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($login, $login->getMotDePasse());
             $login->setMotDePasse($password);
 
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('notice', 'Félicitations, modification réussie.');
+
             return $this->redirectToRoute('login_edit',
-                            array(
-                        'id' => $login->getId()));
+                            [
+                        'id' => $login->getId(), ]);
         }
 
         return $this->render('RocketfireAgenceMainBundle:Login:edit.html.twig',
-                        array(
-                    'login'       => $login,
-                    'edit_form'   => $editForm->createView(),
+                        [
+                    'login' => $login,
+                    'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -149,7 +155,8 @@ class LoginController extends Controller {
      * @Method("DELETE")
      * @Security("has_role('ROLE_ADMIN') && !login.isSelf(user)")
      */
-    public function deleteLoginAction(Request $request, Login $login) {
+    public function deleteLoginAction(Request $request, Login $login)
+    {
         $form = $this->createDeleteForm($login);
         $form->handleRequest($request);
 
@@ -169,14 +176,14 @@ class LoginController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Login $login) {
+    private function createDeleteForm(Login $login)
+    {
         return $this->createFormBuilder()
                         ->setAction($this->generateUrl('login_delete',
-                                        array(
-                                    'id' => $login->getId())))
+                                        [
+                                    'id' => $login->getId(), ]))
                         ->setMethod('DELETE')
                         ->getForm()
         ;
     }
-
 }

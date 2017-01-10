@@ -28,4 +28,42 @@ class Aeroport
     * @ORM\Column(name="nom", type="string", length=60)
     */
     private $nom;
+
+    /**
+     * Get idAero
+     *
+     * @return integer
+     */
+    public function getIdAero()
+    {
+        return $this->idAero;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Aeroport
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    public function __toString(){
+        return $this->nom;
+    }
 }

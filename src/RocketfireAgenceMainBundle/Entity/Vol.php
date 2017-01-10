@@ -5,14 +5,13 @@ namespace RocketfireAgenceMainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Vol
+ * Vol.
  *
  * @ORM\Table(name="vol")
  * @ORM\Entity(repositoryClass="RocketfireAgenceMainBundle\Repository\VolRepository")
  */
 class Vol
 {
-
     /**
      * @var int
      *
@@ -22,20 +21,20 @@ class Vol
      */
     private $idVol;
 
-    /**
-     * @var int
-     *
-     * @ORM\ManyToOne(targetEntity="Aeroport")
-     * @ORM\JoinColumn(name="idAeroportDepart", referencedColumnName="idAero")
-     */
+     /**
+      * @var int
+      *
+      * @ORM\ManyToOne(targetEntity="Aeroport")
+      * @ORM\JoinColumn(name="idAeroportDepart", referencedColumnName="idAero")
+      */
      private $idAeroportDepart;
 
-    /**
-     * @var int
-     *
-     * @ORM\ManyToOne(targetEntity="Aeroport")
-     * @ORM\JoinColumn(name="idAeroportArrivee", referencedColumnName="idAero")
-     */
+     /**
+      * @var int
+      *
+      * @ORM\ManyToOne(targetEntity="Aeroport")
+      * @ORM\JoinColumn(name="idAeroportArrivee", referencedColumnName="idAero")
+      */
      private $idAeroportArrivee;
 
     /**
@@ -66,13 +65,20 @@ class Vol
      */
     private $heureArriveeVol;
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->idVol;
     }
 
+    public function __construct(){
+        $this->dateDepartVol = new \DateTime();
+        $this->dateArriveeVol = new \DateTime();
+        $this->heureDepartVol = new \DateTime();
+        $this->heureArriveeVol = new \DateTime();
+    }
+
     /**
-     * Set dateDepartVol
+     * Set dateDepartVol.
      *
      * @param \DateTime $dateDepartVol
      *
@@ -86,7 +92,7 @@ class Vol
     }
 
     /**
-     * Get dateDepartVol
+     * Get dateDepartVol.
      *
      * @return \DateTime
      */
@@ -96,7 +102,7 @@ class Vol
     }
 
     /**
-     * Set dateArriveeVol
+     * Set dateArriveeVol.
      *
      * @param \DateTime $dateArriveeVol
      *
@@ -110,7 +116,7 @@ class Vol
     }
 
     /**
-     * Get dateArriveeVol
+     * Get dateArriveeVol.
      *
      * @return \DateTime
      */
@@ -120,7 +126,7 @@ class Vol
     }
 
     /**
-     * Set heureDepartVol
+     * Set heureDepartVol.
      *
      * @param \DateTime $heureDepartVol
      *
@@ -134,7 +140,7 @@ class Vol
     }
 
     /**
-     * Get heureDepartVol
+     * Get heureDepartVol.
      *
      * @return \DateTime
      */
@@ -144,7 +150,7 @@ class Vol
     }
 
     /**
-     * Set heureArriveeVol
+     * Set heureArriveeVol.
      *
      * @param \DateTime $heureArriveeVol
      *
@@ -158,7 +164,7 @@ class Vol
     }
 
     /**
-     * Get heureArriveeVol
+     * Get heureArriveeVol.
      *
      * @return \DateTime
      */
@@ -168,7 +174,7 @@ class Vol
     }
 
     /**
-     * Set idAeroportDepart
+     * Set idAeroportDepart.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportDepart
      *
@@ -182,7 +188,7 @@ class Vol
     }
 
     /**
-     * Get idAeroportDepart
+     * Get idAeroportDepart.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */
@@ -192,7 +198,7 @@ class Vol
     }
 
     /**
-     * Set idAeroportArrivee
+     * Set idAeroportArrivee.
      *
      * @param \RocketfireAgenceMainBundle\Entity\Aeroport $idAeroportArrivee
      *
@@ -206,7 +212,7 @@ class Vol
     }
 
     /**
-     * Get idAeroportArrivee
+     * Get idAeroportArrivee.
      *
      * @return \RocketfireAgenceMainBundle\Entity\Aeroport
      */
@@ -216,9 +222,9 @@ class Vol
     }
 
     /**
-     * Get idVol
+     * Get idVol.
      *
-     * @return integer
+     * @return int
      */
     public function getIdVol()
     {

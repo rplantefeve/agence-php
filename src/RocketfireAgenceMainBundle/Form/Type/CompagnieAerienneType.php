@@ -13,17 +13,17 @@ class CompagnieAerienneType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')        ;
+        $builder->add('nom');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'RocketfireAgenceMainBundle\Entity\CompagnieAerienne'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'RocketfireAgenceMainBundle\Entity\CompagnieAerienne',
+        ]);
     }
 
     /**
@@ -33,6 +33,4 @@ class CompagnieAerienneType extends AbstractType
     {
         return 'rocketfireagencemainbundle_compagnieaerienne';
     }
-
-
 }
