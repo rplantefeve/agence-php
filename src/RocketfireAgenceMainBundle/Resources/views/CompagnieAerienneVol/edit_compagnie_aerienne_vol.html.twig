@@ -24,20 +24,10 @@
         </div>
 
         <div class="btn-group" role="group">
-
-{#            {{ form_start(form) }}#}
-{#            <input type="submit" class="btn btn-danger" value="Delete">#}
-{#            <a href="{{ path('CompagnieAerienneVol_delete') }}">
-                <button type="button" class="btn btn-danger">
-                    Delete
-                </button>
-            </a>#}
-{#compagnieAerienneVol.id#}
             <a href="{{ path('CompagnieAerienneVol_delete', { 'id': compagnieAerienneVol.id }) }}">
                 <button type="button" class="btn btn-danger">Delete</button>
-            </a>
-{#            {{ form_end(form) }}#}
+            </a>    
         </div>
     </div>
-            
+
 {% endblock %}
