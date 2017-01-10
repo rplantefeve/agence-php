@@ -8,6 +8,8 @@
         </button>
     </a>
     {% for escale in escales %}
+    <table class="table table-hover table-striped">
     {% include 'RocketfireAgenceMainBundle:Escale:table.body.html.twig' %}
+    </table>
     {% endfor %}
 {% endblock %}
