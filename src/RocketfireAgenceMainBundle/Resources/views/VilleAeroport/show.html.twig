@@ -6,10 +6,6 @@
     <table class="table table-hover table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ villeAeroport.id }}</td>
-            </tr>
-            <tr>
                 <th>Ville</th>
                 <td>{{ villeAeroport.idVille }}</td>
             </tr>
@@ -28,6 +24,7 @@
                 </button>
             </a>
         </div>
+        {% if is_granted('ROLE_ADMIN') %}
         <div class="btn-group" role="group">
             <a href="{{ path('villeaeroport_edit', { 'id': villeAeroport.id }) }}">
                 <button type="button" class="btn btn-warning">Editer</button>
@@ -38,5 +35,6 @@
             <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
         </div>
+        {% endif %}
     </div>
 {% endblock %}
