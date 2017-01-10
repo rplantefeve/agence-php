@@ -21,8 +21,8 @@ class LoadVolClass extends AbstractFixture implements OrderedFixtureInterface
         $volOne->setDateArriveeVol($date2);
         $volOne->setHeureDepartVol($date);
         $volOne->setHeureArriveeVol($date2);
-        $volOne->setIdAeroportDepart($this->getReference('aeroport-one'));
-        $volOne->setIdAeroportArrivee($this->getReference('aeroport-two'));
+        $volOne->setAeroportDepart($this->getReference('aeroport-one'));
+        $volOne->setAeroportArrivee($this->getReference('aeroport-two'));
 
         $volTwo = new Vol();
         $date = new \DateTime('2017-02-16 07:54:02');
@@ -31,8 +31,8 @@ class LoadVolClass extends AbstractFixture implements OrderedFixtureInterface
         $volTwo->setDateArriveeVol($date2);
         $volTwo->setHeureDepartVol($date);
         $volTwo->setHeureArriveeVol($date2);
-        $volTwo->setIdAeroportDepart($this->getReference('aeroport-two'));
-        $volTwo->setIdAeroportArrivee($this->getReference('aeroport-one'));
+        $volTwo->setAeroportDepart($this->getReference('aeroport-two'));
+        $volTwo->setAeroportArrivee($this->getReference('aeroport-one'));
 
         $manager->persist($volOne);
         $manager->persist($volTwo);
