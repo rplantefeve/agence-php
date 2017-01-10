@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('/assets/css/form.css')}}" type="text/css">
+    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 
 </head>
 <body>
@@ -33,17 +34,24 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li class="active"><a href="{{ path('logout') }}">{% trans %}link.logout{% endtrans %}<span class="sr-only">(current)</span></a></li>
-                    <li><a href="{{ path('vol_index') }}">Vol</a></li>
-                    <li><a href="{{ path('aeroport_index') }}">Aeroport</a></li>
-                    <li><a href="{{ path('adresse_index') }}">Adresse</a></li>
-                    <li><a href="{{ path('inscrire_client') }}">Client</a></li>
-                    <li><a href="{{ path('CompagnieAerienne_list') }}">Compagnie Aerienne</a></li>
-                    <li><a href="{{ path('CompagnieAerienneVol_list') }}">Compagnie Aerienne Vol</a></li>
-                    <li><a href="{{ path('escale_index') }}">Escale</a></li>
-                    <li><a href="{{ path('reservation_index') }}">Réservation</a></li>
-                    <li><a href="{{ path('ville_index') }}">Ville</a></li>
-                    <li><a href="{{ path('villeaeroport_index') }}">Ville Aeroport</a></li>
+                         {% if is_granted('ROLE_ADMIN') %}
+                            <li class="active"><a href="{{ path('logout') }}">{% trans %}link.logout{% endtrans %}<span class="sr-only">(current)</span></a></li>
+                            <li><a href="{{ path('vol_index') }}">Vol</a></li>
+                            <li><a href="{{ path('aeroport_index') }}">Aeroport</a></li>
+                            <li><a href="{{ path('adresse_index') }}">Adresse</a></li>
+                            <li><a href="{{ path('inscrire_client') }}">Client</a></li>
+                            <li><a href="{{ path('CompagnieAerienne_list') }}">Compagnie Aerienne</a></li>
+                            <li><a href="{{ path('CompagnieAerienneVol_list') }}">Compagnie Aerienne Vol</a></li>
+                            <li><a href="{{ path('escale_index') }}">Escale</a></li>
+                            <li><a href="{{ path('reservation_index') }}">Réservation</a></li>
+                            <li><a href="{{ path('ville_index') }}">Ville</a></li>
+                            <li><a href="{{ path('villeaeroport_index') }}">Ville Aeroport</a></li>
+                          {% else %}
+                           <li class="active"><a href="{{ path('logout') }}">{% trans %}link.logout{% endtrans %}<span class="sr-only">(current)</span></a></li>
+                            <li><a href="{{ path('inscrire_client') }}">Client</a></li> 
+                           <li><a href="{{ path('vol_index') }}">Vol</a></li>                          
+                            <li><a href="{{ path('reservation_index') }}">Réservation</a></li>                           
+                           {% endif %}                          
                     {% else %}
                     <li class="active"><a href="{{ path('login') }}">Login<span class="sr-only">(current)</span></a></li>
                     {% endif %}

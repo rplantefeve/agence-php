@@ -1,15 +1,64 @@
 {% extends "::base.html.twig" %}
-
 {% block title %}RocketfireAgenceMainBundle:CompagnieAerienne:editCompagnieAerienne{% endblock %}
 
 {% block body %}
-<h1>Welcome to the CompagnieAerienne:editCompagnieAerienne page</h1>
+<h1>Modification des informations de votre compagnie</h1>
 {{ form_start(form) }}
     {{ form_row(form.nom) }}
 
-    <button type="submit">Sauvegarder la compagnie aérienne</button>
+    <button type="submit" class="btn btn-primary">Sauvegarder la compagnie aérienne</button>
     {{ form_end(form) }}
     <form action='{{ path('CompagnieAerienne_list') }}'>
         <button type="submit">Retour à la liste</button>
     </form>
+    
+    
+   <div class="container">
+           
+  <table class="table">   
+   
+      <tr>
+        <td width="200px">E-mail</td>
+        <td width="200px">input</td>       
+      </tr>
+      <tr>
+        <td>Confirmation E-mail</td>
+        <td>input</td>       
+      </tr>
+      <tr>
+        <td>N° de téléphone</td>
+        <td>input</td>       
+      </tr>
+   
+   <tr colspan="2">
+        <td>Adresse de facturation</td>
+            
+      </tr>
+      
+    
+      <tr>
+        <td>Adresse</td>
+        <td>input</td>       
+      </tr>
+      <tr>
+        <td>Code postal</td>
+        <td>input</td>       
+      </tr>
+      <tr>
+        <td>Ville</td>
+        <td>input</td>       
+      </tr>
+      <tr>
+        <td>Pays</td>
+        <td>input</td>       
+      </tr>
+      
+   
+  </table>
+       
+       
+       
+       
+</div>
+    
 {% endblock %}
