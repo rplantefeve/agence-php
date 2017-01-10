@@ -66,7 +66,7 @@ class Reservation
     /**
      * @var string
      *
-     * @ORM\Column( type="string",columnDefinition="ENUM('ouvert', 'fermé')")
+     * @ORM\Column(type="string", length=10)
      */
     private $etat;
 
