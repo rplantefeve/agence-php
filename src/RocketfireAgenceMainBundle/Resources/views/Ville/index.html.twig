@@ -10,7 +10,6 @@
     <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Actions</th>
             </tr>
@@ -18,8 +17,8 @@
         <tbody>
         {% for ville in villes %}
             <tr>
-                <td><a href="{{ path('ville_show', { 'id': ville.id }) }}">{{ ville.id }}</a></td>
                 <td>{{ ville.nom }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
                 <td>
                     <a href="{{ path('ville_show', { 'id': ville.id }) }}">
                         <button type="button" class="btn btn-default" aria-label="Left Align">
@@ -32,6 +31,7 @@
                         </button>
                     </a>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
