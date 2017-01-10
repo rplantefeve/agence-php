@@ -1,4 +1,6 @@
 imports:
+    # Passer en parameters_prod.yml en PROD
+    - { resource: parameters.yml }
     - { resource: config.yml }
 
 #framework:
