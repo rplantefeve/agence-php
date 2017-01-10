@@ -6,16 +6,11 @@
     <table class="table table-hover table-striped">
         <tbody>
             <tr>
-                <th>Idaero</th>
-                <td>{{ aeroport.idAero }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ aeroport.nom }}</td>
             </tr>
         </tbody>
     </table>
-
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">
             <a href="{{ path('aeroport_index') }}">
@@ -35,5 +30,4 @@
             {{ form_end(delete_form) }}
         </div>
     </div>
-
 {% endblock %}

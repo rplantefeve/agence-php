@@ -38,9 +38,17 @@ security:
                 target: /
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
-        - { path: ^/Vol/list$, role: ROLE_USER }
+        - { path: ^/Vol/list$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inscrire/client, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/Client/Particulier, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/Client/Particulier, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/Client/Association, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/Client/Entreprise, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/Client/Compagnie, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
         - { path: ^/Aeroport/list$, role: ROLE_USER }
         - { path: ^/Client, role: ROLE_USER }
+
         - { path: ^/CompagnieAerienne/list$, role: ROLE_USER }
         - { path: ^/Adresse/list$, role: ROLE_USER }
         - { path: ^/Escale/list$, role: ROLE_USER }
@@ -56,7 +64,6 @@ security:
         - { path: ^/Reservation, role: ROLE_ADMIN }
         - { path: ^/Ville, role: ROLE_ADMIN }
 
-        # - { path: ^/Ville, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
