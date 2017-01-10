@@ -57,7 +57,7 @@ class Login implements UserInterface, \Serializable
      *
      * @ORM\Column(name="isActive", type="boolean")
      */
-    private $isActive;
+    private $active;
 
     /**
      * @var Client
@@ -68,7 +68,7 @@ class Login implements UserInterface, \Serializable
 
     public function __construct()
     {
-        $this->isActive = true;
+        $this->active = true;
     }
 
     /**
@@ -178,27 +178,27 @@ class Login implements UserInterface, \Serializable
     }
 
     /**
-     * Set isActive.
+     * Set active.
      *
-     * @param bool $isActive
+     * @param bool $active
      *
      * @return Login
      */
-    public function setActive($isActive)
+    public function setActive($active)
     {
-        $this->isActive = $isActive;
+        $this->active = $active;
 
         return $this;
     }
 
     /**
-     * Get isActive.
+     * Get active.
      *
      * @return bool
      */
-    public function isActive()
+    public function active()
     {
-        return $this->isActive;
+        return $this->active;
     }
 
     /**
@@ -298,27 +298,4 @@ class Login implements UserInterface, \Serializable
         return $this->admin;
     }
 
-    /**
-     * Set isActive.
-     *
-     * @param bool $isActive
-     *
-     * @return Login
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
-    }
-
-    /**
-     * Get isActive.
-     *
-     * @return bool
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
 }

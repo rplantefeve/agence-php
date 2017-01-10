@@ -11,7 +11,6 @@
 <table class="table table-hover table-striped">
     <thead>
         <tr>
-            <th>Idaero</th>
             <th>Nom</th>
             <th>Actions</th>
         </tr>
@@ -19,9 +18,9 @@
     <tbody>
         {% for aeroport in aeroports %}
         <tr>
-            <td><a href="{{ path('aeroport_show', { 'id': aeroport.idAero }) }}">{{ aeroport.idAero }}</a></td>
             <td>{{ aeroport.nom }}</td>
             <td>
+            {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('aeroport_show', { 'id': aeroport.idAero }) }}">
                     <button type="button" class="btn btn-default" aria-label="Left Align">
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -33,10 +32,17 @@
                     </button>
                 </a>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
+    {% for flashMessage in app.session.flashBag.get('error') %}
+        <p>
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
 
+    
 {% endblock %}

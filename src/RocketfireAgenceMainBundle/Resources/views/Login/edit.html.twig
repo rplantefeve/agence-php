@@ -8,7 +8,7 @@
     {{ form_row(edit_form.login, { 'attr' : { 'readonly' : true } }) }}
     {{ form_row(edit_form.motDePasse) }}
     {{ form_row(edit_form.admin) }}
-    {{ form_row(edit_form.isActive) }}
+    {{ form_row(edit_form.active) }}
     <input type="submit" value="{% trans %}button.edit{% endtrans %}" />
     {% for flashMessage in app.session.flashBag.get('notice') %}
         <p>

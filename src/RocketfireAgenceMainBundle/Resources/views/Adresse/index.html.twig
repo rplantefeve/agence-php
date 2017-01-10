@@ -4,13 +4,12 @@
     <h1>Adresses list</h1>
     <a href="{{ path('adresse_new') }}">
         <button type="button" class="btn btn-info">
-            Create a new aeroport
+            Create a new Adresse
         </button>
     </a>
     <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Idadd</th>
                 <th>Adresse</th>
                 <th>Codepostal</th>
                 <th>Ville</th>
@@ -21,7 +20,6 @@
         <tbody>
         {% for adresse in adresses %}
             <tr>
-                <td><a href="{{ path('adresse_show', { 'id': adresse.idAdd }) }}">{{ adresse.idAdd }}</a></td>
                 <td>{{ adresse.adresse }}</td>
                 <td>{{ adresse.codePostal }}</td>
                 <td>{{ adresse.ville }}</td>

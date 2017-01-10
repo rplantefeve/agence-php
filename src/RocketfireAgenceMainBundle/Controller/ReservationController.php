@@ -13,22 +13,21 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("Reservation")
  */
-class ReservationController extends Controller
-{
+class ReservationController extends Controller {
+
     /**
      * Lists all reservation entities.
      *
      * @Route("/list", name="reservation_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository('RocketfireAgenceMainBundle:Reservation')->findAll();
 
         return $this->render('RocketfireAgenceMainBundle:Reservation:index.html.twig', [
-            'reservations' => $reservations,
+                    'reservations' => $reservations,
         ]);
     }
 
@@ -38,8 +37,7 @@ class ReservationController extends Controller
      * @Route("/add", name="reservation_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $reservation = new Reservation();
         $form = $this->createForm('RocketfireAgenceMainBundle\Form\Type\ReservationType', $reservation);
         $form->handleRequest($request);
@@ -53,8 +51,8 @@ class ReservationController extends Controller
         }
 
         return $this->render('RocketfireAgenceMainBundle:Reservation:new.html.twig', [
-            'reservation' => $reservation,
-            'form' => $form->createView(),
+                    'reservation' => $reservation,
+                    'form' => $form->createView(),
         ]);
     }
 
@@ -64,13 +62,12 @@ class ReservationController extends Controller
      * @Route("/show/{id}", name="reservation_show")
      * @Method("GET")
      */
-    public function showAction(Reservation $reservation)
-    {
+    public function showAction(Reservation $reservation) {
         $deleteForm = $this->createDeleteForm($reservation);
 
         return $this->render('RocketfireAgenceMainBundle:Reservation:show.html.twig', [
-            'reservation' => $reservation,
-            'delete_form' => $deleteForm->createView(),
+                    'reservation' => $reservation,
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -80,8 +77,7 @@ class ReservationController extends Controller
      * @Route("/edit/{id}", name="reservation_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Reservation $reservation)
-    {
+    public function editAction(Request $request, Reservation $reservation) {
         $deleteForm = $this->createDeleteForm($reservation);
         $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\ReservationType', $reservation);
         $editForm->handleRequest($request);
@@ -93,9 +89,9 @@ class ReservationController extends Controller
         }
 
         return $this->render('RocketfireAgenceMainBundle:Reservation:edit.html.twig', [
-            'reservation' => $reservation,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'reservation' => $reservation,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -105,15 +101,20 @@ class ReservationController extends Controller
      * @Route("/delete/{id}", name="reservation_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Reservation $reservation)
-    {
+    public function deleteAction(Request $request, Reservation $reservation) {
         $form = $this->createDeleteForm($reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($reservation);
-            $em->flush($reservation);
+
+            try {
+                $em->remove($reservation);
+                $em->flush($reservation);
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                // store a message for the very next request
+                $this->addFlash('error', 'Delete unauthorized : ForeignKey Constraint Violation (child exist) !');
+            }
         }
 
         return $this->redirectToRoute('reservation_index');
@@ -126,12 +127,12 @@ class ReservationController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Reservation $reservation)
-    {
+    private function createDeleteForm(Reservation $reservation) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('reservation_delete', ['id' => $reservation->getIdResa()]))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('reservation_delete', ['id' => $reservation->getIdResa()]))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }
