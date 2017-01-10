@@ -23,16 +23,19 @@ class VolController extends Controller
      */
     public function indexAction()
     {
-        $escale = new Escale();
-
-        $formData['escale'] = $escale;
 
         $em = $this->getDoctrine()->getManager();
 
         $vols = $em->getRepository('RocketfireAgenceMainBundle:Vol')->findAll();
+        $escales = $em->getRepository('RocketfireAgenceMainBundle:Escale')->findAll();
+        $villes_aeroports = $em->getRepository('RocketfireAgenceMainBundle:VilleAeroport')->findAll();
+        $comp_vols = $em->getRepository('RocketfireAgenceMainBundle:CompagnieAerienneVol')->findAll();
 
         return $this->render('RocketfireAgenceMainBundle:Vol:index.html.twig', [
             'vols' => $vols,
+            'escales' => $escales,
+            'villes_aeroports' => $villes_aeroports,
+            'comp_vols'=> $comp_vols,
         ]);
     }
 

@@ -1,13 +1,33 @@
-<tbody>
-    {% for vol in vols %}
+{% for vol in vols %}
+<table class="table table-hover table-striped">
+    <thead>
         <tr>
-            <td><a href="{{ path('vol_show', { 'id': vol.idVol }) }}">{{ vol.idVol }}</a></td>
+            <th>Datedepart</th>
+            <th>Datearrivee</th>
+            <th>Heuredepart</th>
+            <th>Heurearrivee</th>
+            <th>AeroportDepart</th>
+            <th>AeroportArrivee</th>
+            <th>Ouvert</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+        </tr>
+        <tr>
             <td>{% if vol.dateDepartVol %}{{ vol.dateDepartVol|date('Y-m-d') }}{% endif %}</td>
             <td>{% if vol.dateArriveeVol %}{{ vol.dateArriveeVol|date('Y-m-d') }}{% endif %}</td>
             <td>{% if vol.heureDepartVol %}{{ vol.heureDepartVol|date('H:i:s') }}{% endif %}</td>
             <td>{% if vol.heureArriveeVol %}{{ vol.heureArriveeVol|date('H:i:s') }}{% endif %}</td>
             <td>{% if vol.AeroportDepart %}{{ vol.AeroportDepart }}{% endif %}</td>
             <td>{% if vol.AeroportArrivee %}{{ vol.AeroportArrivee }}{% endif %}</td>
+            {% for comp_vol in comp_vols if vol.idVol == comp_vol.idVol %}
+            <td>
+                {% if comp_vol.ouvert %}Ouvert{% else %}Fermé{% endif %}
+            </td>
+            {% endfor %}
             <td>
                 <a href="{{ path('vol_show', { 'id': vol.idVol }) }}">
                     <button type="button" class="btn btn-default" aria-label="Left Align">
@@ -21,5 +41,10 @@
                 </a>
             </td>
         </tr>
-    {% endfor %}
-</tbody>
+        {% for escale in escales if  vol.idVol  == escale.idVol %}
+        {% include 'RocketfireAgenceMainBundle:Escale:table.body.html.twig' %}
+        {% endfor %}
+        
+    </tbody>
+</table>
+{% endfor %}
