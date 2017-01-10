@@ -5,7 +5,6 @@ namespace RocketfireAgenceMainBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use RocketfireAgenceMainBundle\Entity\Aeroport;
 
 class VolType extends AbstractType
 {
