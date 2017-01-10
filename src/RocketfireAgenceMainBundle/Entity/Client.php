@@ -279,4 +279,13 @@ abstract class Client
     {
         return $this->adresse;
     }
+    
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
 }
