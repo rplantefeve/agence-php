@@ -3,18 +3,40 @@
 {% block title %}RocketfireAgenceMainBundle:CompagnieAerienneVol:showCompagnieAerienneVol{% endblock %}
 
 {% block body %}
-    <h1>Welcome to the CompagnieAerienneVol:showCompagnieAerienneVol page</h1>
 
     <h1>Détails d'un vol de compagnie aérienne</h1>
-    <h3>Vol n°{{ compagnieAerienneVol.numero }}</h3>
+   
+    <table class="table table-hover table-striped">
+        <tbody>
+            <tr>
+                <th>Nom de la Compagnie</th>
+                <td>{{ compagnieAerienneVol.idVol }}</td>
+            </tr>
+            <tr>
+                <th>Vol n°</th>
+                <td>{{ compagnieAerienneVol.numero }}</td>
+            </tr>
+        </tbody>
+    </table>
+            
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <a href="{{ path('CompagnieAerienneVol_list') }}">
+                <button type="button" class="btn btn-default">
+                    Retour
+                </button>
+            </a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="{{ path('CompagnieAerienneVol_edit', { 'id': compagnieAerienneVol.id }) }}">
+                <button type="button" class="btn btn-warning">Editer</button>
+            </a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="{{ path('CompagnieAerienneVol_delete', { 'id': compagnieAerienneVol.id }) }}">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </a>
+        </div>
+    </div>
     
-    <form action='{{ path('CompagnieAerienneVol_edit' , { 'id' : compagnieAerienneVol.id }) }}'>
-        <button type="submit">Modifier la compagnie aérienne</button>
-    </form>
-    <form action='{{ path('CompagnieAerienneVol_delete' , { 'id' : compagnieAerienneVol.id }) }}'>
-        <button type="submit">Supprimer la compagnie aérienne</button>
-    </form>
-    <form action='{{ path('CompagnieAerienneVol_list') }}'>
-        <button type="submit">Liste des compagnies aériennes</button>
-    </form>
 {% endblock %}

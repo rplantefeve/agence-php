@@ -4,14 +4,16 @@
     <h1>Villes list</h1>
     <a href="{{ path('ville_new') }}">
         <button type="button" class="btn btn-info">
-            Create a new aeroport
+            Create a new ville
         </button>
     </a>
     <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th>Nom</th>
+                {% if is_granted('ROLE_ADMIN') %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -36,4 +38,9 @@
         {% endfor %}
         </tbody>
     </table>
+    {% for flashMessage in app.session.flashBag.get('error') %}
+        <p>
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
 {% endblock %}
