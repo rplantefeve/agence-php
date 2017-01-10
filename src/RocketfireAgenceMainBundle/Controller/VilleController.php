@@ -13,22 +13,21 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("Ville")
  */
-class VilleController extends Controller
-{
+class VilleController extends Controller {
+
     /**
      * Lists all ville entities.
      *
      * @Route("/list", name="ville_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $villes = $em->getRepository('RocketfireAgenceMainBundle:Ville')->findAll();
 
         return $this->render('RocketfireAgenceMainBundle:Ville:index.html.twig', [
-            'villes' => $villes,
+                    'villes' => $villes,
         ]);
     }
 
@@ -38,8 +37,7 @@ class VilleController extends Controller
      * @Route("/add", name="ville_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $ville = new Ville();
         $form = $this->createForm('RocketfireAgenceMainBundle\Form\Type\VilleType', $ville);
         $form->handleRequest($request);
@@ -53,8 +51,8 @@ class VilleController extends Controller
         }
 
         return $this->render('RocketfireAgenceMainBundle:Ville:new.html.twig', [
-            'ville' => $ville,
-            'form' => $form->createView(),
+                    'ville' => $ville,
+                    'form' => $form->createView(),
         ]);
     }
 
@@ -64,13 +62,12 @@ class VilleController extends Controller
      * @Route("/show/{id}", name="ville_show")
      * @Method("GET")
      */
-    public function showAction(Ville $ville)
-    {
+    public function showAction(Ville $ville) {
         $deleteForm = $this->createDeleteForm($ville);
 
         return $this->render('RocketfireAgenceMainBundle:Ville:show.html.twig', [
-            'ville' => $ville,
-            'delete_form' => $deleteForm->createView(),
+                    'ville' => $ville,
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -80,8 +77,7 @@ class VilleController extends Controller
      * @Route("/edit/{id}", name="ville_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Ville $ville)
-    {
+    public function editAction(Request $request, Ville $ville) {
         $deleteForm = $this->createDeleteForm($ville);
         $editForm = $this->createForm('RocketfireAgenceMainBundle\Form\Type\VilleType', $ville);
         $editForm->handleRequest($request);
@@ -93,9 +89,9 @@ class VilleController extends Controller
         }
 
         return $this->render('RocketfireAgenceMainBundle:Ville:edit.html.twig', [
-            'ville' => $ville,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'ville' => $ville,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -105,15 +101,19 @@ class VilleController extends Controller
      * @Route("/delete/{id}", name="ville_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Ville $ville)
-    {
+    public function deleteAction(Request $request, Ville $ville) {
         $form = $this->createDeleteForm($ville);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($ville);
-            $em->flush($ville);
+            try {
+                $em->remove($ville);
+                $em->flush($ville);
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                // store a message for the very next request
+                $this->addFlash('error', 'Suppression impossible : cette ville existe dans la table Ville - Aéroport');
+            }
         }
 
         return $this->redirectToRoute('ville_index');
@@ -126,12 +126,12 @@ class VilleController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Ville $ville)
-    {
+    private function createDeleteForm(Ville $ville) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ville_delete', ['id' => $ville->getId()]))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('ville_delete', ['id' => $ville->getId()]))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

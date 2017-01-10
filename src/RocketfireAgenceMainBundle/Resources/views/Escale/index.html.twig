@@ -4,7 +4,7 @@
     <h1>Escales list</h1>
     <a href="{{ path('escale_new') }}">
         <button type="button" class="btn btn-info">
-            Create a new aeroport
+            Create a new Escale
         </button>
     </a>
     <table class="table table-hover table-striped">
@@ -42,4 +42,10 @@
         {% endfor %}
         </tbody>
     </table>
+    {% for flashMessage in app.session.flashBag.get('error') %}
+        <p>
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
+        
 {% endblock %}
